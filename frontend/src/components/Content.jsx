@@ -4,6 +4,7 @@ import Message from "./Message";
 import axios from "axios";
 
 const Content = () => {
+  console.log("Content");
   const [messageData, setMessageData] = useState([]);
 
   const getData = () => {

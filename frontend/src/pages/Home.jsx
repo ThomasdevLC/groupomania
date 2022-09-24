@@ -6,6 +6,7 @@ import styles from "../App.module.scss";
 import Form from "../components/Form";
 
 const Home = () => {
+  console.log("Home");
   return (
     <div className={`d-flex flex-column ${styles.appContainer}`}>
       <Header />
