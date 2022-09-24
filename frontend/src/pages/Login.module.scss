@@ -1,0 +1,77 @@
+.background {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem 0.5rem;
+
+  .backgroundImg {
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 30%;
+  }
+
+  .paperPlane {
+    width: 300px;
+    position: absolute;
+    left: 260px;
+    top: -55px;
+  }
+
+  .logo {
+    width: 50%;
+    margin: auto;
+  }
+
+  .loginForm {
+    width: 100%;
+    max-width: 420px;
+    min-height: 350px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+    .title {
+      font-size: 25px;
+      text-align: center;
+      color: white;
+    }
+
+    .btnConnection {
+      width: 50%;
+      margin: auto;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .loginInput {
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      width: 90%;
+      margin: auto;
+    }
+
+    .errorBox {
+      .errorBoxText {
+        height: 10px;
+        text-align: center;
+        color: white;
+      }
+    }
+  }
+
+  .link {
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+  }
+}

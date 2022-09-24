@@ -1,0 +1,59 @@
+.message {
+  width: 650px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.imageContainer {
+  overflow: hidden;
+  border-radius: 20px;
+
+  .messageImg {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+  }
+}
+
+.messageTitle {
+  // height: 500px;
+  border: 1px solid var(--gray-2);
+}
+
+.textMessage {
+  text-align: left;
+  border: none;
+  outline: none;
+  width: 100%;
+  resize: none;
+  overflow: hidden;
+}
+
+.commentsLikesBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.userBox {
+  display: flex;
+  justify-content: center;
+  .userImg {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.heartPrimary {
+  color: var(--primary);
+}
+
+.imageContainer {
+  height: 500px;
+}

@@ -1,0 +1,19 @@
+.header {
+  background-color: white;
+  padding: 10px 20px;
+  box-shadow: var(--box-shadow-nav);
+  color: var(text-color);
+
+  img {
+    width: 200px;
+  }
+}
+
+.userBox {
+  .userimg {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+}

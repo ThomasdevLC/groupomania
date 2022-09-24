@@ -1,0 +1,64 @@
+.background {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem 0.5rem;
+
+  .backgroundImg {
+    min-height: 100%;
+    min-width: 1024px;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 30%;
+  }
+
+  .userimg {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: -85px;
+  }
+
+  .loginForm {
+    width: 100%;
+    max-width: 420px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: relative;
+    align-items: center;
+    .userName {
+      font-size: 25px;
+      text-align: center;
+      color: white;
+    }
+
+    .btnConnection {
+      width: 50%;
+      font-weight: bold;
+      font-size: 15px;
+      margin: 20px 20px;
+    }
+
+    i {
+      color: var(--primary);
+      font-size: 28px;
+      position: absolute;
+      padding: 3px;
+      left: 10px;
+      top: 10px;
+    }
+    i:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+    }
+  }
+}
