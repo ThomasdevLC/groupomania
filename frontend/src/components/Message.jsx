@@ -14,12 +14,12 @@ const Message = ({ message, onDelete, image }) => {
       content: editContent ? editContent : message.content,
     };
 
-    axios.put("http://localhost:3000/api/messages/" + message._id, data);
+    axios.put("http://localhost:3001/api/messages/" + message._id, data);
     setIsEditing(false);
   };
 
   const handleClick = () => {
-    axios.put(" http://localhost:3000/api/messages/:id/like/");
+    axios.put(" http://localhost:3001/api/messages/:id/like/");
     setLiked(!liked);
   };
 

@@ -9,7 +9,7 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/auth/632c873577029819db599a6b")
+      .get("http://localhost:3001/api/auth/632c873577029819db599a6b")
       .then((res) => setUserData(res.data));
   });
 

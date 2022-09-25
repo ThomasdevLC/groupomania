@@ -13,8 +13,8 @@ const Login = () => {
   const emailRef = useRef();
   const errRef = useRef();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("nas@test.com");
+  const [password, setPassword] = useState("Nas2022");
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
@@ -28,29 +28,40 @@ const Login = () => {
     setErrMsg("");
   }, [email, password]);
 
+  const onLogin = (data) => {
+    console.log(data);
+    displayUser(data.user);
+    displayToken(data.token);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/login",
-        JSON.stringify({ email, password }),
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      );
-      console.log(JSON.stringify(response?.data));
+      axios
+        .post(
+          "http://localhost:3001/api/auth/login",
+          JSON.stringify({ email, password }),
+          {
+            headers: { "Content-Type": "application/json" },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+          let data = res.data;
 
-      let data = response.data;
+          tools.setCookie(
+            "groupomania-token",
+            JSON.stringify(data.token),
+            86400000
+          );
 
-      console.log("token", JSON.stringify(response?.data.token));
-      tools.setCookie(
-        "groupomania-token",
-        JSON.stringify(response?.data.token),
-        86400000
-      );
+          onLogin(data);
 
-      setPassword("");
-      setSuccess(true);
+          setPassword("");
+          setSuccess(true);
+
+          navigate("/test");
+        });
     } catch (err) {
       if (!err?.response) {
         setErrMsg("pas de réponse serveur");
@@ -69,7 +80,7 @@ const Login = () => {
 
   return success ? (
     setTimeout(() => {
-      navigate("/");
+      navigate("/test");
     })
   ) : (
     <div className={styles.background}>

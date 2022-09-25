@@ -18,7 +18,7 @@ const Form = () => {
     data.append("image", files);
     data.append("content", content);
 
-    axios.post("http://localhost:3000/api/messages/", data);
+    axios.post("http://localhost:3001/api/messages/", data);
     setContent("");
   };
   return (

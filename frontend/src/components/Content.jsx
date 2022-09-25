@@ -9,7 +9,7 @@ const Content = () => {
 
   const getData = () => {
     axios
-      .get("http://localhost:3000/api/messages/")
+      .get("http://localhost:3001/api/messages/")
       .then((res) => setMessageData(res.data));
   };
 
@@ -18,7 +18,7 @@ const Content = () => {
   }, []);
 
   const handleDelete = async (messageId) => {
-    await axios.delete("http://localhost:3000/api/messages/" + messageId);
+    await axios.delete("http://localhost:3001/api/messages/" + messageId);
     await getData();
   };
 
