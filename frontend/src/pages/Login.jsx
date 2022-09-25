@@ -9,6 +9,8 @@ import logo from "../assets/images/icon-left-font-monochrome-white.png";
 import paperPlane from "../assets/images/paper-plane.png";
 import backgroundImg from "../assets/images/background.jpg";
 
+import api from "../api";
+
 const Login = () => {
   const emailRef = useRef();
   const errRef = useRef();
@@ -48,6 +50,8 @@ const Login = () => {
         .then((res) => {
           console.log(res);
           let data = res.data;
+          console.log("TOKEN", data.token);
+          api.token = data.token;
 
           tools.setCookie(
             "groupomania-token",
@@ -59,8 +63,6 @@ const Login = () => {
 
           setPassword("");
           setSuccess(true);
-
-          navigate("/test");
         });
     } catch (err) {
       if (!err?.response) {

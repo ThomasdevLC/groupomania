@@ -38,7 +38,7 @@ exports.login = (req, res, next) => {
             return res.status(401).json({ error: "Invalid password !" });
           }
           res.status(200).json({
-            userId: user._id,
+            user: user,
             token: jwt.sign({ userId: user._id }, "RANDOM_TOKEN_SECRET", {
               expiresIn: "24h",
             }),
@@ -52,6 +52,12 @@ exports.login = (req, res, next) => {
 // Get user
 exports.getById = (req, res, next) => {
   User.findOne({ _id: req.params.id })
+    .then((message) => res.status(200).json(message))
+    .catch((error) => res.status(404).json({ message: error }));
+};
+
+exports.currentUser = (req, res, next) => {
+  User.findOne({ _id: req.user.userId })
     .then((message) => res.status(200).json(message))
     .catch((error) => res.status(404).json({ message: error }));
 };
