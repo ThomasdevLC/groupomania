@@ -1,8 +1,10 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import axios from "axios";
 import styles from "./Login.module.scss";
 import tools from "../tools";
 import { NavLink, useNavigate } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
+
 import logo from "../assets/images/icon-left-font-monochrome-white.png";
 import paperPlane from "../assets/images/paper-plane.png";
 import backgroundImg from "../assets/images/background.jpg";
@@ -15,6 +17,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
+
+  const { displayUser, displayToken } = useContext(AppContext);
 
   useEffect(() => {
     emailRef.current.focus();
@@ -35,6 +39,8 @@ const Login = () => {
         }
       );
       console.log(JSON.stringify(response?.data));
+
+      let data = response.data;
 
       console.log("token", JSON.stringify(response?.data.token));
       tools.setCookie(
