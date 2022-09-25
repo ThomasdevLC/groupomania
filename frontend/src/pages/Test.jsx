@@ -1,11 +1,18 @@
 import React, { useContext } from "react";
 import axios from "axios";
-import AppContext from "../context/AppContext";
+import { AppContext } from "../context/AppContext";
 
 const Test = () => {
-  const { user, setUser } = useContext(AppContext);
+  const { displayUser, firstname, lastname, image, token } =
+    useContext(AppContext);
 
-  setUser("tototot");
+  const handleClick = (e) => {
+    displayUser({
+      firstname: "tata",
+      lastname: "toto",
+      imageUrl: "tutu",
+    });
+  };
   let config = {
     headers: {
       Authorization:
@@ -20,7 +27,9 @@ const Test = () => {
   return (
     <div>
       <h1>TEST</h1>
-      <p>{user}</p>
+      <p>{firstname}</p>
+      <button onClick={handleClick}>CHANGE</button>
+      <p>{token}</p>
     </div>
   );
 };

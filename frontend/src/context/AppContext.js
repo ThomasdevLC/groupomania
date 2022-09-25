@@ -1,8 +1,2 @@
-import React from "react";
-
-const UserContext = React.createContext({
-  user: "totot",
-  setUser: () => {},
-});
-
-export default UserContext;
+import { createContext } from "react";
+export const AppContext = createContext();
