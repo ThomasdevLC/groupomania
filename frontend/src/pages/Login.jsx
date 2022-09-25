@@ -20,7 +20,7 @@ const Login = () => {
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
-  const { displayUser, displayToken } = useContext(AppContext);
+  const { displayUser } = useContext(AppContext);
 
   useEffect(() => {
     emailRef.current.focus();
@@ -31,9 +31,7 @@ const Login = () => {
   }, [email, password]);
 
   const onLogin = (data) => {
-    console.log(data);
     displayUser(data.user);
-    displayToken(data.token);
   };
 
   const handleSubmit = async (e) => {
@@ -48,17 +46,20 @@ const Login = () => {
           }
         )
         .then((res) => {
-          console.log(res);
           let data = res.data;
           console.log("TOKEN", data.token);
+
+          /** ON ENREGISTRE LE TOKEN DANS NOTRE MODULE API */
           api.token = data.token;
 
+          /** ON ENREGISTRE LE TOKEN DANS UN COOKIE POUR LA PERSISTANCE */
           tools.setCookie(
             "groupomania-token",
             JSON.stringify(data.token),
             86400000
           );
 
+          /** ON APPEL DISPLAY USER DONNE DES VALEURS AUX VARIABLE DU COONTEXTE */
           onLogin(data);
 
           setPassword("");

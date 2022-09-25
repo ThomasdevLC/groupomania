@@ -4,8 +4,7 @@ import { AppContext } from "../context/AppContext";
 import api from "../api";
 
 const Test = () => {
-  const { displayUser, displayToken, firstname, lastname, image, token } =
-    useContext(AppContext);
+  const { firstname, lastname, image, token } = useContext(AppContext);
 
   const handleClick = (e) => {
     api

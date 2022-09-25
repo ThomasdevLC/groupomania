@@ -11,34 +11,31 @@ import tools from "./tools";
 import api from "./api";
 
 const App = () => {
-  const tokenCookie = tools.getCookie("groupomania-token");
-  console.log("App", tokenCookie);
-
+  /** ON CREER UNE FONCTION POUR HYDRATER LES DONNEES */
   const displayUser = (user) => {
     setFirstname(user.firstname);
     setLastname(user.lastname);
     setImage(user.imageUrl);
   };
 
+  /** ON RECHERCHE LE COOKIE */
+  const tokenCookie = tools.getCookie("groupomania-token");
+
   if (tokenCookie) {
+    /** ON ENREGISTRE LE TOKEN DANS NOTRE MODULE API */
     api.token = tokenCookie;
   } else {
+    //window.location.href = "http://localhost:3002/login";
     console.log("RETOUR AU Login");
   }
 
   api.get("auth/").then((res) => {
-    console.log("USER!", res);
     displayUser(res);
   });
 
   const [firstname, setFirstname] = useState(null);
   const [lastname, setLastname] = useState(null);
   const [image, setImage] = useState(null);
-  const [token, setToken] = useState(null);
-
-  const displayToken = (token) => {
-    setToken(token);
-  };
 
   return (
     <div>
@@ -49,8 +46,6 @@ const App = () => {
             firstname,
             lastname,
             image,
-            displayToken,
-            token,
           }}
         >
           <Routes>
