@@ -26,13 +26,15 @@ const Content = () => {
     <div className={`${styles.content} flex-fill p-20`}>
       <div className={` p-30 ${styles.card}`}>
         <div className={styles.grid}>
-          {messageData.map((message) => (
-            <Message
-              key={message._id}
-              message={message}
-              onDelete={() => handleDelete(message._id)}
-            />
-          ))}
+          {messageData
+            .sort((a, b) => b.date - a.date)
+            .map((message) => (
+              <Message
+                key={message._id}
+                message={message}
+                onDelete={() => handleDelete(message._id)}
+              />
+            ))}
         </div>
       </div>
     </div>

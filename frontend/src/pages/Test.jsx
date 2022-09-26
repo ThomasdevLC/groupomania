@@ -3,7 +3,7 @@ import { AppContext } from "../context/AppContext";
 import api from "../api";
 
 const Test = () => {
-  const { firstname, lastname, image, token } = useContext(AppContext);
+  const { firstname, lastname, image, token, userId } = useContext(AppContext);
 
   const handleClick = (e) => {
     api
@@ -21,6 +21,7 @@ const Test = () => {
       <h1>TEST</h1>
       <p>{firstname}</p>
       <p>{lastname}</p>
+      <p>{userId}</p>
       <p>{image}</p>
       <button onClick={handleClick}>CHANGE</button>
       <p>token {token}</p>

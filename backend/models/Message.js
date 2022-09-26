@@ -10,6 +10,8 @@ const messageSchema = mongoose.Schema({
   userImage: { type: [String], required: true },
   userFirstname: { type: [String], required: true },
   userLastname: { type: [String], required: true },
+  userId: { type: [String], required: true },
+  date: { type: String, required: true },
 });
 
 module.exports = mongoose.model("Message", messageSchema);

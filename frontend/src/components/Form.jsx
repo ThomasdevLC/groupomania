@@ -5,10 +5,21 @@ import FileUpload from "./FileUpload";
 import { AppContext } from "../context/AppContext";
 
 const Form = () => {
-  const { firstname, lastname, image } = useContext(AppContext);
+  const { firstname, lastname, image, userId } = useContext(AppContext);
 
   const [content, setContent] = useState("");
   const [files, setFiles] = useState({});
+
+  const formatDate = () => {
+    let options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    };
+    return new Date().toLocaleDateString("fr-FR", options);
+  };
 
   const removeFile = (filename) => {
     setFiles(files.filter((file) => file.name !== filename));
@@ -23,6 +34,8 @@ const Form = () => {
     data.append("userFirstname", firstname);
     data.append("userLastname", lastname);
     data.append("userImage", image);
+    data.append("userId", userId);
+    data.append("date", formatDate());
 
     axios.post("http://localhost:3001/api/messages/", data);
     setContent("");

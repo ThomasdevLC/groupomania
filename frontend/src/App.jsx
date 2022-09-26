@@ -16,6 +16,7 @@ const App = () => {
     setFirstname(user.firstname);
     setLastname(user.lastname);
     setImage(user.imageUrl);
+    setUserId(user._id);
   };
 
   /** ON RECHERCHE LE COOKIE */
@@ -36,6 +37,7 @@ const App = () => {
   const [firstname, setFirstname] = useState(null);
   const [lastname, setLastname] = useState(null);
   const [image, setImage] = useState(null);
+  const [userId, setUserId] = useState(null);
 
   return (
     <div>
@@ -46,6 +48,7 @@ const App = () => {
             firstname,
             lastname,
             image,
+            userId,
           }}
         >
           <Routes>

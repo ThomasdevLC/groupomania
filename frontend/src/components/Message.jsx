@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import styles from "./Message.module.scss";
-import userpic from "../assets/images/takeshi.jpg";
+import { AppContext } from "../context/AppContext";
 
 const Message = ({ message, onDelete, image }) => {
+  const { userId } = useContext(AppContext);
+
+  console.log("utilisateur", userId);
+  console.log("message user", message.userId);
+
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState("");
   const [liked, setLiked] = useState(false);
@@ -61,7 +66,7 @@ const Message = ({ message, onDelete, image }) => {
           <span>4</span>
         </div>
 
-        <div className="var">
+        <div className="mb-20">
           <div className={` ${styles.userBox} d-flex mr-15 align-items-center`}>
             <img
               className={` ${styles.userImg}`}
@@ -70,32 +75,35 @@ const Message = ({ message, onDelete, image }) => {
             />
           </div>
 
-          <em>
-            {message.userFirstname}
-            {message.userLastname},{" "}
-          </em>
-          <em>le 09/09/2022</em>
+          <em>{message.userFirstname} </em>
+          <em>{message.userLastname}, </em>
+          <em>le {message.date}</em>
         </div>
-        <div className="p-10">
-          {isEditing ? (
-            <button
-              className="btn btn-primary mr-5"
-              onClick={() => handleEdit(false)}
-            >
-              <i className="fa-solid fa-pen mr-5"></i>Valider
+
+        {userId === message.userId ? (
+          <div className="p-10">
+            {isEditing ? (
+              <button
+                className="btn btn-primary mr-5"
+                onClick={() => handleEdit(false)}
+              >
+                <i className="fa-solid fa-pen mr-5"></i>Valider
+              </button>
+            ) : (
+              <button
+                className="btn btn-primary mr-5"
+                onClick={() => setIsEditing(true)}
+              >
+                <i className="fa-solid fa-pen mr-5"></i>Modifier
+              </button>
+            )}
+            <button className="btn btn-primary" onClick={() => onDelete()}>
+              <i className="fa-sharp fa-solid fa-trash mr-5"></i> Supprimer
             </button>
-          ) : (
-            <button
-              className="btn btn-primary mr-5"
-              onClick={() => setIsEditing(true)}
-            >
-              <i className="fa-solid fa-pen mr-5"></i>Modifier
-            </button>
-          )}
-          <button className="btn btn-primary" onClick={() => onDelete()}>
-            <i className="fa-sharp fa-solid fa-trash mr-5"></i> Supprimer
-          </button>
-        </div>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
