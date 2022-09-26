@@ -17,9 +17,7 @@ const Profile = () => {
           <span>{lastname}</span>
         </div>
 
-        <button className={`btn btn-primary ${styles.btnConnection}`}>
-          Connexion{" "}
-        </button>
+        <input type="file" name="" id="" />
 
         <NavLink to="/">
           <i className="fa-regular fa-circle-left"></i>

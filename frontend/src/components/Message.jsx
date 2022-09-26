@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import styles from "./Message.module.scss";
 import { AppContext } from "../context/AppContext";
+import EditingButtons from "./EditingButtons";
 
 const Message = ({ message, onDelete, image }) => {
   const { userId } = useContext(AppContext);
@@ -80,30 +81,14 @@ const Message = ({ message, onDelete, image }) => {
           <em>le {message.date}</em>
         </div>
 
-        {userId === message.userId ? (
-          <div className="p-10">
-            {isEditing ? (
-              <button
-                className="btn btn-primary mr-5"
-                onClick={() => handleEdit(false)}
-              >
-                <i className="fa-solid fa-pen mr-5"></i>Valider
-              </button>
-            ) : (
-              <button
-                className="btn btn-primary mr-5"
-                onClick={() => setIsEditing(true)}
-              >
-                <i className="fa-solid fa-pen mr-5"></i>Modifier
-              </button>
-            )}
-            <button className="btn btn-primary" onClick={() => onDelete()}>
-              <i className="fa-sharp fa-solid fa-trash mr-5"></i> Supprimer
-            </button>
-          </div>
-        ) : (
-          ""
-        )}
+        {userId == message.userId ? (
+          <EditingButtons
+            isEditing={isEditing}
+            handleEdit={handleEdit}
+            setIsEditing={setIsEditing}
+            onDelete={onDelete}
+          />
+        ) : null}
       </div>
     </div>
   );
