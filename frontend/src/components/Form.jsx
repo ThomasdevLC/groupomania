@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./Form.module.scss";
 import axios from "axios";
 import FileUpload from "./FileUpload";
+import { AppContext } from "../context/AppContext";
 
 const Form = () => {
+  const { firstname, lastname, image } = useContext(AppContext);
+
   const [content, setContent] = useState("");
   const [files, setFiles] = useState({});
 
@@ -17,6 +20,9 @@ const Form = () => {
     let data = new FormData();
     data.append("image", files);
     data.append("content", content);
+    data.append("userFirstname", firstname);
+    data.append("userLastname", lastname);
+    data.append("userImage", image);
 
     axios.post("http://localhost:3001/api/messages/", data);
     setContent("");
@@ -29,7 +35,7 @@ const Form = () => {
       >
         <textarea
           className={styles.textForm}
-          autofocus
+          autoFocus
           placeholder="Partagez ici..."
           onChange={(e) => setContent(e.target.value)}
           value={content}
@@ -46,7 +52,7 @@ const Form = () => {
           type="submit"
           value="Publier"
         >
-          <i class="fa-regular fa-paper-plane mr-15"></i>
+          <i className="fa-regular fa-paper-plane mr-15"></i>
           <span>Poster</span>
         </button>
       </form>

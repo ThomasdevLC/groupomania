@@ -30,10 +30,6 @@ const Login = () => {
     setErrMsg("");
   }, [email, password]);
 
-  const onLogin = (data) => {
-    displayUser(data.user);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -60,7 +56,7 @@ const Login = () => {
           );
 
           /** ON APPEL DISPLAY USER DONNE DES VALEURS AUX VARIABLE DU COONTEXTE */
-          onLogin(data);
+          displayUser(data.user);
 
           setPassword("");
           setSuccess(true);

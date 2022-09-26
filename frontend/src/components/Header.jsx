@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Header.module.scss";
 import logo from "../assets/images/icon-left-font-two.png";
-import userpic from "../assets/images/takeshi.jpg";
+import { AppContext } from "../context/AppContext";
 
 const Header = () => {
+  const { firstname, image } = useContext(AppContext);
+
   return (
     <header className={`${styles.header} d-flex flex-row align-items-center`}>
       <img className="logo" src={logo} alt="logo groupomania" />
@@ -15,17 +17,17 @@ const Header = () => {
         <div className={` ${styles.userBox} d-flex mr-15 align-items-center`}>
           <img
             className={` ${styles.userimg} mr-15`}
-            src={userpic}
+            src={image}
             alt="avatar"
           />
-          <span className="text-color">Bienvenue, Takeshi !</span>
+          <span className="text-color">Bienvenue, {firstname} !</span>
         </div>
       </NavLink>
 
       <ul>
         <NavLink to="/login">
           <button className="btn btn-primary">
-            <i class="fa-sharp fa-solid fa-circle-xmark mr-5"></i>
+            <i className="fa-sharp fa-solid fa-circle-xmark mr-5"></i>
             Déconnexion
           </button>
         </NavLink>

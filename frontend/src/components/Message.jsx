@@ -10,7 +10,6 @@ const Message = ({ message, onDelete, image }) => {
 
   const handleEdit = () => {
     const data = {
-      title: message.title,
       content: editContent ? editContent : message.content,
     };
 
@@ -28,7 +27,6 @@ const Message = ({ message, onDelete, image }) => {
       <div
         className={`${styles.messageTitle} d-flex flex-column justify-content-center align-items-center `}
       >
-        <h3 className="p-20">{message.title}</h3>
         <div className={styles.imageContainer}>
           <img
             className={styles.messageImg}
@@ -49,13 +47,15 @@ const Message = ({ message, onDelete, image }) => {
 
         <div className={` ${styles.commentsLikesBox} p-30`}>
           <div>
-            <i class="fa-regular fa-message mr-5"></i>
+            <i className="fa-regular fa-message mr-5"></i>
             <span>2</span>
           </div>
           <div>
             <i
               onClick={handleClick}
-              class={`fa-regular fa-heart mr-5 {${liked ? "text-primary" : ""}`}
+              className={`fa-regular fa-heart mr-5 {${
+                liked ? "text-primary" : ""
+              }`}
             ></i>
           </div>
           <span>4</span>
@@ -63,10 +63,17 @@ const Message = ({ message, onDelete, image }) => {
 
         <div className="var">
           <div className={` ${styles.userBox} d-flex mr-15 align-items-center`}>
-            <img className={` ${styles.userImg}`} src={userpic} alt="avatar" />
+            <img
+              className={` ${styles.userImg}`}
+              src={message.userImage}
+              alt="avatar"
+            />
           </div>
 
-          <em>Takeshi Kitano, </em>
+          <em>
+            {message.userFirstname}
+            {message.userLastname},{" "}
+          </em>
           <em>le 09/09/2022</em>
         </div>
         <div className="p-10">
@@ -75,18 +82,18 @@ const Message = ({ message, onDelete, image }) => {
               className="btn btn-primary mr-5"
               onClick={() => handleEdit(false)}
             >
-              <i class="fa-solid fa-pen mr-5"></i>Valider
+              <i className="fa-solid fa-pen mr-5"></i>Valider
             </button>
           ) : (
             <button
               className="btn btn-primary mr-5"
               onClick={() => setIsEditing(true)}
             >
-              <i class="fa-solid fa-pen mr-5"></i>Modifier
+              <i className="fa-solid fa-pen mr-5"></i>Modifier
             </button>
           )}
           <button className="btn btn-primary" onClick={() => onDelete()}>
-            <i class="fa-sharp fa-solid fa-trash mr-5"></i> Supprimer
+            <i className="fa-sharp fa-solid fa-trash mr-5"></i> Supprimer
           </button>
         </div>
       </div>
