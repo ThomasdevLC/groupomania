@@ -6,10 +6,6 @@ import EditingButtons from "./EditingButtons";
 
 const Message = ({ message, onDelete, image }) => {
   const { userId } = useContext(AppContext);
-
-  console.log("utilisateur", userId);
-  console.log("message user", message.userId);
-
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState("");
   const [liked, setLiked] = useState(false);
@@ -24,8 +20,19 @@ const Message = ({ message, onDelete, image }) => {
   };
 
   const handleClick = () => {
-    axios.put(" http://localhost:3001/api/messages/:id/like/");
+    axios.post(`http://localhost:3001/api/messages/${message._id}/like/`);
     setLiked(!liked);
+  };
+
+  const formatDate = (date) => {
+    let options = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    };
+    return new Date(date).toLocaleDateString("fr-FR", options);
   };
 
   return (
@@ -51,15 +58,17 @@ const Message = ({ message, onDelete, image }) => {
           <p className="p-10">{editContent ? editContent : message.content}</p>
         )}
 
-        <div className={` ${styles.commentsLikesBox} p-30`}>
-          <div>
+        <div
+          onClick={handleClick}
+          className={` ${styles.commentsLikesBox} p-30`}
+        >
+          {/* <div>
             <i className="fa-regular fa-message mr-5"></i>
             <span>2</span>
-          </div>
+          </div> */}
           <div>
             <i
-              onClick={handleClick}
-              className={`fa-regular fa-heart mr-5 {${
+              className={`mr-5 fa-solid fa-heart ${
                 liked ? "text-primary" : ""
               }`}
             ></i>
@@ -78,10 +87,10 @@ const Message = ({ message, onDelete, image }) => {
 
           <em>{message.userFirstname} </em>
           <em>{message.userLastname}, </em>
-          <em>le {message.date}</em>
+          <em> {formatDate(message.date)}</em>
         </div>
 
-        {userId == message.userId ? (
+        {userId === message.userId ? (
           <EditingButtons
             isEditing={isEditing}
             handleEdit={handleEdit}

@@ -9,6 +9,7 @@ import { AppContext } from "./context/AppContext";
 import { useState } from "react";
 import tools from "./tools";
 import api from "./api";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 const App = () => {
   /** ON CREER UNE FONCTION POUR HYDRATER LES DONNEES */
@@ -38,9 +39,10 @@ const App = () => {
   const [lastname, setLastname] = useState(null);
   const [image, setImage] = useState(null);
   const [userId, setUserId] = useState(null);
+  const queryClient = new QueryClient();
 
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <AppContext.Provider
           value={{
@@ -60,7 +62,7 @@ const App = () => {
           </Routes>
         </AppContext.Provider>
       </BrowserRouter>
-    </div>
+    </QueryClientProvider>
   );
 };
 

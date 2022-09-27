@@ -3,31 +3,17 @@ import styles from "./Content.module.scss";
 import Message from "./Message";
 import axios from "axios";
 
-const Content = () => {
-  console.log("Content");
-  const [messageData, setMessageData] = useState([]);
-
-  const getData = () => {
-    axios
-      .get("http://localhost:3001/api/messages/")
-      .then((res) => setMessageData(res.data));
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
-
+const Content = (data) => {
   const handleDelete = async (messageId) => {
     await axios.delete("http://localhost:3001/api/messages/" + messageId);
-    await getData();
   };
 
   return (
     <div className={`${styles.content} flex-fill p-20`}>
       <div className={` p-30 ${styles.card}`}>
         <div className={styles.grid}>
-          {messageData
-            .sort((a, b) => b.date - a.date)
+          {data.data
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
             .map((message) => (
               <Message
                 key={message._id}

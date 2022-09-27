@@ -54,7 +54,6 @@ const Signup = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    image: {},
   };
 
   const {

@@ -17,11 +17,8 @@ const FileUpload = ({ files, setFiles, removeFile, onFileSelected }) => {
         accept="jpg,gif"
         onChange={uploadHandler}
       />
-      <i className="fa-regular fa-image"></i>
-      <label for="fileInput">Photo</label>
-      {/* <button>
-     
-      </button> */}
+      {/* <i className="fa-regular fa-image"></i> */}
+      {/* <label for="fileInput">Photo</label> */}
     </div>
   );
 };

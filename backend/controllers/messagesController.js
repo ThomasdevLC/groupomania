@@ -13,6 +13,7 @@ exports.add = (req, res, next) => {
     dislikes: 0,
     usersLiked: [],
     usersDisliked: [],
+    date: new Date(),
     imageUrl: `${req.protocol}://${req.get("host")}/images/${
       req.file.filename
     }`,
@@ -93,14 +94,18 @@ exports.like = (req, res, next) => {
 
     // CANCEL LIKE
     // user is in usersLiked array + user clicked on like
-    // if (message.usersLiked.includes(req.body.userId) && req.body.like === 0) {
-    //     Message.updateOne({ _id: req.params.id },
-    //         {
-    //             $inc: { likes: -1 },
-    //             $pull: { usersLiked: req.body.userId }
-    //         })
-    //         .then(() => { res.status(201).json({ message: 'User has cancelled his like' }) })
-    //         .catch(error => res.status(404).json({ message: error }));
-    // }
+    if (message.usersLiked.includes(req.body.userId) && req.body.like === 0) {
+      Message.updateOne(
+        { _id: req.params.id },
+        {
+          $inc: { likes: -1 },
+          $pull: { usersLiked: req.body.userId },
+        }
+      )
+        .then(() => {
+          res.status(201).json({ message: "User has cancelled his like" });
+        })
+        .catch((error) => res.status(404).json({ message: error }));
+    }
   });
 };
