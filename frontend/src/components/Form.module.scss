@@ -1,3 +1,5 @@
+@use "../assets/styles/mixins" as mixin;
+
 .form {
   display: grid;
   height: 350px;
@@ -6,6 +8,15 @@
   text-align: center;
   margin: 30px auto;
   border: 1px solid var(--gray-2);
+  @include mixin.lg-lt {
+    width: 500px;
+  }
+  @include mixin.sm-lt {
+    width: 400px;
+  }
+  @include mixin.xs {
+    width: 350px;
+  }
 
   .textForm {
     text-align: left;
@@ -25,5 +36,19 @@
     width: 200px;
     cursor: pointer;
     margin: auto;
+  }
+
+  .userBox {
+    @include mixin.xs {
+      display: grid;
+      place-items: center;
+      margin-bottom: 20px;
+    }
+    .userimg {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
   }
 }

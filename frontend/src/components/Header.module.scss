@@ -1,19 +1,42 @@
+@use "../assets/styles/mixins" as mixin;
+
 .header {
-  background-color: white;
   padding: 10px 20px;
-  box-shadow: var(--box-shadow-nav);
+  border-bottom: 2px solid var(--gray-2);
   color: var(text-color);
+  height: 80px;
+
+  @include mixin.xs {
+    padding: 0;
+    height: 60px;
+  }
 
   img {
-    width: 200px;
-  }
-}
+    width: 210px;
 
-.userBox {
-  .userimg {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    object-fit: cover;
+    @include mixin.xs {
+      width: 160px;
+      margin-left: 25px;
+    }
+  }
+  .headerList {
+    @include mixin.xs {
+      display: none;
+    }
+  }
+
+  .headerXs {
+    display: none;
+    cursor: pointer;
+    margin-right: 25px;
+    font-size: 20px;
+
+    @include mixin.xs {
+      display: block;
+    }
+  }
+
+  button {
+    width: 130px;
   }
 }

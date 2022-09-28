@@ -35,10 +35,17 @@ const Form = ({ onSent }) => {
         className={`p-30  ${styles.form}`}
         onSubmit={(e) => handleSubmit(e)}
       >
+        <div className={` ${styles.userBox} d-flex mr-15 align-items-center`}>
+          <img
+            className={` ${styles.userimg} mr-15`}
+            src={image}
+            alt="avatar"
+          />
+        </div>
         <textarea
           className={styles.textForm}
           autoFocus
-          placeholder="Partagez ici..."
+          placeholder={`Partagez avec vos collègues ${firstname}...`}
           onChange={(e) => setContent(e.target.value)}
           value={content}
         ></textarea>

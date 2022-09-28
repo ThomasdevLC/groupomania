@@ -1,7 +1,18 @@
+@use "../assets/styles/mixins" as mixin;
+
 .message {
   width: 650px;
   cursor: pointer;
   background-color: white;
+  @include mixin.lg-lt {
+    width: 500px;
+  }
+  @include mixin.sm-lt {
+    width: 400px;
+  }
+  @include mixin.xs {
+    width: 350px;
+  }
 }
 
 .imageContainer {
@@ -17,7 +28,6 @@
 }
 
 .messageTitle {
-  // height: 500px;
   border: 1px solid var(--gray-2);
 }
 
@@ -47,6 +57,17 @@
     object-fit: cover;
     display: flex;
     justify-content: center;
+  }
+
+  .userImgConnected {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    border: 2px solid green;
+    padding: 1px;
   }
 }
 

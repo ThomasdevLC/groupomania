@@ -1,3 +1,5 @@
+@use "../assets/styles/mixins" as mixin;
+
 .background {
   display: flex;
   flex-direction: column;
@@ -22,6 +24,10 @@
     position: absolute;
     left: 260px;
     top: -55px;
+
+    @include mixin.xs {
+      display: none;
+    }
   }
 
   .logo {
@@ -38,6 +44,12 @@
     padding: 1rem;
     background-color: rgba(0, 0, 0, 0.5);
     position: relative;
+    @include mixin.xs {
+      display: grid;
+      place-items: center;
+      width: 80%;
+    }
+
     .title {
       font-size: 25px;
       text-align: center;
@@ -57,6 +69,10 @@
       border: none;
       width: 90%;
       margin: auto;
+
+      @include mixin.xs {
+        width: 250px;
+      }
     }
 
     .errorBox {

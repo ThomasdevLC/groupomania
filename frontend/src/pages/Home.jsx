@@ -18,7 +18,7 @@ const Home = () => {
       <Header />
       <Form onSent={() => refetch()} />
       {isSuccess && data.data ? (
-        <Content data={data.data} />
+        <Content data={data.data} onSent={() => refetch()} />
       ) : (
         <div className="">"chargemennt en cours"</div>
       )}

@@ -16,11 +16,16 @@ const Message = ({ message, onDelete, image }) => {
     };
 
     axios.put("http://localhost:3001/api/messages/" + message._id, data);
+
     setIsEditing(false);
   };
 
   const handleClick = () => {
-    axios.post(`http://localhost:3001/api/messages/${message._id}/like/`);
+    axios.post(`http://localhost:3001/api/messages/${message._id}/like/`, {
+      body: JSON.stringify({
+        usersLiked: userId,
+      }),
+    });
     setLiked(!liked);
   };
 
@@ -62,10 +67,6 @@ const Message = ({ message, onDelete, image }) => {
           onClick={handleClick}
           className={` ${styles.commentsLikesBox} p-30`}
         >
-          {/* <div>
-            <i className="fa-regular fa-message mr-5"></i>
-            <span>2</span>
-          </div> */}
           <div>
             <i
               className={`mr-5 fa-solid fa-heart ${
@@ -77,12 +78,22 @@ const Message = ({ message, onDelete, image }) => {
         </div>
 
         <div className="mb-20">
-          <div className={` ${styles.userBox} d-flex mr-15 align-items-center`}>
-            <img
-              className={` ${styles.userImg}`}
-              src={message.userImage}
-              alt="avatar"
-            />
+          <div
+            className={`  d-flex mr-15 align-items-center ${styles.userBox}`}
+          >
+            {userId === message.userId ? (
+              <img
+                className={`${styles.userImgConnected}`}
+                src={message.userImage}
+                alt="avatar"
+              />
+            ) : (
+              <img
+                className={`${styles.userImg}`}
+                src={message.userImage}
+                alt="avatar"
+              />
+            )}
           </div>
 
           <em>{message.userFirstname} </em>
