@@ -8,6 +8,7 @@ import { AppContext } from "../context/AppContext";
 import logo from "../assets/images/icon-left-font-monochrome-white.png";
 import paperPlane from "../assets/images/paper-plane.png";
 import backgroundImg from "../assets/images/background.jpg";
+import config from "../config";
 
 import api from "../api";
 

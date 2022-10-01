@@ -27,7 +27,7 @@ const Test = () => {
       <p>{userId}</p>
       <p>{image}</p>
       <button onClick={handleClick}>CHANGE</button>
-      <p>token {truc}</p>
+      <p>token {api.token}</p>
     </div>
   );
 };

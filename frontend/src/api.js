@@ -1,19 +1,24 @@
 import axios from "axios";
+import { Route } from "react-router-dom";
+import config from "./config";
 
 const api = {
   token: "",
   get(route, param) {
-    console.log("API get", route, param);
+    console.log("API route", route);
+    console.log("API param", param);
+    console.log("API config", config);
+
+    const url = config.BACK_URL + "/api/";
+
     return new Promise((resolve, reject) => {
-      let config = {
+      const config = {
         headers: {
           Authorization: `Bearer ${this.token.replaceAll('"', "")}`,
         },
       };
 
-      let path = param
-        ? `http://localhost:3001/api/${route}/${param}`
-        : `http://localhost:3001/api/${route}`;
+      const path = param ? `${url}${route}/${param}` : `${url}${route}`;
 
       axios
         .get(path, config)

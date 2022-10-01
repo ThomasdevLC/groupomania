@@ -8,6 +8,7 @@ import Test from "./pages/Test";
 import { AppContext } from "./context/AppContext";
 import { useState } from "react";
 import tools from "./tools";
+import config from "./config";
 import api from "./api";
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -21,15 +22,18 @@ const App = () => {
     setisAdmin(user.isAdmin);
   };
 
+  // const navigate = useNavigate();
+
   /** ON RECHERCHE LE COOKIE */
   const tokenCookie = tools.getCookie("groupomania-token");
+  const route = window.location.href.split("/")[3];
 
   if (tokenCookie) {
     /** ON ENREGISTRE LE TOKEN DANS NOTRE MODULE API */
     api.token = tokenCookie;
   } else {
-    //window.location.href = "http://localhost:3002/login";
-    console.log("RETOUR AU Login");
+    if (!config.public_path.includes(route))
+      window.location.href = config.FRONT_URL + "/login";
   }
 
   api.get("auth/").then((res) => {
