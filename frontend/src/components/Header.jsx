@@ -18,7 +18,7 @@ const Header = () => {
 
         <NavLink to="/login">
           <button className="btn btn-primary">
-            <i class="fa-solid fa-arrow-right-from-bracket"></i> Déconnexion
+            <i className="fa-solid fa-arrow-right-from-bracket"></i> Déconnexion
           </button>
         </NavLink>
       </ul>

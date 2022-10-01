@@ -7,7 +7,8 @@ import FileUpload from "../components/FileUpload";
 import axios from "axios";
 
 const Profile = () => {
-  const { firstname, lastname, image, userId } = useContext(AppContext);
+  const { firstname, lastname, image, userId, isAdmin } =
+    useContext(AppContext);
 
   const [files, setFiles] = useState({});
 
@@ -19,13 +20,13 @@ const Profile = () => {
     e.preventDefault();
 
     let data = new FormData();
-    data.append("imageUrl", files);
+    data.append("profilePicture", files);
     // data.append("email", email);
     // data.append("passwsord", password);
-    data.append("firstname", firstname);
-    data.append("lastname", lastname);
+    // data.append("firstname", firstname);
+    // data.append("lastname", lastname);
 
-    await axios.put("http://localhost:3001/api/auth/" + userId, data);
+    await axios.put(`http://localhost:3001/api/auth/${userId}`, data);
   };
 
   return (
@@ -36,8 +37,15 @@ const Profile = () => {
         <div className={styles.userName}>
           <span>{firstname} </span>
           <span>{lastname}</span>
-        </div>
 
+          <div className={styles.userStatus}>
+            {isAdmin === true ? (
+              <div>statut : Administrateur</div>
+            ) : (
+              <div>statut : Utilisateur</div>
+            )}
+          </div>
+        </div>
         <FileUpload
           files={files}
           removeFile={removeFile}

@@ -20,7 +20,7 @@ const Home = () => {
       {isSuccess && data.data ? (
         <Content data={data.data} onSent={() => refetch()} />
       ) : (
-        <div className="">"chargemennt en cours"</div>
+        <div className="">"chargement en cours"</div>
       )}
       <Footer />
     </div>

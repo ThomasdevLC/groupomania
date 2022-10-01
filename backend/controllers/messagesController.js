@@ -75,23 +75,23 @@ exports.like = (req, res, next) => {
   Message.findOne({ _id: req.params.id }).then((message) => {
     // ADD LIKE
     // user is not in usersLiked array + user clicked on like
-    // if (!message.usersLiked.includes(req.body.userId) && req.body.like === 1) {
-    {
-      console.log("message", message);
+    if (!message.usersLiked.includes(req.body.userId) && req.body.like === 1) {
+      {
+        console.log("message", message);
 
-      Message.updateOne(
-        { _id: req.params.id },
-        {
-          $inc: { likes: 1 },
-          $push: { usersLiked: req.body.userId },
-        }
-      )
-        .then(() => {
-          res.status(201).json({ message: "User has liked" });
-        })
-        .catch((error) => res.status(404).json({ message: error }));
+        Message.updateOne(
+          { _id: req.params.id },
+          {
+            $inc: { likes: 1 },
+            $push: { usersLiked: req.body.userId },
+          }
+        )
+          .then(() => {
+            res.status(201).json({ message: "User has liked" });
+          })
+          .catch((error) => res.status(404).json({ message: error }));
+      }
     }
-
     // CANCEL LIKE
     // user is in usersLiked array + user clicked on like
     if (message.usersLiked.includes(req.body.userId) && req.body.like === 0) {

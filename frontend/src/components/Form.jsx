@@ -32,24 +32,25 @@ const Form = ({ onSent }) => {
   return (
     <div>
       <form
-        className={`p-30  ${styles.form}`}
+        className={`p-20  ${styles.form}`}
         onSubmit={(e) => handleSubmit(e)}
       >
-        <div className={` ${styles.userBox} d-flex mr-15 align-items-center`}>
-          <img
-            className={` ${styles.userimg} mr-15`}
-            src={image}
-            alt="avatar"
-          />
+        <div className={` ${styles.formContainer} d-flex `}>
+          <div className={` ${styles.userBox} d-flex `}>
+            <img
+              className={` ${styles.userimg} mr-15`}
+              src={image}
+              alt="avatar"
+            />
+          </div>
+          <textarea
+            className={styles.textForm}
+            autoFocus
+            placeholder={`Partagez avec vos collègues ${firstname}...`}
+            onChange={(e) => setContent(e.target.value)}
+            value={content}
+          ></textarea>
         </div>
-        <textarea
-          className={styles.textForm}
-          autoFocus
-          placeholder={`Partagez avec vos collègues ${firstname}...`}
-          onChange={(e) => setContent(e.target.value)}
-          value={content}
-        ></textarea>
-
         <FileUpload
           files={files}
           removeFile={removeFile}

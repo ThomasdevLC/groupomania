@@ -15,8 +15,8 @@ const Login = () => {
   const emailRef = useRef();
   const errRef = useRef();
 
-  const [email, setEmail] = useState("nas@test.com");
-  const [password, setPassword] = useState("Nas2022");
+  const [email, setEmail] = useState("Hello315@test.com");
+  const [password, setPassword] = useState("Hello315");
   const [errMsg, setErrMsg] = useState("");
   const [success, setSuccess] = useState(false);
 
@@ -78,9 +78,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   return success ? (
-    setTimeout(() => {
-      navigate("/test");
-    })
+    navigate("/")
   ) : (
     <div className={styles.background}>
       <img className={styles.backgroundImg} src={backgroundImg} alt="lines" />

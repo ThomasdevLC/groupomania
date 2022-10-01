@@ -18,6 +18,7 @@ const App = () => {
     setLastname(user.lastname);
     setImage(user.imageUrl);
     setUserId(user._id);
+    setisAdmin(user.isAdmin);
   };
 
   /** ON RECHERCHE LE COOKIE */
@@ -39,6 +40,7 @@ const App = () => {
   const [lastname, setLastname] = useState(null);
   const [image, setImage] = useState(null);
   const [userId, setUserId] = useState(null);
+  const [isAdmin, setisAdmin] = useState(null);
   const queryClient = new QueryClient();
 
   return (
@@ -51,6 +53,7 @@ const App = () => {
             lastname,
             image,
             userId,
+            isAdmin,
           }}
         >
           <Routes>

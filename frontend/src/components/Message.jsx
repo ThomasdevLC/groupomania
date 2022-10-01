@@ -5,7 +5,7 @@ import { AppContext } from "../context/AppContext";
 import EditingButtons from "./EditingButtons";
 
 const Message = ({ message, onDelete, image }) => {
-  const { userId } = useContext(AppContext);
+  const { userId, isAdmin } = useContext(AppContext);
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState("");
   const [liked, setLiked] = useState(false);
@@ -14,20 +14,23 @@ const Message = ({ message, onDelete, image }) => {
     const data = {
       content: editContent ? editContent : message.content,
     };
-
     axios.put("http://localhost:3001/api/messages/" + message._id, data);
 
     setIsEditing(false);
   };
 
+  const likeData = {
+    like: 1,
+    usersLiked: userId,
+  };
+
   const handleClick = () => {
     axios.post(`http://localhost:3001/api/messages/${message._id}/like/`, {
-      body: JSON.stringify({
-        usersLiked: userId,
-      }),
+      userId,
     });
     setLiked(!liked);
   };
+  console.log(likeData);
 
   const formatDate = (date) => {
     let options = {
@@ -101,7 +104,7 @@ const Message = ({ message, onDelete, image }) => {
           <em> {formatDate(message.date)}</em>
         </div>
 
-        {userId === message.userId ? (
+        {userId === message.userId || isAdmin === true ? (
           <EditingButtons
             isEditing={isEditing}
             handleEdit={handleEdit}

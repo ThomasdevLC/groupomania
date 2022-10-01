@@ -14,29 +14,28 @@ const Signup = () => {
       .string()
       .required("Le champ est obligatoire")
       .min(2, "Trop court")
-      .max(20, "Top long"),
+      .max(20, "Trop long"),
 
     lastname: yup
       .string()
       .required("Le champ est obligatoire")
       .min(2, "Trop court")
-      .max(20, "Top long"),
+      .max(20, "Trop long"),
 
     email: yup
       .string()
-      .required("Le champ est obligatoire")
-      .min(2, "Trop court")
-      .max(20, "Top long"),
+      .email("L'email doit être un email valide")
+      .required("Le champ est obligatoire"),
 
     password: yup
       .string()
       .required("Le mot de passe est obligatoire")
       .min(6, "Mot de passe trop court")
       .matches(/[a-z]/, "Le mot de passe  doit contenir au moins 1 majuscule")
-      .matches(/[A-Z]/, "Le mot de passe doit contenir au moins 1 minuscul")
+      .matches(/[A-Z]/, "Le mot de passe doit contenir au moins 1 minuscule")
       .matches(
         /[a-zA-Z]+[^a-zA-Z\s]+/,
-        "Le mot de passe doit contenir au moins 1 chiffre ou caractère spéciale (@,!,#, etc)."
+        "Utilisez au moins 1 chiffre ou caractère spéciale."
       ),
 
     confirmPassword: yup

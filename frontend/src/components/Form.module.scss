@@ -2,11 +2,11 @@
 
 .form {
   display: grid;
-  height: 350px;
+  height: 250px;
   width: 650px;
   cursor: pointer;
   text-align: center;
-  margin: 30px auto;
+  margin: 30px auto 0px;
   border: 1px solid var(--gray-2);
   @include mixin.lg-lt {
     width: 500px;
@@ -26,10 +26,8 @@
     resize: none;
     overflow: hidden;
     font-size: 15px;
-  }
-
-  .p {
-    font-size: 10px;
+    margin-left: 10px;
+    margin-top: 20px;
   }
 
   .submitBtn {

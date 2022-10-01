@@ -15,7 +15,7 @@ const Content = (data, { onSent }) => {
 
   return (
     <div className={`${styles.content} flex-fill p-20 `}>
-      <div className={` p-30 ${styles.card}`}>
+      <div className={styles.card}>
         <div className={styles.grid}>
           {data.data
             .sort((a, b) => new Date(b.date) - new Date(a.date))
