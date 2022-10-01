@@ -1,13 +1,16 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import api from "../api";
+import config from "../config";
 
 const Test = () => {
   const { firstname, lastname, image, token, userId } = useContext(AppContext);
 
+  const truc = config.api;
+
   const handleClick = (e) => {
     api
-      .get("auth", "632b29d8370ac320b0333e37")
+      .get("auth", "6336dfe046600a876e045cb7")
       .then((res) => {
         console.log("L utilisateur : ", res);
       })
@@ -24,7 +27,7 @@ const Test = () => {
       <p>{userId}</p>
       <p>{image}</p>
       <button onClick={handleClick}>CHANGE</button>
-      <p>token {token}</p>
+      <p>token {truc}</p>
     </div>
   );
 };

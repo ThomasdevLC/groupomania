@@ -1,8 +1,9 @@
 import axios from "axios";
 
 const api = {
-  token: null,
+  token: "",
   get(route, param) {
+    console.log("API get", route, param);
     return new Promise((resolve, reject) => {
       let config = {
         headers: {
@@ -17,10 +18,11 @@ const api = {
       axios
         .get(path, config)
         .then((res) => {
-          console.log("RES", route, res.data);
+          console.log("API res", route, res.data);
           resolve(res.data);
         })
         .catch((err) => {
+          console.log("API error", err);
           reject(err);
         });
     });
