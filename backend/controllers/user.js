@@ -81,7 +81,13 @@ exports.modify = (req, res, next) => {
 };
 
 exports.test = (req, res, next) => {
-  res.status(200).json("fgdgfdg");
+  User.find()
+    .then((users) => {
+      res.status(200).json(users);
+    })
+    .catch((error) => {
+      res.status(400).json({ error });
+    });
 };
 
 // exports.modify = (req, res, next) => {
