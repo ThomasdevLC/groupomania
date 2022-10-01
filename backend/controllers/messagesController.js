@@ -72,6 +72,46 @@ exports.modify = (req, res, next) => {
 };
 
 exports.like = (req, res, next) => {
+  console.log("message", req.auth.userId);
+
+  Message.findOne({ _id: req.params.id }).then((message) => {
+    // ADD LIKE
+    // user is not in usersLiked array + user clicked on like
+    if (!message.usersLiked.includes(req.auth.userId) && req.body.like === 1) {
+      {
+        Message.updateOne(
+          { _id: req.params.id },
+          {
+            $inc: { likes: 1 },
+            $push: { usersLiked: req.auth.userId },
+          }
+        )
+          .then(() => {
+            res.status(201).json({ message: "User has liked" });
+          })
+          .catch((error) => res.status(404).json({ message: error }));
+      }
+    }
+    // CANCEL LIKE
+    // user is in usersLiked array + user clicked on like
+    if (message.usersLiked.includes(req.auth.userId) && req.body.like === 0) {
+      Message.updateOne(
+        { _id: req.params.id },
+        {
+          $inc: { likes: -1 },
+          $pull: { usersLiked: req.auth.userId },
+        }
+      )
+        .then(() => {
+          res.status(201).json({ message: "User has cancelled his like" });
+        })
+        .catch((error) => res.status(404).json({ message: error }));
+    }
+    res.status(201).json({ message: "User has cancelled his like" });
+  });
+};
+
+exports.like2 = (req, res, next) => {
   Message.findOne({ _id: req.params.id }).then((message) => {
     // ADD LIKE
     // user is not in usersLiked array + user clicked on like

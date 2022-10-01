@@ -19,18 +19,13 @@ const Message = ({ message, onDelete, image }) => {
     setIsEditing(false);
   };
 
-  const likeData = {
-    like: 1,
-    usersLiked: userId,
-  };
-
   const handleClick = () => {
-    axios.post(`http://localhost:3001/api/messages/${message._id}/like/`, {
-      userId,
-    });
+    axios.post(
+      `http://localhost:3001/api/messages/${message._id}/like/`,
+      userId
+    );
     setLiked(!liked);
   };
-  console.log(likeData);
 
   const formatDate = (date) => {
     let options = {

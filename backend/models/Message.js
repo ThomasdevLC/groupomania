@@ -5,7 +5,7 @@ const messageSchema = mongoose.Schema({
   imageUrl: { type: String, required: true },
   likes: { type: Number, required: true },
   dislikes: { type: Number, required: true },
-  usersLiked: { type: Array({ userId: String }), required: true },
+  usersLiked: { type: [String], required: true },
   usersDisliked: { type: [String], required: true },
   userImage: { type: String, required: true },
   userFirstname: { type: String, required: true },

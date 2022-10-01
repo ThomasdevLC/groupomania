@@ -10,6 +10,6 @@ router.post("/login", userCtrl.login);
 router.get("/:id", auth, userCtrl.getById);
 router.get("/", authenticateToken, userCtrl.currentUser);
 router.put("/:id", multer, userCtrl.modify);
-router.post("/test", userCtrl.test);
+router.post("/test", auth, userCtrl.test);
 
 module.exports = router;
