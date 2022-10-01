@@ -80,6 +80,10 @@ exports.modify = (req, res, next) => {
     });
 };
 
+exports.test = (req, res, next) => {
+  res.status(200).json("fgdgfdg");
+};
+
 // exports.modify = (req, res, next) => {
 //   const userObject = req.file
 //     ? {
