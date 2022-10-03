@@ -9,8 +9,12 @@ const Test = () => {
   const truc = config.api;
 
   const handleClick = (e) => {
+    let param = {
+      messageId: 1234,
+    };
+
     api
-      .get("auth", "6336dfe046600a876e045cb7")
+      .post("auth/test", param)
       .then((res) => {
         console.log("L utilisateur : ", res);
       })

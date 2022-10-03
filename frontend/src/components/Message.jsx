@@ -3,6 +3,7 @@ import axios from "axios";
 import styles from "./Message.module.scss";
 import { AppContext } from "../context/AppContext";
 import EditingButtons from "./EditingButtons";
+import api from "../api";
 
 const Message = ({ message, onDelete, image }) => {
   const { userId, isAdmin } = useContext(AppContext);
@@ -20,10 +21,16 @@ const Message = ({ message, onDelete, image }) => {
   };
 
   const handleClick = () => {
-    axios.post(
-      `http://localhost:3001/api/messages/${message._id}/like/`,
-      userId
-    );
+    let param = message._id;
+
+    api
+      .post("messages/like", param)
+      .then((res) => {
+        console.log("L utilisateur : ", res);
+      })
+      .catch((err) => {
+        console.log("Il y a une erreur : ", err);
+      });
     setLiked(!liked);
   };
 
@@ -72,7 +79,7 @@ const Message = ({ message, onDelete, image }) => {
               }`}
             ></i>
           </div>
-          <span>4</span>
+          <span>{message.usersLiked.length}</span>
         </div>
 
         <div className="mb-20">

@@ -20,11 +20,7 @@ const Profile = () => {
     e.preventDefault();
 
     let data = new FormData();
-    data.append("profilePicture", files);
-    // data.append("email", email);
-    // data.append("passwsord", password);
-    // data.append("firstname", firstname);
-    // data.append("lastname", lastname);
+    data.append("imageUrl", files);
 
     await axios.put(`http://localhost:3001/api/auth/${userId}`, data);
   };

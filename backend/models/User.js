@@ -6,7 +6,11 @@ const userSchema = mongoose.Schema({
   password: { type: String, required: true },
   firstname: { type: String, required: true },
   lastname: { type: String, required: true },
-  // imageUrl: { type: String, required: true },
+  imageUrl: {
+    type: String,
+    default:
+      "https://www.kindpng.com/picc/m/451-4517876_default-profile-hd-png-download.png",
+  },
   isAdmin: { type: Boolean, default: false },
 });
 

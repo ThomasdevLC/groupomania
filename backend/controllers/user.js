@@ -12,9 +12,6 @@ exports.signup = (req, res, next) => {
         password: hash,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
-        // imageUrl: `${req.protocol}://${req.get("host")}/images/${
-        //   req.file.filename
-        // }`,
       });
       user
         .save()
@@ -62,32 +59,19 @@ exports.currentUser = (req, res, next) => {
     .catch((error) => res.status(404).json({ message: error }));
 };
 
-// Edit user profile
-exports.modify = (req, res, next) => {
-  const userObject = req.body;
-
-  User.findOne({ _id: req.params.id })
-    .then((user) => {
-      User.updateOne(
-        { _id: req.params.id },
-        { ...userObject, _id: req.params.id }
-      )
-        .then(() => res.status(200).json({ message: "user profile updated !" }))
-        .catch((error) => res.status(401).json({ message: error }));
-    })
-    .catch((error) => {
-      res.status(400).json({ error });
-    });
-};
-
 exports.test = (req, res, next) => {
-  res.status(200).json(req.auth.userId);
+  res.status(200).json({
+    userId: req.auth.userId,
+    params: req.body,
+  });
 };
 
+// Edit user profile
 // exports.modify = (req, res, next) => {
-//   const userObject = req.file
+//   const userObject = req.file;
+//   console.log(userObject)
 //     ? {
-//         profilePicture: `${req.protocol}://${req.get("host")}/images/${
+//         imageUrl: `${req.protocol}://${req.get("host")}/images/${
 //           req.file.filename
 //         }`,
 //       }
@@ -96,3 +80,10 @@ exports.test = (req, res, next) => {
 //     .then(() => res.status(200).json({ message: "User updated" }))
 //     .catch((error) => res.status(400).json({ error }));
 // };
+
+exports.modify = (req, res, next) => {
+  const userObject = req.file;
+
+  res.status(200).json({ message: "User updated" });
+  console.log(userObject);
+};

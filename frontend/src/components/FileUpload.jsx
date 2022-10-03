@@ -13,6 +13,8 @@ const FileUpload = ({ files, setFiles, removeFile, onFileSelected }) => {
     >
       <input
         type="file"
+        id="file"
+        name="file"
         className={styles.fileInput}
         accept="jpg,gif"
         onChange={uploadHandler}
