@@ -13,6 +13,14 @@ const Content = (data, { onSent }) => {
       });
   };
 
+  const handleChange = (message) => {
+    console.log("handleChange", message);
+
+    let messages = data.data;
+    let index = messages.indexOf(messages.find((m) => m._id == message._id));
+    data.data[index] = message;
+  };
+
   return (
     <div className={`${styles.content} flex-fill p-20 `}>
       <div className={styles.card}>
@@ -24,6 +32,7 @@ const Content = (data, { onSent }) => {
                 key={message._id}
                 message={message}
                 onDelete={() => handleDelete(message._id)}
+                onChange={() => handleChange(message)}
               />
             ))}
         </div>

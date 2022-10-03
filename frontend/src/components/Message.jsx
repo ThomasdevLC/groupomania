@@ -5,7 +5,7 @@ import { AppContext } from "../context/AppContext";
 import EditingButtons from "./EditingButtons";
 import api from "../api";
 
-const Message = ({ message, onDelete, image }) => {
+const Message = ({ message, onDelete, onChange, image }) => {
   const { userId, isAdmin } = useContext(AppContext);
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState("");
@@ -29,6 +29,7 @@ const Message = ({ message, onDelete, image }) => {
       .post("messages/like", param)
       .then((res) => {
         console.log("Le message : ", res);
+        onChange();
       })
       .catch((err) => {
         console.log("Il y a une erreur : ", err);
