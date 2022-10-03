@@ -34,7 +34,6 @@ const Test = () => {
       .post("messages/like", param)
       .then((res) => {
         console.log("Le message : ", res);
-        setLiked(!liked);
       })
       .catch((err) => {
         console.log("Il y a une erreur : ", err);
