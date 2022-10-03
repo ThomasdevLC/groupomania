@@ -20,18 +20,19 @@ const Message = ({ message, onDelete, image }) => {
     setIsEditing(false);
   };
 
-  const handleClick = () => {
-    let param = message._id;
+  const likeClick = (messageId) => {
+    let param = {
+      messageId: messageId,
+    };
 
     api
       .post("messages/like", param)
       .then((res) => {
-        console.log("L utilisateur : ", res);
+        console.log("Le message : ", res);
       })
       .catch((err) => {
         console.log("Il y a une erreur : ", err);
       });
-    setLiked(!liked);
   };
 
   const formatDate = (date) => {
@@ -69,7 +70,7 @@ const Message = ({ message, onDelete, image }) => {
         )}
 
         <div
-          onClick={handleClick}
+          onClick={() => likeClick(message._id)}
           className={` ${styles.commentsLikesBox} p-30`}
         >
           <div>

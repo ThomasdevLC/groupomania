@@ -23,6 +23,28 @@ const Test = () => {
       });
   };
 
+  const likeClick = (e) => {
+    console.log("L utlikeClickilisateur : ");
+
+    let param = {
+      messageId: "6334560d72f8ff05c41d820d",
+    };
+
+    api
+      .post("messages/like", param)
+      .then((res) => {
+        console.log("Le message : ", res);
+        setLiked(!liked);
+      })
+      .catch((err) => {
+        console.log("Il y a une erreur : ", err);
+      });
+  };
+
+  const sayHello = (e) => {
+    console.log("L utlikeClickilisateur : ", e);
+  };
+
   return (
     <div>
       <h1>TEST</h1>
@@ -31,6 +53,8 @@ const Test = () => {
       <p>{userId}</p>
       <p>{image}</p>
       <button onClick={handleClick}>CHANGE</button>
+      <button onClick={likeClick}>likeClick</button>
+      <button onClick={() => sayHello("James")}>Greet</button>
       <p>token {api.token}</p>
     </div>
   );
