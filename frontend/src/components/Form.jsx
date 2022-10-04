@@ -46,7 +46,7 @@ const Form = ({ onSent }) => {
           <textarea
             className={styles.textForm}
             autoFocus
-            placeholder={`Partagez avec vos collègues ${firstname}...`}
+            placeholder={`Echangez avec vos collègues ${firstname}...`}
             onChange={(e) => setContent(e.target.value)}
             value={content}
           ></textarea>

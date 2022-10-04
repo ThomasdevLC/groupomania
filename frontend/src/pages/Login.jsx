@@ -46,17 +46,17 @@ const Login = () => {
           let data = res.data;
           console.log("TOKEN", data.token);
 
-          /** ON ENREGISTRE LE TOKEN DANS NOTRE MODULE API */
+          /** Saving token in API module */
           api.token = data.token;
 
-          /** ON ENREGISTRE LE TOKEN DANS UN COOKIE POUR LA PERSISTANCE */
+          /** Saving token in cookie for session persistence */
           tools.setCookie(
             "groupomania-token",
             JSON.stringify(data.token),
             86400000
           );
 
-          /** ON APPEL DISPLAY USER DONNE DES VALEURS AUX VARIABLE DU COONTEXTE */
+          /** Calling "displayuser" to pass values to Use Context variables */
           displayUser(data.user);
 
           setPassword("");

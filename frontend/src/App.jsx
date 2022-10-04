@@ -13,7 +13,7 @@ import api from "./api";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 const App = () => {
-  /** ON CREER UNE FONCTION POUR HYDRATER LES DONNEES */
+  // Function for use context datas*/
   const displayUser = (user) => {
     setFirstname(user.firstname);
     setLastname(user.lastname);
@@ -22,14 +22,12 @@ const App = () => {
     setisAdmin(user.isAdmin);
   };
 
-  // const navigate = useNavigate();
-
-  /** ON RECHERCHE LE COOKIE */
+  /** Getting cookie */
   const tokenCookie = tools.getCookie("groupomania-token");
   const route = window.location.href.split("/")[3];
 
+  /** Setting cookie in API module */
   if (tokenCookie) {
-    /** ON ENREGISTRE LE TOKEN DANS NOTRE MODULE API */
     api.token = tokenCookie;
   } else {
     if (!config.public_path.includes(route))

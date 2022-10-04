@@ -9,18 +9,15 @@ const FileUpload = ({ files, setFiles, removeFile, onFileSelected }) => {
 
   return (
     <div
-      className={`${styles.card} d-flex flex-column align-items-center p-20 mb-20`}
+      className={`${styles.card} d-flex flex-column align-items-center p-20 `}
     >
       <input
         type="file"
-        id="file"
         name="file"
         className={styles.fileInput}
         accept="jpg,gif"
         onChange={uploadHandler}
       />
-      {/* <i className="fa-regular fa-image"></i> */}
-      {/* <label for="fileInput">Photo</label> */}
     </div>
   );
 };

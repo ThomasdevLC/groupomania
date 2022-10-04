@@ -20,21 +20,23 @@ const Message = ({ message, onDelete, onChange, image }) => {
     setIsEditing(false);
   };
 
-  const likeClick = (messageId) => {
+  const likeClick = () => {
     let param = {
-      messageId: messageId,
+      messageId: message._id,
     };
 
     api
       .post("messages/like", param)
       .then((res) => {
-        console.log("Le message : ", res);
+        console.log(" message ", res);
         onChange();
       })
       .catch((err) => {
-        console.log("Il y a une erreur : ", err);
+        console.log(" error ", err);
       });
   };
+
+  // Format date for messages timestamps //
 
   const formatDate = (date) => {
     let options = {
@@ -71,7 +73,7 @@ const Message = ({ message, onDelete, onChange, image }) => {
         )}
 
         <div
-          onClick={() => likeClick(message._id)}
+          onClick={() => likeClick()}
           className={` ${styles.commentsLikesBox} p-30`}
         >
           <div>
@@ -108,6 +110,7 @@ const Message = ({ message, onDelete, onChange, image }) => {
           <em> {formatDate(message.date)}</em>
         </div>
 
+        {/* displaying edit and delete buttons if user is poster or admin */}
         {userId === message.userId || isAdmin === true ? (
           <EditingButtons
             isEditing={isEditing}

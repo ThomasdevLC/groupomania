@@ -8,18 +8,18 @@ const Content = (data, { onSent }) => {
     axios
       .delete("http://localhost:3001/api/messages/" + messageId)
       .then((res) => {
-        console.log("handleDelete !!!!");
+        console.log("handleDelete !");
         //onSent();
       });
   };
 
-  const handleChange = (message) => {
-    console.log("handleChange", message);
+  // const handleChange = (message) => {
+  //   console.log("handleChange", message);
 
-    let messages = data.data;
-    let index = messages.indexOf(messages.find((m) => m._id == message._id));
-    data.data[index] = message;
-  };
+  //   let messages = data.data;
+  //   let index = messages.indexOf(messages.find((m) => m._id === message._id));
+  //   data.data[index] = message;
+  // };
 
   return (
     <div className={`${styles.content} flex-fill p-20 `}>
@@ -32,7 +32,7 @@ const Content = (data, { onSent }) => {
                 key={message._id}
                 message={message}
                 onDelete={() => handleDelete(message._id)}
-                onChange={() => handleChange(message)}
+                // onChange={() => handleChange(message)}
               />
             ))}
         </div>

@@ -9,7 +9,7 @@ const userSchema = mongoose.Schema({
   imageUrl: {
     type: String,
     default:
-      "https://www.kindpng.com/picc/m/451-4517876_default-profile-hd-png-download.png",
+      " https://i2.wp.com/www.cycat.io/wp-content/uploads/2018/10/Default-user-picture.jpg",
   },
   isAdmin: { type: Boolean, default: false },
 });

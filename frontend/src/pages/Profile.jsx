@@ -49,7 +49,7 @@ const Profile = () => {
         />
 
         <button
-          className={`mr-15 btn btn-reverse-primary ${styles.submitBtn}`}
+          className={`btn btn-reverse-primary ${styles.submitBtn}`}
           type="submit"
           value="Publier"
         >

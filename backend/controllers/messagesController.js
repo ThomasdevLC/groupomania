@@ -119,8 +119,10 @@ exports.likes = (req, res, next) => {
     console.log("usersLiked", message.usersLiked);
     console.log("userId", userId);
 
+    // ADD LIKE
+    // user is not in usersLiked array + user clicked on like
     if (!message.usersLiked.includes(userId)) {
-      console.log("ON AJOUTE");
+      console.log("ADD LIKE");
       Message.updateOne(
         { _id: messageId },
         {
@@ -132,7 +134,9 @@ exports.likes = (req, res, next) => {
           .catch((error) => res.status(404).json({ message: error }));
       });
     } else {
-      console.log("ON ENLEVE");
+      // CANCEL LIKE
+      // user is in usersLiked array + user clicked on like
+      console.log("UNLIKE");
       Message.updateOne(
         { _id: messageId },
         {
