@@ -5,6 +5,7 @@
   border-bottom: 2px solid var(--gray-2);
   color: var(text-color);
   height: 80px;
+  z-index: 1;
 
   @include mixin.xs {
     padding: 0;

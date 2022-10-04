@@ -82,8 +82,14 @@ exports.test = (req, res, next) => {
 // };
 
 exports.modify = (req, res, next) => {
-  const userObject = req.file;
-
-  res.status(200).json({ message: "User updated" });
-  console.log(userObject);
+  User.findByIdAndUpdate(
+    { _id: req.params.id },
+    {
+      imageUrl: `${req.protocol}://${req.get("host")}/images/${
+        req.file.filename
+      }`,
+    }
+  )
+    .then((user) => res.status(200).json(user))
+    .catch((err) => res.status(500).json(err.messageId));
 };

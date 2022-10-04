@@ -11,13 +11,16 @@ const Home = () => {
   const fetchData = async () =>
     await axios.get("http://localhost:3001/api/messages/");
 
-  const { data, isSuccess, refetch } = useQuery("messages", fetchData);
+  const { isLoading, data, isSuccess, refetch } = useQuery(
+    "messages",
+    fetchData
+  );
 
   return (
     <div className={`d-flex flex-column ${styles.appContainer}`}>
       <Header />
       <Form onSent={() => refetch()} />
-      {isSuccess && data.data ? (
+      {isSuccess && !isLoading && data.data ? (
         <Content data={data.data} onSent={() => refetch()} />
       ) : (
         <div className="">"chargement en cours"</div>

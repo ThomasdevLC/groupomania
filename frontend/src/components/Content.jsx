@@ -3,13 +3,13 @@ import styles from "./Content.module.scss";
 import Message from "./Message";
 import axios from "axios";
 
-const Content = (data, { onSent }) => {
+const Content = ({ data, onSent }) => {
   const handleDelete = (messageId) => {
     axios
       .delete("http://localhost:3001/api/messages/" + messageId)
       .then((res) => {
         console.log("handleDelete !");
-        //onSent();
+        onSent();
       });
   };
 
@@ -20,12 +20,13 @@ const Content = (data, { onSent }) => {
   //   let index = messages.indexOf(messages.find((m) => m._id === message._id));
   //   data.data[index] = message;
   // };
+  console.log("data", JSON.stringify(data));
 
   return (
     <div className={`${styles.content} flex-fill p-20 `}>
       <div className={styles.card}>
         <div className={styles.grid}>
-          {data.data
+          {data
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .map((message) => (
               <Message
