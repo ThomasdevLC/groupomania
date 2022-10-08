@@ -69,6 +69,14 @@ exports.test = (req, res, next) => {
 // Edit user profile
 
 exports.modify = (req, res, next) => {
+  console.log(req.file);
+
+  if (!["image/jpeg", "image/png", "image/gif"].includes(req.file.mimetype))
+    return res.status(415).json("Ce format n'est pas autorisé");
+
+  if (req.file.size > 3000000)
+    return res.status(415).json("L'image est trop lourde");
+
   User.findByIdAndUpdate(
     { _id: req.params.id },
     {

@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import api from "../api";
 import config from "../config";
+import Error from "../components/Error";
 
 const Test = () => {
   const { firstname, lastname, image, token, userId } = useContext(AppContext);
+
+  const [error, setError] = useState();
 
   const truc = config.api;
 
@@ -40,20 +43,21 @@ const Test = () => {
       });
   };
 
-  const sayHello = (e) => {
-    console.log("L utlikeClickilisateur : ", e);
+  const handleError = (e) => {
+    setError("TATA");
   };
 
   return (
     <div>
       <h1>TEST</h1>
+      <Error error={error} />
       <p>{firstname}</p>
       <p>{lastname}</p>
       <p>{userId}</p>
       <p>{image}</p>
       <button onClick={handleClick}>CHANGE</button>
       <button onClick={likeClick}>likeClick</button>
-      <button onClick={() => sayHello("James")}>Greet</button>
+      <button onClick={() => handleError("James")}>error</button>
       <p>token {api.token}</p>
     </div>
   );

@@ -4,6 +4,7 @@ import styles from "./Profile.module.scss";
 import backgroundImg from "../assets/images/background.jpg";
 import { AppContext } from "../context/AppContext";
 import FileUpload from "../components/FileUpload";
+import Error from "../components/Error";
 import axios from "axios";
 
 const Profile = () => {
@@ -11,6 +12,7 @@ const Profile = () => {
     useContext(AppContext);
 
   const [files, setFiles] = useState({});
+  const [error, setError] = useState();
 
   const removeFile = (filename) => {
     setFiles(files.filter((file) => file.name !== filename));
@@ -19,6 +21,8 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    setError(null);
 
     let data = new FormData();
     data.append("image", files);
@@ -29,7 +33,8 @@ const Profile = () => {
         displayUser(user);
       })
       .catch((error) => {
-        console.log("l erreur", error);
+        console.log(error);
+        setError(error.response.data);
       });
   };
 
@@ -63,6 +68,8 @@ const Profile = () => {
         >
           <span>EDITER</span>
         </button>
+
+        <Error error={error} />
 
         <NavLink to="/">
           <i className="fa-solid fa-house"></i>
