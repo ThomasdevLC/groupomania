@@ -14,17 +14,23 @@ const Profile = () => {
 
   const removeFile = (filename) => {
     setFiles(files.filter((file) => file.name !== filename));
+    console.log("upload file");
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     let data = new FormData();
     data.append("image", files);
 
-    axios.put(`http://localhost:3001/api/auth/${userId}`, data).then((user) => {
-      displayUser(user);
-    });
+    axios
+      .put(`http://localhost:3001/api/auth/${userId}`, data)
+      .then((user) => {
+        displayUser(user);
+      })
+      .catch((error) => {
+        console.log("l erreur", error);
+      });
   };
 
   return (
