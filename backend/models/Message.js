@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const messageSchema = mongoose.Schema({
-  content: { type: String, required: true },
-  imageUrl: { type: String, required: true },
+  content: { type: String },
+  imageUrl: { type: String },
   likes: { type: Number, required: true },
   dislikes: { type: Number, required: true },
   usersLiked: { type: [String], required: true },

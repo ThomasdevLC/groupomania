@@ -20,7 +20,6 @@ const Content = ({ data, onSent }) => {
   //   let index = messages.indexOf(messages.find((m) => m._id === message._id));
   //   data.data[index] = message;
   // };
-  console.log("data", JSON.stringify(data));
 
   return (
     <div className={`${styles.content} flex-fill p-20 `}>

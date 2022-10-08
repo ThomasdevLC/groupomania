@@ -34,7 +34,10 @@ const Message = ({ message, onDelete, onChange, image }) => {
       .catch((err) => {
         console.log(" error ", err);
       });
+    setLiked(true);
   };
+
+  console.log("user", userId);
 
   // Format date for messages timestamps //
 
@@ -69,7 +72,9 @@ const Message = ({ message, onDelete, onChange, image }) => {
             onChange={(e) => setEditContent(e.target.value)}
           ></textarea>
         ) : (
-          <p className="p-10">{editContent ? editContent : message.content}</p>
+          <p className={styles.textMessage}>
+            {editContent ? editContent : message.content}
+          </p>
         )}
 
         <div
@@ -79,7 +84,7 @@ const Message = ({ message, onDelete, onChange, image }) => {
           <div>
             <i
               className={`mr-5 fa-solid fa-heart ${
-                liked ? "text-primary" : ""
+                message.usersLiked.includes(userId) ? "text-primary" : ""
               }`}
             ></i>
           </div>
