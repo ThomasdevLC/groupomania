@@ -5,11 +5,10 @@ import { AppContext } from "../context/AppContext";
 import EditingButtons from "./EditingButtons";
 import api from "../api";
 
-const Message = ({ message, onDelete, image, onLike }) => {
+const Message = ({ message, onDelete, onLike }) => {
   const { userId, isAdmin } = useContext(AppContext);
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState("");
-  const [liked, setLiked] = useState(false);
 
   const handleEdit = () => {
     const data = {
