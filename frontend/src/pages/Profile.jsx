@@ -7,7 +7,7 @@ import FileUpload from "../components/FileUpload";
 import axios from "axios";
 
 const Profile = () => {
-  const { firstname, lastname, image, userId, isAdmin } =
+  const { firstname, lastname, image, userId, isAdmin, displayUser } =
     useContext(AppContext);
 
   const [files, setFiles] = useState({});
@@ -22,7 +22,9 @@ const Profile = () => {
     let data = new FormData();
     data.append("image", files);
 
-    await axios.put(`http://localhost:3001/api/auth/${userId}`, data);
+    axios.put(`http://localhost:3001/api/auth/${userId}`, data).then((user) => {
+      displayUser(user);
+    });
   };
 
   return (

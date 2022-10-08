@@ -2,6 +2,8 @@
     + Signup
     + Login
     + Profile
+        -FileUpload
+
     + Home
         -Header
         -Footer
