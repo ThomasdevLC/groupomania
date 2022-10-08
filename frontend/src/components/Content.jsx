@@ -13,6 +13,10 @@ const Content = ({ data, onSent }) => {
       });
   };
 
+  const handleLike = () => {
+    onSent();
+  };
+
   // const handleChange = (message) => {
   //   console.log("handleChange", message);
 
@@ -32,6 +36,7 @@ const Content = ({ data, onSent }) => {
                 key={message._id}
                 message={message}
                 onDelete={() => handleDelete(message._id)}
+                onLike={() => handleLike()}
                 // onChange={() => handleChange(message)}
               />
             ))}
