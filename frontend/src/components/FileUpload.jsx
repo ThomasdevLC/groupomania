@@ -14,10 +14,14 @@ const FileUpload = ({ files, setFiles, removeFile, onFileSelected }) => {
       <input
         type="file"
         name="file"
-        className={styles.fileInput}
+        id="file"
+        className={styles.inputFile}
         accept="jpg,gif"
         onChange={uploadHandler}
       />
+      <label for="file">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+      </label>
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Route } from "react-router-dom";
 import config from "./config";
 
 const api = {
@@ -28,7 +27,7 @@ const api = {
         })
         .catch((err) => {
           console.log("API error", err);
-          reject(err);
+          reject(err.response.data);
         });
     });
   },

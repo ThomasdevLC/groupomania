@@ -1,17 +1,15 @@
 .card {
-  .fileInput[type="file"] {
+  .inputFile[type="file"] {
+    display: none;
   }
 
-  // label {
-  //   height: 40px;
-  //   width: 80px;
-  //   color: white;
-  //   background-color: var(--primary);
-  //   position: absolute;
-  //   display: flex;
-  //   justify-content: center;
-  //   align-items: center;
-  // }
+  label {
+    cursor: pointer;
+    color: white;
+    background-color: var(--primary);
+    padding: 8px;
+    border-radius: 50%;
+  }
 
   button {
     position: absolute;

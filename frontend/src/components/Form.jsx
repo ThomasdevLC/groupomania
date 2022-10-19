@@ -30,7 +30,7 @@ const Form = ({ onSent }) => {
     onSent();
   };
   return (
-    <div>
+    <div className={styles.backgroundForm}>
       <form
         className={`p-20  ${styles.form}`}
         onSubmit={(e) => handleSubmit(e)}

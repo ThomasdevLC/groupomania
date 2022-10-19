@@ -16,7 +16,9 @@ exports.signup = (req, res, next) => {
       user
         .save()
         .then(() => res.status(201).json({ message: "user created !" }))
-        .catch((error) => res.status(400).json({ message: error }));
+        .catch((error) =>
+          res.status(400).json({ error: "adresse mail déjà utilisée" })
+        );
     })
     .catch((error) => res.status(500).json({ error }));
 };
@@ -25,14 +27,15 @@ exports.signup = (req, res, next) => {
 exports.login = (req, res, next) => {
   User.findOne({ email: req.body.email })
     .then((user) => {
+      console.log(user);
       if (!user) {
-        return res.status(401).json({ error: "User not found!" });
+        return res.status(403).json({ error: "Utilisateur inconnu" });
       }
       bcrypt
         .compare(req.body.password, user.password)
         .then((valid) => {
           if (!valid) {
-            return res.status(401).json({ error: "Invalid password !" });
+            return res.status(403).json({ error: "mot de passe non valide" });
           }
           res.status(200).json({
             user: user,

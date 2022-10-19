@@ -7,7 +7,7 @@
   cursor: pointer;
   text-align: center;
   margin: 30px auto 0px;
-  border: 1px solid var(--gray-2);
+
   @include mixin.lg-lt {
     width: 500px;
   }

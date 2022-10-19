@@ -41,7 +41,6 @@ const Message = ({ message, onDelete, onLike }) => {
 
   const formatDate = (date) => {
     let options = {
-      year: "numeric",
       month: "long",
       day: "numeric",
       hour: "numeric",
@@ -52,17 +51,36 @@ const Message = ({ message, onDelete, onLike }) => {
 
   return (
     <div className={styles.message}>
-      <div
-        className={`${styles.messageTitle} d-flex flex-column justify-content-center align-items-center `}
-      >
-        <div className={styles.imageContainer}>
-          <img
-            className={styles.messageImg}
-            src={message.imageUrl}
-            alt="message"
-          />
+      <div className={` d-flex mr-15 align-items-center  ${styles.userBox}`}>
+        <img
+          className={`${styles.userImg}`}
+          src={message.userImage}
+          alt="avatar"
+        />
+        <div className={styles.signature}>
+          <div className={styles.signatureName}>
+            <b>{message.userFirstname} </b>
+            <b>{message.userLastname} ,</b>
+          </div>
+          <div className={styles.signatureDate}>
+            <em>{formatDate(message.date)}</em>
+          </div>
         </div>
+        <div className={`mr-15 ${styles.editBtn}`}></div>
+        {/* displaying edit and delete buttons if user is poster or admin */}
+        {userId === message.userId || isAdmin === true ? (
+          <EditingButtons
+            isEditing={isEditing}
+            handleEdit={handleEdit}
+            setIsEditing={setIsEditing}
+            onDelete={onDelete}
+          />
+        ) : null}
+      </div>
 
+      <div
+        className={`${styles.messageContent} d-flex flex-column justify-content-center align-items-center `}
+      >
         {isEditing ? (
           <textarea
             className={styles.textMessage}
@@ -74,6 +92,13 @@ const Message = ({ message, onDelete, onLike }) => {
             {editContent ? editContent : message.content}
           </p>
         )}
+        <div className={styles.imageContainer}>
+          <img
+            className={styles.messageImg}
+            src={message.imageUrl}
+            alt="message"
+          />
+        </div>
 
         <div
           onClick={() => likeClick()}
@@ -88,40 +113,6 @@ const Message = ({ message, onDelete, onLike }) => {
           </div>
           <span>{message.usersLiked.length}</span>
         </div>
-
-        <div className="mb-20">
-          <div
-            className={`  d-flex mr-15 align-items-center ${styles.userBox}`}
-          >
-            {userId === message.userId ? (
-              <img
-                className={`${styles.userImgConnected}`}
-                src={message.userImage}
-                alt="avatar"
-              />
-            ) : (
-              <img
-                className={`${styles.userImg}`}
-                src={message.userImage}
-                alt="avatar"
-              />
-            )}
-          </div>
-
-          <em>{message.userFirstname} </em>
-          <em>{message.userLastname}, </em>
-          <em> {formatDate(message.date)}</em>
-        </div>
-
-        {/* displaying edit and delete buttons if user is poster or admin */}
-        {userId === message.userId || isAdmin === true ? (
-          <EditingButtons
-            isEditing={isEditing}
-            handleEdit={handleEdit}
-            setIsEditing={setIsEditing}
-            onDelete={onDelete}
-          />
-        ) : null}
       </div>
     </div>
   );

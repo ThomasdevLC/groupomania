@@ -4,11 +4,15 @@ import styles from "./Header.module.scss";
 import logo from "../assets/images/icon-left-font-two.png";
 import tools from "../tools";
 import config from "../config";
+import HeaderMenu from "./HeaderMenu";
+import { useState } from "react";
 
 const Header = () => {
   const handleLogout = () => {
     tools.setCookie(config.APP_NAME + "-token", "");
   };
+
+  const [showMenu, setShowMenu] = useState(false);
 
   return (
     <header className={`${styles.header} d-flex flex-row align-items-center`}>
@@ -29,8 +33,15 @@ const Header = () => {
         </NavLink>
       </ul>
       <i
+        onClick={() => setShowMenu(true)}
         className={`fa-solid fa-bars mr-15 text-primary ${styles.headerXs}`}
-      ></i>{" "}
+      ></i>
+      {showMenu && (
+        <>
+          <div onClick={() => setShowMenu(false)} className="calc"></div>
+          <HeaderMenu />
+        </>
+      )}
     </header>
   );
 };

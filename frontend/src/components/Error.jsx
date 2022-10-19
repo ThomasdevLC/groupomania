@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Error.module.scss";
 
-const EditingButtons = ({ error }) => {
+const errorMessage = ({ error }) => {
   return (
     <div className={styles.errorMessage}>
       <p>{error}</p>
@@ -9,4 +9,4 @@ const EditingButtons = ({ error }) => {
   );
 };
 
-export default EditingButtons;
+export default errorMessage;

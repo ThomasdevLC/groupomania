@@ -19,6 +19,18 @@
   border: 2px solid var(--primary);
 }
 
+.btn-edit {
+  background-color: white;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
 .card {
   background-color: white;
 }

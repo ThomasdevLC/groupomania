@@ -4,21 +4,18 @@ import styles from "./Login.module.scss";
 import tools from "../tools";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
-
 import logo from "../assets/images/icon-left-font-monochrome-white.png";
 import paperPlane from "../assets/images/paper-plane.png";
 import backgroundImg from "../assets/images/background.jpg";
-import config from "../config";
-
+import Error from "../components/Error";
 import api from "../api";
 
 const Login = () => {
   const emailRef = useRef();
-  const errRef = useRef();
 
   const [email, setEmail] = useState("Hello315@test.com");
   const [password, setPassword] = useState("Hello315");
-  const [errMsg, setErrMsg] = useState("");
+  const [error, setError] = useState();
   const [success, setSuccess] = useState(false);
 
   const { displayUser } = useContext(AppContext);
@@ -27,53 +24,38 @@ const Login = () => {
     emailRef.current.focus();
   }, []);
 
-  useEffect(() => {
-    setErrMsg("");
-  }, [email, password]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      axios
-        .post(
-          "http://localhost:3001/api/auth/login",
-          JSON.stringify({ email, password }),
-          {
-            headers: { "Content-Type": "application/json" },
-          }
-        )
-        .then((res) => {
-          let data = res.data;
-          console.log("TOKEN", data.token);
 
-          /** Saving token in API module */
-          api.token = data.token;
+    axios
+      .post(
+        "http://localhost:3001/api/auth/login",
+        JSON.stringify({ email, password }),
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      )
+      .then((res) => {
+        let data = res.data;
+        console.log("TOKEN", data.token);
 
-          /** Saving token in cookie for session persistence */
-          tools.setCookie(
-            "groupomania-token",
-            JSON.stringify(data.token),
-            86400000
-          );
+        /** Saving token in API module */
+        api.token = data.token;
 
-          /** Calling "displayuser" to pass values to Use Context variables */
-          displayUser(data.user);
+        /** Saving token in cookie for session persistence */
+        tools.setCookie(
+          "groupomania-token",
+          JSON.stringify(data.token),
+          86400000
+        );
 
-          setPassword("");
-          setSuccess(true);
-        });
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg("pas de réponse serveur");
-      } else if (err.response?.status === 400) {
-        setErrMsg("mot de passe ou email manquant");
-      } else if (err.response?.status === 401) {
-        setErrMsg("Vous n'êtes pas inscrit");
-      } else {
-        setErrMsg("Erreur authentification");
-      }
-      errRef.current.focus();
-    }
+        /** Calling "displayuser" to pass values to Use Context variables */
+        displayUser(data.user);
+
+        setPassword("");
+        setSuccess(true);
+      })
+      .catch((error) => setError(error.response.data.error));
   };
 
   const navigate = useNavigate();
@@ -117,11 +99,12 @@ const Login = () => {
           />
         </div>
 
-        <div className={styles.errorBox}>
+        {/* <div className={styles.errorBox}>
           <p className={styles.errorBoxText} ref={errRef}>
             {errMsg}
           </p>
-        </div>
+        </div> */}
+        <Error error={error} />
 
         <button className={`btn btn-primary ${styles.btnConnection}`}>
           Connexion{" "}

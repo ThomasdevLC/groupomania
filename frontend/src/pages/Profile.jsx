@@ -72,7 +72,7 @@ const Profile = () => {
         <Error error={error} />
 
         <NavLink to="/">
-          <i className="fa-solid fa-house"></i>
+          <i className={`fa-solid fa-house ${styles.homeIcon}`}></i>
         </NavLink>
       </form>
     </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -7,6 +7,9 @@ import styles from "./Signup.module.scss";
 import logo from "../assets/images/icon-left-font-monochrome-white.png";
 import paperPlane from "../assets/images/paper-plane.png";
 import backgroundImg from "../assets/images/background.jpg";
+import Error from "../components/Error";
+
+// import axios from "axios";
 
 const Signup = () => {
   const yupSchema = yup.object({
@@ -67,25 +70,25 @@ const Signup = () => {
     mode: "onSubmit",
   });
 
+  const [error, setError] = useState();
+
   async function submit(values) {
     values.confirmPassword = undefined;
-    try {
-      const response = await fetch("http://localhost:3001/api/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
-      if (response.ok) {
-        const newUser = await response.json();
-        reset(defaultValues);
-        console.log(newUser);
-      } else {
-        console.log("erreur");
-      }
-    } catch (e) {
-      console.log("erreur");
+
+    const response = await fetch("http://localhost:3001/api/auth/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    });
+    if (response.ok) {
+      const newUser = await response.json();
+      reset(defaultValues);
+      console.log(newUser);
+    } else {
+      const body = await response.json();
+      setError(body.error);
     }
   }
 
@@ -180,6 +183,7 @@ const Signup = () => {
               )}
             </div>
           </div>
+          <Error error={error} />
           <button
             disabled={isSubmitting}
             className={`btn btn-primary ${styles.btnSignin}`}

@@ -1,6 +1,8 @@
 @use "../assets/styles/mixins" as mixin;
 
 .message {
+  border: 1px solid var(--gray-2);
+
   width: 650px;
   cursor: pointer;
   background-color: white;
@@ -15,6 +17,11 @@
   }
 }
 
+.signature {
+  display: flex;
+  flex-direction: row;
+}
+
 .imageContainer {
   overflow: hidden;
   border-radius: 20px;
@@ -25,10 +32,6 @@
     height: 100%;
     padding: 20px;
   }
-}
-
-.messageTitle {
-  border: 1px solid var(--gray-2);
 }
 
 .textMessage {
@@ -43,32 +46,21 @@
 
 .commentsLikesBox {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 10px;
 }
 
 .userBox {
+  padding: 20px 20px 0px 20px;
   display: flex;
-  justify-content: center;
+
+  @include mixin.lg-lt {
+    flex-direction: column;
+  }
   .userImg {
     width: 70px;
     height: 70px;
     border-radius: 50%;
     object-fit: cover;
-    display: flex;
-    justify-content: center;
-  }
-
-  .userImgConnected {
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    object-fit: cover;
-    display: flex;
-    justify-content: center;
-    border: 2px solid green;
-    padding: 1px;
+    margin-right: 20px;
   }
 }
 
@@ -77,5 +69,5 @@
 }
 
 .imageContainer {
-  height: 500px;
+  height: 380px;
 }
