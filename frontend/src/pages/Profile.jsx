@@ -42,7 +42,7 @@ const Profile = () => {
     <div className={styles.background}>
       <img className={styles.backgroundImg} src={backgroundImg} alt="lines" />
       <form onSubmit={(e) => handleSubmit(e)} className={styles.loginForm}>
-        <img className={` ${styles.userimg} mb-20`} src={image} alt="avatar" />
+        <img className={` ${styles.userimg}`} src={image} alt="avatar" />
         <div className={styles.userName}>
           <span>{firstname} </span>
           <span>{lastname}</span>

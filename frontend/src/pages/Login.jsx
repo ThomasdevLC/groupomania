@@ -12,12 +12,10 @@ import api from "../api";
 
 const Login = () => {
   const emailRef = useRef();
-
   const [email, setEmail] = useState("Hello315@test.com");
   const [password, setPassword] = useState("Hello315");
   const [error, setError] = useState();
   const [success, setSuccess] = useState(false);
-
   const { displayUser } = useContext(AppContext);
 
   useEffect(() => {
@@ -26,7 +24,6 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     axios
       .post(
         "http://localhost:3001/api/auth/login",
@@ -39,19 +36,18 @@ const Login = () => {
         let data = res.data;
         console.log("TOKEN", data.token);
 
-        /** Saving token in API module */
+        /** Save token in API module */
         api.token = data.token;
 
-        /** Saving token in cookie for session persistence */
+        /** Save token in cookie for session persistence */
         tools.setCookie(
           "groupomania-token",
           JSON.stringify(data.token),
           86400000
         );
 
-        /** Calling "displayuser" to pass values to Use Context variables */
+        /** Call "displayuser" to pass values to Use Context variables */
         displayUser(data.user);
-
         setPassword("");
         setSuccess(true);
       })
@@ -99,11 +95,6 @@ const Login = () => {
           />
         </div>
 
-        {/* <div className={styles.errorBox}>
-          <p className={styles.errorBoxText} ref={errRef}>
-            {errMsg}
-          </p>
-        </div> */}
         <Error error={error} />
 
         <button className={`btn btn-primary ${styles.btnConnection}`}>

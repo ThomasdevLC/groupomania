@@ -41,7 +41,7 @@
       min-height: 350px;
       display: flex;
       flex-direction: column;
-      padding: 1rem;
+      padding: 15px;
       background-color: rgba(0, 0, 0, 0.5);
       position: relative;
 
@@ -70,6 +70,10 @@
         height: 20px;
         text-align: center;
         color: white;
+
+        @include mixin.xs {
+          font-size: 14px;
+        }
       }
 
       .btnSignin {

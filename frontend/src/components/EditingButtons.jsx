@@ -1,14 +1,15 @@
 import React from "react";
+import styles from "./EditingButtons.module.scss";
 
 const EditingButtons = ({ isEditing, handleEdit, setIsEditing, onDelete }) => {
   return (
-    <div className="p-10">
+    <div className={`${styles.editContainer} `}>
       {isEditing ? (
-        <button className="btn-edit mr-5" onClick={() => handleEdit(false)}>
+        <button className="btn-edit " onClick={() => handleEdit(false)}>
           <i className="fa-solid fa-check "></i>
         </button>
       ) : (
-        <button className="btn-edit mr-5" onClick={() => setIsEditing(true)}>
+        <button className="btn-edit " onClick={() => setIsEditing(true)}>
           <i className="fa-solid fa-pen "></i>
         </button>
       )}

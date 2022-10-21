@@ -51,7 +51,7 @@ const Message = ({ message, onDelete, onLike }) => {
 
   return (
     <div className={styles.message}>
-      <div className={` d-flex mr-15 align-items-center  ${styles.userBox}`}>
+      <div className={` d-flex  align-items-center  ${styles.userBox}`}>
         <img
           className={`${styles.userImg}`}
           src={message.userImage}

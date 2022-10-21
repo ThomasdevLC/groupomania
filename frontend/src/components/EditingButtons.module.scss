@@ -1,0 +1,8 @@
+@use "../assets/styles/mixins" as mixin;
+
+.editContainer {
+  width: 65px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

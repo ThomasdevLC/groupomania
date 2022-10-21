@@ -6,7 +6,6 @@ import { AppContext } from "../context/AppContext";
 
 const Form = ({ onSent }) => {
   const { firstname, lastname, image, userId } = useContext(AppContext);
-
   const [content, setContent] = useState("");
   const [files, setFiles] = useState({});
 

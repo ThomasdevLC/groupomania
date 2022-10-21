@@ -10,7 +10,7 @@
   .backgroundImg {
     min-height: 100%;
     min-width: 1024px;
-    width: 100%;
+    // width: 100%;
     height: auto;
     position: fixed;
     top: 0;
@@ -28,13 +28,14 @@
     @include mixin.xs {
       width: 120px;
       height: 120px;
+      margin-top: -70px;
     }
   }
 
   .loginForm {
     width: 100%;
     max-width: 420px;
-    height: 250px;
+    height: 280px;
     display: flex;
     flex-direction: column;
     padding: 5px;

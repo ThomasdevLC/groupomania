@@ -15,7 +15,7 @@ exports.add = (req, res, next) => {
     usersDisliked: [],
     date: new Date(),
     imageUrl: `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
+      req.file ? req.file.filename : null
     }`,
   });
   console.log("message", message);
@@ -70,46 +70,6 @@ exports.modify = (req, res, next) => {
       res.status(400).json({ error });
     });
 };
-
-// exports.like = (req, res, next) => {
-//   Message.findOne({ _id: req.params.id }).then((message) => {
-//     // ADD LIKE
-//     // user is not in usersLiked array + user clicked on like
-//     if (!message.usersLiked.includes(req.auth.userId) && req.body.like === 1) {
-//       {
-//         console.log("User TWO", message.usersLiked);
-
-//         Message.updateOne(
-//           { _id: req.params.id },
-//           {
-//             $inc: { likes: 1 },
-//             $push: { usersLiked: req.auth.userId },
-//           }
-//         )
-//           .then(() => {
-//             res.status(201).json({ message: "User has liked" });
-//           })
-//           .catch((error) => res.status(404).json({ message: error }));
-//       }
-//     }
-//     // CANCEL LIKE
-//     // user is in usersLiked array + user clicked on like
-//     if (message.usersLiked.includes(req.auth.userId) && req.body.like === 0) {
-//       Message.updateOne(
-//         { _id: req.params.id },
-//         {
-//           $inc: { likes: -1 },
-//           $pull: { usersLiked: req.auth.userId },
-//         }
-//       )
-//         .then(() => {
-//           res.status(201).json({ message: "User has cancelled his like" });
-//         })
-//         .catch((error) => res.status(404).json({ message: error }));
-//     }
-//     console.log("message Likes", message);
-//   });
-// };
 
 exports.likes = (req, res, next) => {
   const userId = req.auth.userId;
