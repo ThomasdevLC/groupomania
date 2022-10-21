@@ -22,7 +22,7 @@
 .btn-edit {
   color: var(--primary);
   background-color: white;
-  border: none;
+  border: solid 1px white;
   font-size: 15px;
   padding: 10px;
   cursor: pointer;
@@ -39,16 +39,3 @@
 .text-primary {
   color: var(--primary);
 }
-
-// .homeIcon {
-//   color: var(--primary);
-//   font-size: 20px;
-//   position: absolute;
-//   padding: 8px;
-//   left: 10px;
-//   top: 10px;
-// }
-// .homeIcon:hover {
-//   background-color: rgba(0, 0, 0, 0.5);
-//   border-radius: 50%;
-// }

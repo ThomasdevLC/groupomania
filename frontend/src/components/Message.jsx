@@ -3,12 +3,14 @@ import axios from "axios";
 import styles from "./Message.module.scss";
 import { AppContext } from "../context/AppContext";
 import EditingButtons from "./EditingButtons";
+import MessageComments from "./MessageComments";
 import api from "../api";
 
 const Message = ({ message, onDelete, onLike }) => {
   const { userId, isAdmin } = useContext(AppContext);
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState("");
+  const [popup, setPopup] = useState(false);
 
   const handleEdit = () => {
     const data = {
@@ -100,18 +102,24 @@ const Message = ({ message, onDelete, onLike }) => {
           />
         </div>
 
-        <div
-          onClick={() => likeClick()}
-          className={` ${styles.commentsLikesBox} p-30`}
-        >
+        <div className={` ${styles.commentsLikesBox} p-30`}>
           <div>
             <i
+              onClick={() => likeClick()}
               className={`mr-5 fa-solid fa-heart ${
                 message.usersLiked.includes(userId) ? "text-primary" : ""
               }`}
             ></i>
           </div>
           <span>{message.usersLiked.length}</span>
+          <div className="">
+            <i onClick={() => setPopup(true)} class="fa-regular fa-comment"></i>
+
+            <MessageComments
+              trigger={popup}
+              setTrigger={setPopup}
+            ></MessageComments>
+          </div>
         </div>
       </div>
     </div>

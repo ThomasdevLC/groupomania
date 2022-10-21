@@ -3,13 +3,20 @@ const mongoose = require("mongoose");
 const messageSchema = mongoose.Schema({
   content: { type: String },
   imageUrl: { type: String },
-  likes: { type: Number, required: true },
-  dislikes: { type: Number, required: true },
   usersLiked: { type: [String], required: true },
-  usersDisliked: { type: [String], required: true },
   userImage: { type: String, required: true },
   userFirstname: { type: String, required: true },
   userLastname: { type: String, required: true },
+  comments: {
+    type: [
+      {
+        commenterImage: String,
+        commenterPseudo: String,
+        content: String,
+        timestamps: Number,
+      },
+    ],
+  },
   userId: { type: String, required: true },
   date: { type: Date, required: true },
 });
