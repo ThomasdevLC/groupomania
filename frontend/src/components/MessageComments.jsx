@@ -1,17 +1,19 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./MessageComments.module.scss";
-import axios from "axios";
+// import axios from "axios";
 
 const MessageComments = (props) => {
-  useEffect(() => {
-    const getComments = () => {
-      axios
-        .get("http://localhost:3001/api/messages/")
-        .then((res) => console.log("COMMENT", res.data.comments));
-    };
-    getComments();
-  }, []);
+  console.log("comments", props.message.comments[0]);
 
+  const formatDate = (date) => {
+    let options = {
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    };
+    return new Date(date).toLocaleDateString("fr-FR", options);
+  };
   return props.trigger ? (
     <div className={styles.popup}>
       <div className={styles.popupInner}>
@@ -21,9 +23,25 @@ const MessageComments = (props) => {
         >
           X
         </button>
-        <h1>Comments</h1>
-        <p>Hello</p>
-        {props.children}
+        <div className={` d-flex  align-items-center  ${styles.userBox}`}>
+          <img
+            className={`${styles.userImg}`}
+            src={props.message.userImage}
+            alt="avatar"
+          />
+          <div className={styles.signature}>
+            <div className={styles.signatureName}>
+              <b>{props.message.userFirstname} </b>
+              <b>{props.message.userLastname}</b>
+            </div>
+            <div className={styles.signatureDate}>
+              <em> {formatDate(props.message.date)}</em>
+            </div>
+
+            <p>{props.message.content}</p>
+            <p>{props.message.comments.values}</p>
+          </div>
+        </div>
       </div>
     </div>
   ) : (

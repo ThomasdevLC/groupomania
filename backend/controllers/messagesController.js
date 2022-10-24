@@ -14,9 +14,9 @@ exports.add = (req, res, next) => {
     usersLiked: [],
     usersDisliked: [],
     date: new Date(),
-    imageUrl: `${req.protocol}://${req.get("host")}/images/${
-      req.file ? req.file.filename : null
-    }`,
+    imageUrl: req.file
+      ? `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
+      : "",
   });
   console.log("message", message);
 
@@ -55,7 +55,6 @@ exports.delete = (req, res, next) => {
 
 exports.modify = (req, res, next) => {
   const messageObject = req.body;
-
   Message.findOne({ _id: req.params.id })
     .then((message) => {
       console.log("message", message);
@@ -108,5 +107,26 @@ exports.likes = (req, res, next) => {
           .catch((error) => res.status(404).json({ message: error }));
       });
     }
+  });
+};
+
+exports.commentPost = (req, res) => {
+  Message.findOne({ _id: req.params.id }).then((message) => {
+    console.log("message", message);
+    Message.updateOne(
+      { _id: req.params.id },
+      {
+        $push: {
+          comments: {
+            commenterId: req.body.commenterId,
+            commenterPseudo: req.body.commenterPseudo,
+            text: req.body.text,
+            timsestamp: new Date().getTime(),
+          },
+        },
+      }
+    )
+      .then(() => res.status(200).json({ message: "message get comments !" }))
+      .catch((error) => res.status(401).json({ message: error }));
   });
 };

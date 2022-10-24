@@ -31,10 +31,12 @@ const Profile = () => {
       .put(`http://localhost:3001/api/auth/${userId}`, data)
       .then((user) => {
         displayUser(user);
+        setFiles("");
       })
       .catch((error) => {
         console.log(error);
         setError(error.response.data);
+        setFiles("");
       });
   };
 

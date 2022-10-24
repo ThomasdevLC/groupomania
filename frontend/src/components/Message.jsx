@@ -7,7 +7,7 @@ import MessageComments from "./MessageComments";
 import api from "../api";
 
 const Message = ({ message, onDelete, onLike }) => {
-  const { userId, isAdmin } = useContext(AppContext);
+  const { userId, isAdmin, image } = useContext(AppContext);
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState("");
   const [popup, setPopup] = useState(false);
@@ -62,10 +62,10 @@ const Message = ({ message, onDelete, onLike }) => {
         <div className={styles.signature}>
           <div className={styles.signatureName}>
             <b>{message.userFirstname} </b>
-            <b>{message.userLastname} ,</b>
+            <b>{message.userLastname}</b>
           </div>
           <div className={styles.signatureDate}>
-            <em>{formatDate(message.date)}</em>
+            <em>{", " + formatDate(message.date)}</em>
           </div>
         </div>
         <div className={`mr-15 ${styles.editBtn}`}></div>
@@ -94,13 +94,18 @@ const Message = ({ message, onDelete, onLike }) => {
             {editContent ? editContent : message.content}
           </p>
         )}
-        <div className={styles.imageContainer}>
-          <img
-            className={styles.messageImg}
-            src={message.imageUrl}
-            alt="message"
-          />
-        </div>
+
+        {message.imageUrl ? (
+          <div className={styles.imageContainer}>
+            <img
+              className={styles.messageImg}
+              src={message.imageUrl}
+              alt="message"
+            />
+          </div>
+        ) : (
+          ""
+        )}
 
         <div className={` ${styles.commentsLikesBox} p-30`}>
           <div>
@@ -118,6 +123,7 @@ const Message = ({ message, onDelete, onLike }) => {
             <MessageComments
               trigger={popup}
               setTrigger={setPopup}
+              message={message}
             ></MessageComments>
           </div>
         </div>

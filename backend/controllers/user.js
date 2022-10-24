@@ -52,13 +52,13 @@ exports.login = (req, res, next) => {
 // Get user
 exports.getById = (req, res, next) => {
   User.findOne({ _id: req.params.id })
-    .then((message) => res.status(200).json(message))
+    .then((user) => res.status(200).json(user))
     .catch((error) => res.status(404).json({ message: error }));
 };
 
 exports.currentUser = (req, res, next) => {
   User.findOne({ _id: req.user.userId })
-    .then((message) => res.status(200).json(message))
+    .then((user) => res.status(200).json(user))
     .catch((error) => res.status(404).json({ message: error }));
 };
 
@@ -74,6 +74,8 @@ exports.test = (req, res, next) => {
 exports.modify = (req, res, next) => {
   console.log(req.file);
 
+  if (!req.file) return res.status(406).json("Veuillez choisir une image");
+
   if (!["image/jpeg", "image/png", "image/gif"].includes(req.file.mimetype))
     return res.status(415).json("Ce format n'est pas autorisé");
 
@@ -88,6 +90,7 @@ exports.modify = (req, res, next) => {
       }`,
     }
   )
+
     .then((user) => res.status(200).json(user))
     .catch((err) => res.status(500).json(err.messageId));
 };

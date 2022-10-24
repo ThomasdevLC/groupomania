@@ -10,10 +10,10 @@ const messageSchema = mongoose.Schema({
   comments: {
     type: [
       {
-        commenterImage: String,
+        commenterId: String,
         commenterPseudo: String,
-        content: String,
-        timestamps: Number,
+        text: String,
+        // timestamp: Number,
       },
     ],
   },

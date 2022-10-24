@@ -11,8 +11,9 @@ router.get("/", messagesController.get);
 router.get("/:id", messagesController.getById);
 router.put("/:id", multer, messagesController.modify);
 router.delete("/:id", messagesController.delete);
-// router.post("/:id/like", auth, messagesController.like);
-
 router.post("/like", auth, messagesController.likes);
+router.patch("/comment-post/:id", messagesController.commentPost);
+
+// router.post("/:id/like", auth, messagesController.like);
 
 module.exports = router;
