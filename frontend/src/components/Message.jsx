@@ -10,7 +10,7 @@ const Message = ({ message, onDelete, onLike }) => {
   const { userId, isAdmin, image } = useContext(AppContext);
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState("");
-  const [popup, setPopup] = useState(false);
+  const [showComments, setShowComments] = useState(false);
 
   const handleEdit = () => {
     const data = {
@@ -111,22 +111,25 @@ const Message = ({ message, onDelete, onLike }) => {
           <div>
             <i
               onClick={() => likeClick()}
-              className={`mr-5 fa-solid fa-heart ${
+              className={`fa-regular fa-heart mr-5 ${
                 message.usersLiked.includes(userId) ? "text-primary" : ""
               }`}
             ></i>
+            <span>
+              {message.usersLiked.length ? message.usersLiked.length : ""}
+            </span>
           </div>
-          <span>{message.usersLiked.length}</span>
           <div className="">
-            <i onClick={() => setPopup(true)} class="fa-regular fa-comment"></i>
-
-            <MessageComments
-              trigger={popup}
-              setTrigger={setPopup}
-              message={message}
-            ></MessageComments>
+            <i
+              onClick={() => setShowComments(!showComments)}
+              class="mr-5 fa-regular fa-comment"
+            ></i>
+            <span>
+              {message.comments.length ? message.comments.length : ""}
+            </span>
           </div>
         </div>
+        {showComments && <MessageComments message={message} />}
       </div>
     </div>
   );

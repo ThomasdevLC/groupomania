@@ -1,54 +1,52 @@
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .popupInner {
-    position: relative;
-    padding: 30px;
-    width: 100%;
-    max-width: 640px;
-    background-color: var(--gray-2);
-    opacity: 0.97;
-  }
-  .closeBtn {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-  }
-
-  .signature {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .textMessage {
-    border: none;
-    outline: none;
-    width: 90%;
-    resize: none;
-    overflow: hidden;
-    height: 100%;
-  }
-
-  .commentsLikesBox {
-    display: flex;
-  }
+.commentsContainer {
+  width: 95%;
+  // background-color: var(--gray-3);
+  padding: 20px;
 
   .userBox {
-    padding: 20px 20px 0px 20px;
     display: flex;
 
-    .userImg {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 20px;
+    .commenterPseudo {
+      font-weight: 700;
+      font-size: 14px;
     }
+  }
+  .textBox {
+    width: 60px;
+  }
+  .commenterText {
+    font-size: 14px;
+  }
+  .userImg {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 15px;
+  }
+
+  .commentForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .textForm {
+    text-align: left;
+    line-height: 35px;
+    padding-left: 5px;
+    border: none;
+    outline: none;
+    width: 420px;
+    resize: none;
+    overflow: hidden;
+    font-size: 14px;
+    height: 40px;
+    background-color: var(--gray-2);
+  }
+
+  .submitBtn {
+    width: 110px;
+    cursor: pointer;
+    margin: auto;
   }
 }
