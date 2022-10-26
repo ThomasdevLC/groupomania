@@ -3,3 +3,16 @@
   place-content: center;
   gap: 10px;
 }
+
+.searchBarContainer {
+  height: 50px;
+}
+.searchBar {
+  padding: 10px 15px;
+  border: 1px solid var(--primary);
+  border-radius: 20px;
+  input {
+    outline: none;
+    border: none;
+  }
+}

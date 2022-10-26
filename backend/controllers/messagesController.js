@@ -130,3 +130,21 @@ exports.commentPost = (req, res) => {
       .catch((error) => res.status(401).json({ message: error }));
   });
 };
+
+exports.deleteCommentPost = (req, res) => {
+  Message.findOne({ _id: req.params.id }).then((message) => {
+    console.log("message", message);
+    Message.updateOne(
+      { _id: req.params.id },
+      {
+        $pull: {
+          comments: {
+            _id: req.body.commentId,
+          },
+        },
+      }
+    )
+      .then(() => res.status(200).json({ message: "comment deleted !" }))
+      .catch((error) => res.status(401).json({ message: error }));
+  });
+};

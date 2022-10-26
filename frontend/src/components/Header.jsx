@@ -7,7 +7,7 @@ import config from "../config";
 import HeaderMenu from "./HeaderMenu";
 import { useState } from "react";
 
-const Header = () => {
+const Header = ({ showSearch, setShowSearch }) => {
   const handleLogout = () => {
     tools.setCookie(config.APP_NAME + "-token", "");
   };
@@ -19,6 +19,11 @@ const Header = () => {
       <img className="logo" src={logo} alt="logo groupomania" />
       <div className="flex-fill"></div>
       <ul className={styles.headerList}>
+        <i
+          onClick={() => setShowSearch(!showSearch)}
+          className="fa-solid fa-magnifying-glass mr-15"
+        ></i>
+
         <NavLink to="/profile">
           <button className="btn btn-reverse-primary mr-15">
             <i className="fa-regular fa-user mr-5 "></i>

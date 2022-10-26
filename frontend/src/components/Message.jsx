@@ -6,8 +6,8 @@ import EditingButtons from "./EditingButtons";
 import MessageComments from "./MessageComments";
 import api from "../api";
 
-const Message = ({ message, onDelete, onLike }) => {
-  const { userId, isAdmin, image } = useContext(AppContext);
+const Message = ({ message, onDelete, onLike, onSent }) => {
+  const { userId, isAdmin } = useContext(AppContext);
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState("");
   const [showComments, setShowComments] = useState(false);
@@ -36,8 +36,6 @@ const Message = ({ message, onDelete, onLike }) => {
         console.log(" error ", err);
       });
   };
-
-  console.log("user", userId);
 
   // Format date for messages timestamps //
 
@@ -107,7 +105,7 @@ const Message = ({ message, onDelete, onLike }) => {
           ""
         )}
 
-        <div className={` ${styles.commentsLikesBox} p-30`}>
+        <div className={`${styles.commentsLikesBox} p-30`}>
           <div>
             <i
               onClick={() => likeClick()}
@@ -129,7 +127,7 @@ const Message = ({ message, onDelete, onLike }) => {
             </span>
           </div>
         </div>
-        {showComments && <MessageComments message={message} />}
+        {showComments && <MessageComments message={message} onSent={onSent} />}
       </div>
     </div>
   );

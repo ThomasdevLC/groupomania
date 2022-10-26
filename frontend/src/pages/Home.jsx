@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Content from "../components/Content";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
@@ -8,6 +8,8 @@ import { useQuery } from "react-query";
 import axios from "axios";
 
 const Home = () => {
+  const [showSearch, setShowSearch] = useState(false);
+
   const fetchData = async () =>
     await axios.get("http://localhost:3001/api/messages/");
 
@@ -18,10 +20,15 @@ const Home = () => {
 
   return (
     <div className={`d-flex flex-column ${styles.appContainer}`}>
-      <Header />
+      <Header showSearch={showSearch} setShowSearch={setShowSearch} />
       <Form onSent={() => refetch()} />
       {isSuccess && !isLoading && data.data ? (
-        <Content data={data.data} onSent={() => refetch()} />
+        <Content
+          data={data.data}
+          onSent={() => refetch()}
+          showSearch={showSearch}
+          setShowSearch={setShowSearch}
+        />
       ) : (
         <div className="">"chargement en cours"</div>
       )}
