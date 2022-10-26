@@ -21,16 +21,14 @@ const Header = ({ showSearch, setShowSearch }) => {
       <ul className={styles.headerList}>
         <i
           onClick={() => setShowSearch(!showSearch)}
-          className="fa-solid fa-magnifying-glass mr-15"
+          className={`fa-solid fa-magnifying-glass btn-round mr-15  ${styles.searchGlass}`}
         ></i>
-
         <NavLink to="/profile">
           <button className="btn btn-reverse-primary mr-15">
             <i className="fa-regular fa-user mr-5 "></i>
             Profil
           </button>
         </NavLink>
-
         <NavLink to="/login">
           <button onClick={handleLogout} className="btn btn-primary">
             <i className="fa-solid fa-arrow-right-from-bracket"></i> Déconnexion

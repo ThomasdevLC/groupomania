@@ -20,6 +20,10 @@
     }
   }
   .headerList {
+    .searchGlass {
+      font-size: 14px;
+    }
+
     @include mixin.xs {
       display: none;
     }

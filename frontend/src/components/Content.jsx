@@ -25,10 +25,11 @@ const Content = ({ data, onSent, showSearch }) => {
   };
 
   return (
-    <div className={`${styles.content} flex-fill p-20 `}>
+    <div className={`${styles.content} flex-fill `}>
       <div className={styles.card}>
         <div className={styles.grid}>
           <div className={styles.searchBarContainer}>
+            {/* Condition to display search bar */}
             {showSearch ? (
               <div
                 className={`d-flex flex-row justify-content-center align-item-center my-30 ${styles.searchBar}`}

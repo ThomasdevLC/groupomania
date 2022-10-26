@@ -32,6 +32,21 @@
   }
 }
 
+.btn-round {
+  color: var(--primary);
+  background-color: white;
+  border: solid 1px var(--primary);
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  &:hover {
+    color: white;
+    background-color: var(--primary);
+    border-radius: 50%;
+    transition: 0.2s;
+  }
+}
+
 .card {
   background-color: white;
 }
