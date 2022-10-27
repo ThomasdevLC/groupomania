@@ -3,6 +3,7 @@ import styles from "./Form.module.scss";
 import axios from "axios";
 import FileUpload from "./FileUpload";
 import { AppContext } from "../context/AppContext";
+import config from "../config";
 
 const Form = ({ onSent }) => {
   const { firstname, lastname, image, userId } = useContext(AppContext);
@@ -24,15 +25,8 @@ const Form = ({ onSent }) => {
     data.append("userImage", image);
     data.append("userId", userId);
 
-    var config = {
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzNiMmFiNjExZTA3MjY1MjQ0ODlmYTMiLCJpYXQiOjE2NjY4MTE3NDEsImV4cCI6MTY2Njg5ODE0MX0.WkQaZSa6zsbH4mTdtNZC71iJUtk_QR_Nb3kJrhZj9Lo",
-        "Content-Type": "application/json",
-      },
-    };
+    await axios.post(config.BACK_URL + "/messages/", data, config.axios);
 
-    await axios.post("http://localhost:3001/api/messages/", data, config);
     setContent("");
     setFiles("");
     onSent();

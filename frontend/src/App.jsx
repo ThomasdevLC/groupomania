@@ -9,7 +9,7 @@ import { AppContext } from "./context/AppContext";
 import { useState } from "react";
 import tools from "./tools";
 import config from "./config";
-import api from "./api";
+import axios from "axios";
 import { QueryClient, QueryClientProvider } from "react-query";
 
 const App = () => {
@@ -23,20 +23,26 @@ const App = () => {
   };
 
   /** Getting cookie */
-  const tokenCookie = tools.getCookie("groupomania-token");
+  const tokenCookie = JSON.parse(tools.getCookie("groupomania-token"));
   const route = window.location.href.split("/")[3];
 
   /** Setting cookie in API module */
   if (tokenCookie) {
-    api.token = tokenCookie;
+    console.log("Setting cookie", tokenCookie);
+    config.axios.headers.Authorization = "Bearer " + tokenCookie;
   } else {
     if (!config.public_path.includes(route))
       window.location.href = config.FRONT_URL + "/login";
   }
 
-  api.get("auth/").then((res) => {
-    displayUser(res);
-  });
+  axios
+    .get(config.BACK_URL + "/auth/", config.axios)
+    .then((res) => {
+      displayUser(res.data);
+    })
+    .catch((err) => {
+      console.log("AUTH ERROR", err);
+    });
 
   const [firstname, setFirstname] = useState(null);
   const [lastname, setLastname] = useState(null);

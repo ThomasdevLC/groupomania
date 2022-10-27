@@ -84,7 +84,6 @@ const Test = () => {
       <button onClick={likeClick}>likeClick</button>
       {/* <button onClick={() => handleError("James")}>error</button> */}
       <button onClick={commentClick}>Comment</button>
-      <p>token {api.token}</p>
     </div>
   );
 };
