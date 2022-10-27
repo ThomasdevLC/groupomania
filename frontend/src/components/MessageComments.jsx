@@ -6,6 +6,7 @@ import axios from "axios";
 const MessageComments = ({ message, onSent }) => {
   const { userId, image, firstname, lastname } = useContext(AppContext);
   const [text, setText] = useState("");
+  // const [comment, setComment] = useState();
 
   const handleComment = (e) => {
     e.preventDefault();
@@ -30,6 +31,7 @@ const MessageComments = ({ message, onSent }) => {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
+        // setComment(response.data);
       })
       .catch(function (error) {
         console.log(error);
