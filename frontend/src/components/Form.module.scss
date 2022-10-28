@@ -1,7 +1,6 @@
 @use "../assets/styles/mixins" as mixin;
 
 .form {
-  // display: grid;
   height: 250px;
   width: 650px;
   cursor: pointer;
@@ -18,16 +17,27 @@
     width: 350px;
   }
 
+  .formContainer {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   .textForm {
     text-align: left;
     border: none;
     outline: none;
-    width: 100%;
+    width: 80%;
     resize: none;
     overflow: hidden;
     font-size: 15px;
-    margin-left: 10px;
-    margin-top: 20px;
+    padding-top: 20px;
+    @include mixin.sm-lt {
+      padding-left: 15px;
+    }
+    @include mixin.xs {
+      padding-left: 15px;
+      font-size: 13px;
+    }
   }
 
   .submitBtn {
@@ -36,17 +46,10 @@
     font-size: 15px;
   }
 
-  .userBox {
-    @include mixin.xs {
-      display: grid;
-      place-items: center;
-      margin-bottom: 20px;
-    }
-    .userimg {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
+  .userimg {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
   }
 }

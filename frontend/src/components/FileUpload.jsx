@@ -19,6 +19,7 @@ const FileUpload = ({ files, setFiles, removeFile, onFileSelected }) => {
         accept="jpg,gif"
         onChange={uploadHandler}
       />
+
       <label for="file">
         <i class="fa-solid fa-cloud-arrow-up"></i>
       </label>

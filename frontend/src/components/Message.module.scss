@@ -20,11 +20,17 @@
 .signature {
   display: flex;
   flex-direction: row;
+  padding-left: 20px;
+  @include mixin.lg-lt {
+    flex-direction: column;
+  }
+  @include mixin.xs {
+    font-size: 15px;
+  }
 }
 
 .imageContainer {
   overflow: hidden;
-  border-radius: 20px;
 
   .messageImg {
     object-fit: cover;
@@ -47,15 +53,11 @@
   padding: 20px 20px 0px 20px;
   display: flex;
 
-  @include mixin.lg-lt {
-    flex-direction: column;
-  }
   .userImg {
     width: 70px;
     height: 70px;
     border-radius: 50%;
     object-fit: cover;
-    margin-right: 20px;
     @include mixin.lg-lt {
       margin-right: 0px;
     }
@@ -65,7 +67,7 @@
 .commentsLikesBox {
   display: flex;
   justify-content: space-between;
-  width: 22%;
+  width: 140px;
 }
 
 .heartPrimary {

@@ -70,7 +70,7 @@ const MessageComments = ({ message, onSent }) => {
         return (
           <div className="" key={comment._id}>
             <div className={styles.userBox}>
-              <div className="leftPart">
+              <div className={styles.leftPart}>
                 <img
                   className={styles.userImg}
                   src={message.comments.map((comment) => {
@@ -80,19 +80,23 @@ const MessageComments = ({ message, onSent }) => {
                   alt="avatar"
                 />
               </div>
-              <div className="rightPart">
-                <p className={styles.commenterPseudo}>
-                  {comment.commenterPseudo}
-                </p>
-                <p className={styles.commenterText}>{comment.text}</p>
+              <div className={`d-flex ${styles.rightPart}`}>
+                <div className={styles.commentBox}>
+                  <p className={styles.commenterPseudo}>
+                    {comment.commenterPseudo}
+                  </p>
+                  <p className={styles.commenterText}>{comment.text}</p>
 
-                <p>{comment.timestamp}</p>
-                <button
-                  className="btn-edit"
-                  onClick={(e) => handleDelete(comment._id)}
-                >
-                  <i className="fa-sharp fa-solid fa-trash"></i>
-                </button>
+                  <p>{comment.timestamp}</p>
+                </div>
+                <div className={styles.btnDelete}>
+                  <button
+                    className="btn-edit"
+                    onClick={(e) => handleDelete(comment._id)}
+                  >
+                    <i className="fa-sharp fa-solid fa-trash"></i>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -110,11 +114,11 @@ const MessageComments = ({ message, onSent }) => {
             placeholder={`commenter le post de ${message.userFirstname} ...`}
           />
           <button
-            className={`mr-15 btn btn-reverse-primary ${styles.submitBtn}`}
+            className={` btn btn-reverse-primary ${styles.submitBtn}`}
             type="submit"
             value="Publier"
           >
-            <i className="fa-solid fa-comment mr-15"></i>
+            <i className="fa-solid fa-comment mr-5"></i>
             <span>Poster</span>
           </button>
         </form>

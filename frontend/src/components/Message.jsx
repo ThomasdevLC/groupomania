@@ -60,10 +60,10 @@ const Message = ({ message, onDelete, onLike, onSent }) => {
         <div className={styles.signature}>
           <div className={styles.signatureName}>
             <b>{message.userFirstname} </b>
-            <b>{message.userLastname}</b>
+            <b>{message.userLastname + ", "}</b>
           </div>
           <div className={styles.signatureDate}>
-            <em>{", " + formatDate(message.date)}</em>
+            <em>{formatDate(message.date)}</em>
           </div>
         </div>
         <div className={`mr-15 ${styles.editBtn}`}></div>

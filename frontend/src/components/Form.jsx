@@ -38,12 +38,8 @@ const Form = ({ onSent }) => {
         onSubmit={(e) => handleSubmit(e)}
       >
         <div className={` ${styles.formContainer} d-flex `}>
-          <div className={` ${styles.userBox} d-flex `}>
-            <img
-              className={` ${styles.userimg} mr-15`}
-              src={image}
-              alt="avatar"
-            />
+          <div className={` ${styles.userBox}  `}>
+            <img className={` ${styles.userimg}  `} src={image} alt="avatar" />
           </div>
           <textarea
             className={styles.textForm}

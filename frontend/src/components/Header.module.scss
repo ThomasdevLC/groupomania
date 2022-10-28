@@ -14,18 +14,26 @@
   img {
     width: 210px;
 
+    @include mixin.sm-lt {
+      width: 180px;
+    }
+
     @include mixin.xs {
       width: 160px;
       margin-left: 25px;
     }
   }
   .headerList {
-    .searchGlass {
-      font-size: 14px;
-    }
-
     @include mixin.xs {
       display: none;
+    }
+  }
+
+  .searchGlass {
+    font-size: 14px;
+    @include mixin.xs {
+      font-size: 12px;
+      margin-right: 20px;
     }
   }
 

@@ -1,3 +1,5 @@
+@use "../assets/styles/mixins" as mixin;
+
 .commentsContainer {
   width: 95%;
   // background-color: var(--gray-3);
@@ -11,24 +13,36 @@
       font-size: 14px;
     }
   }
+  .rightPart {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 10px;
+  }
   .textBox {
     width: 60px;
   }
   .commenterText {
     font-size: 14px;
   }
+
   .userImg {
     width: 60px;
     height: 60px;
     border-radius: 50%;
     object-fit: cover;
     margin-right: 15px;
+    @include mixin.sm-lt {
+      width: 57px;
+      height: 57px;
+    }
   }
 
   .commentForm {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
   }
   .textForm {
     text-align: left;
@@ -36,17 +50,26 @@
     padding-left: 5px;
     border: none;
     outline: none;
-    width: 420px;
+    width: 75%;
     resize: none;
     overflow: hidden;
     font-size: 14px;
     height: 40px;
     background-color: var(--gray-2);
+    @include mixin.sm-lt {
+      font-size: 12px;
+      width: 70%;
+      height: 35px;
+      line-height: 30px;
+    }
   }
 
   .submitBtn {
-    width: 110px;
     cursor: pointer;
-    margin: auto;
+    @include mixin.sm-lt {
+      padding: 10px;
+      height: 35px;
+      line-height: 10px;
+    }
   }
 }

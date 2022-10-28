@@ -15,14 +15,16 @@ const Header = ({ showSearch, setShowSearch }) => {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <header className={`${styles.header} d-flex flex-row align-items-center`}>
+    <header
+      className={`${styles.header} d-flex flex-row align-items-center br`}
+    >
       <img className="logo" src={logo} alt="logo groupomania" />
       <div className="flex-fill"></div>
+      <i
+        onClick={() => setShowSearch(!showSearch)}
+        className={`fa-solid fa-magnifying-glass btn-round mr-15  ${styles.searchGlass}`}
+      ></i>
       <ul className={styles.headerList}>
-        <i
-          onClick={() => setShowSearch(!showSearch)}
-          className={`fa-solid fa-magnifying-glass btn-round mr-15  ${styles.searchGlass}`}
-        ></i>
         <NavLink to="/profile">
           <button className="btn btn-reverse-primary mr-15">
             <i className="fa-regular fa-user mr-5 "></i>
