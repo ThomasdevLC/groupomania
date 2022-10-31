@@ -40,12 +40,7 @@ const Login = () => {
         config.axios.headers.Authorization = "Bearer " + data.token;
 
         /** Save token in cookie for session persistence */
-        // tools.setCookie(
-        //   "groupomania-token",
-        //   JSON.stringify(data.token),
-        //   86400000
-        // );
-        tools.setCookie("groupomania-token", 86400000);
+        tools.setCookie("groupomania-token", data.token, 86400000);
 
         /** Call "displayuser" to pass values to Use Context variables */
         displayUser(data.user);

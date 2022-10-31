@@ -31,19 +31,23 @@ const App = () => {
   if (tokenCookie) {
     console.log("Setting cookie", tokenCookie);
     config.axios.headers.Authorization = "Bearer " + tokenCookie;
+
+    /** ON VA CHERCHER L UTILISATEUR CONNECTE EN BACK  */
+    console.log("auth/ GET", config.axios);
+    axios
+      .get(config.BACK_URL + "/auth/", config.axios)
+      .then((res) => {
+        console.log("auth/ RES", config.axios);
+        displayUser(res.data);
+      })
+      .catch((err) => {
+        console.log("auth/ ERROR", err);
+      });
   } else {
+    /** ON REDIRIGE VERS LOGIN SI CE N EST PAS UNE PAGE PUBLIQUE */
     if (!config.public_path.includes(route))
       window.location.href = config.FRONT_URL + "/login";
   }
-
-  axios
-    .get(config.BACK_URL + "/auth/", config.axios)
-    .then((res) => {
-      displayUser(res.data);
-    })
-    .catch((err) => {
-      console.log("AUTH ERROR", err);
-    });
 
   const [firstname, setFirstname] = useState(null);
   const [lastname, setLastname] = useState(null);
