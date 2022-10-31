@@ -23,7 +23,8 @@ const App = () => {
   };
 
   /** Getting cookie */
-  const tokenCookie = JSON.parse(tools.getCookie("groupomania-token"));
+  // const tokenCookie = JSON.parse(tools.getCookie("groupomania-token"));
+  const tokenCookie = tools.getCookie("groupomania-token");
   const route = window.location.href.split("/")[3];
 
   /** Setting cookie in API module */

@@ -2,20 +2,49 @@
   display: grid;
   place-content: center;
   gap: 10px;
+  border-bottom: 20px solid white;
+}
+
+.gridDark {
+  display: grid;
+  place-content: center;
+  gap: 10px;
+  border-bottom: 20px solid var(--gray-2);
+  background-color: var(--gray-2);
 }
 
 .content {
-  padding: 0px 20px 20px 20px;
+  // padding: 0px 20px 20px 20px;
 }
 
 .searchBarContainer {
   height: 50px;
+  width: 100%;
+}
+.searchBarDark {
+  padding: 10px 15px;
+  border: 1px solid var(--primary);
+  border-radius: 20px;
+  background-color: none;
+  width: 100%;
+
+  input[type="text"],
+  textarea {
+    background-color: var(--gray-2);
+    outline: none;
+    border: none;
+  }
 }
 .searchBar {
   padding: 10px 15px;
   border: 1px solid var(--primary);
   border-radius: 20px;
-  input {
+  background-color: none;
+  width: 100%;
+
+  input[type="text"],
+  textarea {
+    background-color: none;
     outline: none;
     border: none;
   }

@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import styles from "./Content.module.scss";
 import Message from "./Message";
 import axios from "axios";
+import config from "../config";
 
-const Content = ({ data, onSent, showSearch }) => {
+const Content = ({ data, onSent, showSearch, darkmode }) => {
   const [filter, setFilter] = useState("");
+
+  console.log("data", data);
 
   const handleDelete = (messageId) => {
     axios
-      .delete("http://localhost:3001/api/messages/" + messageId)
+      .delete(config.BACK_URL + "/messages/" + messageId, config.axios)
       .then((res) => {
         console.log("handleDelete !");
         onSent();
@@ -16,6 +19,14 @@ const Content = ({ data, onSent, showSearch }) => {
   };
 
   const handleLike = () => {
+    onSent();
+  };
+
+  const handleComment = () => {
+    onSent();
+  };
+
+  const handleCommentDelete = () => {
     onSent();
   };
 
@@ -27,12 +38,14 @@ const Content = ({ data, onSent, showSearch }) => {
   return (
     <div className={`${styles.content} flex-fill  `}>
       <div className={styles.card}>
-        <div className={styles.grid}>
+        <div className={darkmode ? styles.gridDark : styles.grid}>
           <div className={styles.searchBarContainer}>
             {/* Condition to display search bar */}
             {showSearch ? (
               <div
-                className={`d-flex flex-row justify-content-center align-item-center my-30 br ${styles.searchBar}`}
+                className={`d-flex flex-row justify-content-center align-item-center my-30  ${
+                  darkmode ? styles.searchBarDark : styles.searchBar
+                }`}
               >
                 <i className="fa-solid fa-magnifying-glass mr-15"></i>
                 <input
@@ -58,6 +71,8 @@ const Content = ({ data, onSent, showSearch }) => {
                 message={message}
                 onDelete={() => handleDelete(message._id)}
                 onLike={() => handleLike()}
+                onComment={() => handleComment()}
+                onCommentDelete={() => handleCommentDelete()}
               />
             ))}
         </div>

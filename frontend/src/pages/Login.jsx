@@ -8,7 +8,6 @@ import logo from "../assets/images/icon-left-font-monochrome-white.png";
 import paperPlane from "../assets/images/paper-plane.png";
 import backgroundImg from "../assets/images/background.jpg";
 import Error from "../components/Error";
-import api from "../api";
 import config from "../config";
 
 const Login = () => {
@@ -41,11 +40,12 @@ const Login = () => {
         config.axios.headers.Authorization = "Bearer " + data.token;
 
         /** Save token in cookie for session persistence */
-        tools.setCookie(
-          "groupomania-token",
-          JSON.stringify(data.token),
-          86400000
-        );
+        // tools.setCookie(
+        //   "groupomania-token",
+        //   JSON.stringify(data.token),
+        //   86400000
+        // );
+        tools.setCookie("groupomania-token", 86400000);
 
         /** Call "displayuser" to pass values to Use Context variables */
         displayUser(data.user);

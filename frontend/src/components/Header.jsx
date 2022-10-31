@@ -7,7 +7,7 @@ import config from "../config";
 import HeaderMenu from "./HeaderMenu";
 import { useState } from "react";
 
-const Header = ({ showSearch, setShowSearch }) => {
+const Header = ({ showSearch, setShowSearch, darkmode, setDarkmode }) => {
   const handleLogout = () => {
     tools.setCookie(config.APP_NAME + "-token", "");
   };
@@ -15,11 +15,17 @@ const Header = ({ showSearch, setShowSearch }) => {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <header
-      className={`${styles.header} d-flex flex-row align-items-center br`}
-    >
+    <header className={`${styles.header} d-flex flex-row align-items-center `}>
       <img className="logo" src={logo} alt="logo groupomania" />
       <div className="flex-fill"></div>
+      <i
+        onClick={() => setDarkmode(!darkmode)}
+        className={`${
+          darkmode
+            ? "fa-solid fa-lightbulb btn-round-dark mr-15 mr-15"
+            : "fa-regular fa-lightbulb btn-round-dark mr-15 mr-15"
+        } ${styles.darkBtn}  `}
+      ></i>
       <i
         onClick={() => setShowSearch(!showSearch)}
         className={`fa-solid fa-magnifying-glass btn-round mr-15  ${styles.searchGlass}`}

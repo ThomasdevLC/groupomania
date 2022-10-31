@@ -1,14 +1,19 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import styles from "./Form.module.scss";
 import axios from "axios";
 import FileUpload from "./FileUpload";
 import { AppContext } from "../context/AppContext";
 import config from "../config";
 
-const Form = ({ onSent }) => {
+const Form = ({ onSent, darkmode }) => {
   const { firstname, lastname, image, userId } = useContext(AppContext);
   const [content, setContent] = useState("");
   const [files, setFiles] = useState({});
+  const formRef = useRef();
+
+  useEffect(() => {
+    formRef.current.focus();
+  }, [onSent]);
 
   const removeFile = (filename) => {
     setFiles(files.filter((file) => file.name !== filename));
@@ -32,7 +37,7 @@ const Form = ({ onSent }) => {
     onSent();
   };
   return (
-    <div className={styles.backgroundForm}>
+    <div className={darkmode ? styles.backgroundFormDark : ""}>
       <form
         className={`p-20  ${styles.form}`}
         onSubmit={(e) => handleSubmit(e)}
@@ -42,11 +47,12 @@ const Form = ({ onSent }) => {
             <img className={` ${styles.userimg}  `} src={image} alt="avatar" />
           </div>
           <textarea
-            className={styles.textForm}
+            className={darkmode ? styles.textFormDark : styles.textForm}
             autoFocus
             placeholder={`Echangez avec vos collègues ${firstname}...`}
             onChange={(e) => setContent(e.target.value)}
             value={content}
+            ref={formRef}
           ></textarea>
         </div>
         <FileUpload

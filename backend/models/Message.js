@@ -13,6 +13,7 @@ const messageSchema = mongoose.Schema({
         commenterId: String,
         commenterPseudo: String,
         text: String,
+        commenterImage: String,
         timestamp: Number,
       },
     ],

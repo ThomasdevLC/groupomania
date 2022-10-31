@@ -4,9 +4,9 @@ import styles from "./Message.module.scss";
 import { AppContext } from "../context/AppContext";
 import EditingButtons from "./EditingButtons";
 import MessageComments from "./MessageComments";
-import api from "../api";
+import config from "../config";
 
-const Message = ({ message, onDelete, onLike, onSent }) => {
+const Message = ({ message, onDelete, onLike, onComment, onCommentDelete }) => {
   const { userId, isAdmin } = useContext(AppContext);
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState("");
@@ -16,7 +16,8 @@ const Message = ({ message, onDelete, onLike, onSent }) => {
     const data = {
       content: editContent ? editContent : message.content,
     };
-    axios.put("http://localhost:3001/api/messages/" + message._id, data);
+
+    axios.put(config.BACK_URL + "/messages/" + message._id, data, config.axios);
 
     setIsEditing(false);
   };
@@ -26,8 +27,8 @@ const Message = ({ message, onDelete, onLike, onSent }) => {
       messageId: message._id,
     };
 
-    api
-      .post("messages/like", param)
+    axios
+      .post(config.BACK_URL + "/messages/like", param, config.axios)
       .then((res) => {
         console.log(" message ", res);
         onLike();
@@ -127,7 +128,13 @@ const Message = ({ message, onDelete, onLike, onSent }) => {
             </span>
           </div>
         </div>
-        {showComments && <MessageComments message={message} onSent={onSent} />}
+        {showComments && (
+          <MessageComments
+            message={message}
+            onComment={onComment}
+            onCommentDelete={onCommentDelete}
+          />
+        )}
       </div>
     </div>
   );
