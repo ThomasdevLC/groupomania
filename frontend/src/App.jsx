@@ -38,6 +38,7 @@ const App = () => {
       .get(config.BACK_URL + "/auth/", config.axios)
       .then((res) => {
         console.log("auth/ RES", config.axios);
+        /** QUAND ON A LA REPONSE ON MET L UTILISATEUR DANS LE CONTEXT  */
         displayUser(res.data);
       })
       .catch((err) => {

@@ -18,8 +18,6 @@ const MessageComments = ({ message, onComment, onCommentDelete }) => {
       commenterImage: image,
     });
 
-    console.log("data", data);
-
     axios
       .patch(
         config.BACK_URL + `/messages/comment-post/${message._id}`,
@@ -36,48 +34,20 @@ const MessageComments = ({ message, onComment, onCommentDelete }) => {
       });
   };
 
-  //   const config = {
-  //     method: "patch",
-  //     url: `http://localhost:3001/api/messages/comment-post/${message._id}`,
-  //     headers: {
-  //       Authorization:
-  //         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzNiMmFiNjExZTA3MjY1MjQ0ODlmYTMiLCJpYXQiOjE2NjY2MDEzNjIsImV4cCI6MTY2NjY4Nzc2Mn0.oJqM9_2YmyIoG1ES_8J3mhHzW9FdiB_-eO74_y5dw1Y",
-  //       "Content-Type": "application/json",
-  //     },
-  //     data: data,
-  //   };
-
-  //   axios(config)
-  //     .then(function (response) {
-  //       console.log(JSON.stringify(response.data));
-  //       setText("");
-  //       onComment();
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // };
-
   const handleDelete = (e) => {
     const data = JSON.stringify({
       commentId: e,
     });
 
-    const config = {
-      method: "patch",
-      url: `http://localhost:3001/api/messages/delete-comment-post/${message._id}`,
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzNiMmFiNjExZTA3MjY1MjQ0ODlmYTMiLCJpYXQiOjE2NjY2MDEzNjIsImV4cCI6MTY2NjY4Nzc2Mn0.oJqM9_2YmyIoG1ES_8J3mhHzW9FdiB_-eO74_y5dw1Y",
-        "Content-Type": "application/json",
-      },
-      data: data,
-    };
-
-    axios(config)
+    axios
+      .patch(
+        config.BACK_URL + `/messages/delete-comment-post/${message._id}`,
+        data,
+        config.axios
+      )
       .then(function (response) {
         console.log(JSON.stringify(response.data));
-        onCommentDelete();
+        onComment();
       })
       .catch(function (error) {
         console.log(error);
@@ -94,11 +64,7 @@ const MessageComments = ({ message, onComment, onCommentDelete }) => {
                 <pre></pre>
                 <img
                   className={styles.userImg}
-                  src={message.comments.map((comment) => {
-                    if (userId === comment.commenterId)
-                      return comment.commenterImage;
-                    else return null;
-                  })}
+                  src={comment.commenterImage}
                   alt="avatar"
                 />
               </div>

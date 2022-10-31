@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./Form.module.scss";
 import axios from "axios";
 import FileUpload from "./FileUpload";
@@ -9,11 +9,6 @@ const Form = ({ onSent, darkmode }) => {
   const { firstname, lastname, image, userId } = useContext(AppContext);
   const [content, setContent] = useState("");
   const [files, setFiles] = useState({});
-  const formRef = useRef();
-
-  useEffect(() => {
-    formRef.current.focus();
-  }, [onSent]);
 
   const removeFile = (filename) => {
     setFiles(files.filter((file) => file.name !== filename));
@@ -52,7 +47,6 @@ const Form = ({ onSent, darkmode }) => {
             placeholder={`Echangez avec vos collègues ${firstname}...`}
             onChange={(e) => setContent(e.target.value)}
             value={content}
-            ref={formRef}
           ></textarea>
         </div>
         <FileUpload

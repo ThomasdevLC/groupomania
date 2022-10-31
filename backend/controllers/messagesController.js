@@ -120,6 +120,7 @@ exports.commentPost = (req, res) => {
           comments: {
             commenterId: req.body.commenterId,
             commenterPseudo: req.body.commenterPseudo,
+            commenterImage: req.body.commenterImage,
             text: req.body.text,
             timsestamp: new Date().getTime(),
           },
