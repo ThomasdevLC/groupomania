@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import styles from "./MessageComments.module.scss";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
-// import config from "../config";
+import config from "../config";
 
 const MessageComments = ({ message, onComment, onCommentDelete }) => {
   const { userId, image, firstname, lastname } = useContext(AppContext);
@@ -20,34 +20,12 @@ const MessageComments = ({ message, onComment, onCommentDelete }) => {
 
     console.log("data", data);
 
-    //   axios
-    //     .patch(
-    //       config.BACK_URL + `/messages/comment-post/${message._id}`,
-    //       data,
-    //       config.axios
-    //     )
-    //     .then(function (response) {
-    //       console.log(JSON.stringify(response.data));
-    //       setText("");
-    //       onComment();
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    // };
-
-    const config = {
-      method: "patch",
-      url: `http://localhost:3001/api/messages/comment-post/${message._id}`,
-      headers: {
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzNiMmFiNjExZTA3MjY1MjQ0ODlmYTMiLCJpYXQiOjE2NjY2MDEzNjIsImV4cCI6MTY2NjY4Nzc2Mn0.oJqM9_2YmyIoG1ES_8J3mhHzW9FdiB_-eO74_y5dw1Y",
-        "Content-Type": "application/json",
-      },
-      data: data,
-    };
-
-    axios(config)
+    axios
+      .patch(
+        config.BACK_URL + `/messages/comment-post/${message._id}`,
+        data,
+        config.axios
+      )
       .then(function (response) {
         console.log(JSON.stringify(response.data));
         setText("");
@@ -57,6 +35,28 @@ const MessageComments = ({ message, onComment, onCommentDelete }) => {
         console.log(error);
       });
   };
+
+  //   const config = {
+  //     method: "patch",
+  //     url: `http://localhost:3001/api/messages/comment-post/${message._id}`,
+  //     headers: {
+  //       Authorization:
+  //         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzNiMmFiNjExZTA3MjY1MjQ0ODlmYTMiLCJpYXQiOjE2NjY2MDEzNjIsImV4cCI6MTY2NjY4Nzc2Mn0.oJqM9_2YmyIoG1ES_8J3mhHzW9FdiB_-eO74_y5dw1Y",
+  //       "Content-Type": "application/json",
+  //     },
+  //     data: data,
+  //   };
+
+  //   axios(config)
+  //     .then(function (response) {
+  //       console.log(JSON.stringify(response.data));
+  //       setText("");
+  //       onComment();
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
 
   const handleDelete = (e) => {
     const data = JSON.stringify({

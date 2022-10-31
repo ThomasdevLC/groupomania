@@ -37,7 +37,7 @@ const Login = () => {
         console.log("TOKEN", data.token);
 
         /** Save token in API module */
-        config.axios.headers.Authorization = "Bearer " + data.token;
+        config.setToken(data.token);
 
         /** Save token in cookie for session persistence */
         tools.setCookie("groupomania-token", data.token, 86400000);

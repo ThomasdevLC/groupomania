@@ -12,7 +12,11 @@ router.get("/:id", messagesController.getById);
 router.put("/:id", auth, multer, messagesController.modify);
 router.delete("/:id", auth, messagesController.delete);
 router.post("/like", auth, messagesController.likes);
-router.patch("/comment-post/:id", messagesController.commentPost);
-router.patch("/delete-comment-post/:id", messagesController.deleteCommentPost);
+router.patch("/comment-post/:id", auth, messagesController.commentPost);
+router.patch(
+  "/delete-comment-post/:id",
+  auth,
+  messagesController.deleteCommentPost
+);
 
 module.exports = router;

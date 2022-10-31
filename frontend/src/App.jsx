@@ -27,10 +27,10 @@ const App = () => {
   const tokenCookie = tools.getCookie("groupomania-token");
   const route = window.location.href.split("/")[3];
 
-  /** Setting cookie in API module */
+  /** Setting cookie in Config module */
   if (tokenCookie) {
     console.log("Setting cookie", tokenCookie);
-    config.axios.headers.Authorization = "Bearer " + tokenCookie;
+    config.setToken(tokenCookie);
 
     /** ON VA CHERCHER L UTILISATEUR CONNECTE EN BACK  */
     console.log("auth/ GET", config.axios);
