@@ -13,7 +13,6 @@ const Content = ({ data, onSent, showSearch, darkmode }) => {
     axios
       .delete(config.BACK_URL + "/messages/" + messageId, config.axios)
       .then((res) => {
-        console.log("handleDelete !");
         onSent();
       });
   };
@@ -23,10 +22,6 @@ const Content = ({ data, onSent, showSearch, darkmode }) => {
   };
 
   const handleComment = () => {
-    onSent();
-  };
-
-  const handleCommentDelete = () => {
     onSent();
   };
 
@@ -72,7 +67,6 @@ const Content = ({ data, onSent, showSearch, darkmode }) => {
                 onDelete={() => handleDelete(message._id)}
                 onLike={() => handleLike()}
                 onComment={() => handleComment()}
-                onCommentDelete={() => handleCommentDelete()}
               />
             ))}
         </div>

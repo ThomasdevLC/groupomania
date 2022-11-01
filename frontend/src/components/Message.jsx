@@ -6,7 +6,7 @@ import EditingButtons from "./EditingButtons";
 import MessageComments from "./MessageComments";
 import config from "../config";
 
-const Message = ({ message, onDelete, onLike, onComment, onCommentDelete }) => {
+const Message = ({ message, onDelete, onLike, onComment }) => {
   const { userId, isAdmin } = useContext(AppContext);
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState("");
@@ -129,11 +129,7 @@ const Message = ({ message, onDelete, onLike, onComment, onCommentDelete }) => {
           </div>
         </div>
         {showComments && (
-          <MessageComments
-            message={message}
-            onComment={onComment}
-            onCommentDelete={onCommentDelete}
-          />
+          <MessageComments message={message} onComment={onComment} />
         )}
       </div>
     </div>

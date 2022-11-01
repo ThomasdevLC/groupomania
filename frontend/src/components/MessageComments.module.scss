@@ -2,42 +2,44 @@
 
 .commentsContainer {
   width: 95%;
-  // background-color: var(--gray-3);
   padding: 20px;
 
-  .userBox {
-    display: flex;
+  .commentsBox {
+    padding: 10px 0;
 
-    .commenterPseudo {
-      font-weight: 700;
+    .userBox {
+      display: flex;
+
+      .commenterPseudo {
+        font-weight: 700;
+        font-size: 14px;
+      }
+    }
+    .rightPart {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      padding-left: 10px;
+    }
+    .textBox {
+      width: 60px;
+    }
+    .commenterText {
       font-size: 14px;
     }
-  }
-  .rightPart {
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    padding-left: 10px;
-  }
-  .textBox {
-    width: 60px;
-  }
-  .commenterText {
-    font-size: 14px;
-  }
 
-  .userImg {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-right: 15px;
-    @include mixin.sm-lt {
-      width: 57px;
-      height: 57px;
+    .userImg {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 15px;
+      @include mixin.sm-lt {
+        width: 57px;
+        height: 57px;
+      }
     }
   }
-
   .commentForm {
     display: flex;
     flex-direction: row;

@@ -4,7 +4,7 @@ import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import config from "../config";
 
-const MessageComments = ({ message, onComment, onCommentDelete }) => {
+const MessageComments = ({ message, onComment }) => {
   const { userId, image, firstname, lastname, isAdmin } =
     useContext(AppContext);
   const [text, setText] = useState("");
@@ -25,8 +25,7 @@ const MessageComments = ({ message, onComment, onCommentDelete }) => {
         data,
         config.axios
       )
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
+      .then(function () {
         setText("");
         onComment();
       })
@@ -47,7 +46,6 @@ const MessageComments = ({ message, onComment, onCommentDelete }) => {
         config.axios
       )
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
         onComment();
       })
       .catch(function (error) {
@@ -59,7 +57,7 @@ const MessageComments = ({ message, onComment, onCommentDelete }) => {
     <div className={styles.commentsContainer}>
       {message.comments.map((comment) => {
         return (
-          <div className="" key={comment._id}>
+          <div className={styles.commentsBox} key={comment._id}>
             <div className={styles.userBox}>
               <div className={styles.leftPart}>
                 <pre></pre>
