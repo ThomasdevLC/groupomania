@@ -121,7 +121,7 @@ const Message = ({ message, onDelete, onLike, onComment, onCommentDelete }) => {
           <div className="">
             <i
               onClick={() => setShowComments(!showComments)}
-              class="mr-5 fa-regular fa-comment"
+              className="mr-5 fa-regular fa-comment"
             ></i>
             <span>
               {message.comments.length ? message.comments.length : ""}

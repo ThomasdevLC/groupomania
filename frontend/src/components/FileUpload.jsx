@@ -1,11 +1,14 @@
 import React from "react";
 import styles from "./FileUpload.module.scss";
+import config from "../config";
 
 const FileUpload = ({ files, setFiles, removeFile, onFileSelected }) => {
   const uploadHandler = (e) => {
     const file = e.target.files[0];
     onFileSelected(file);
   };
+
+  const currentPage = window.location.href;
 
   return (
     <div
@@ -20,9 +23,15 @@ const FileUpload = ({ files, setFiles, removeFile, onFileSelected }) => {
         onChange={uploadHandler}
       />
 
-      <label for="file">
-        <i class="fa-solid fa-cloud-arrow-up"></i>
-      </label>
+      {currentPage.includes(config.FRONT_URL + "/profile") ? (
+        <label htmlFor="file">
+          <i class="fa-solid fa-address-card"></i>
+        </label>
+      ) : (
+        <label htmlFor="file">
+          <i className="fa-solid fa-cloud-arrow-up"></i>
+        </label>
+      )}
     </div>
   );
 };

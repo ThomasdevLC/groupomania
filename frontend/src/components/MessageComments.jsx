@@ -5,7 +5,8 @@ import axios from "axios";
 import config from "../config";
 
 const MessageComments = ({ message, onComment, onCommentDelete }) => {
-  const { userId, image, firstname, lastname } = useContext(AppContext);
+  const { userId, image, firstname, lastname, isAdmin } =
+    useContext(AppContext);
   const [text, setText] = useState("");
 
   const handleComment = (e) => {
@@ -77,14 +78,17 @@ const MessageComments = ({ message, onComment, onCommentDelete }) => {
 
                   <p>{comment.timestamp}</p>
                 </div>
-                <div className={styles.btnDelete}>
-                  <button
-                    className="btn-edit"
-                    onClick={(e) => handleDelete(comment._id)}
-                  >
-                    <i className="fa-sharp fa-solid fa-trash"></i>
-                  </button>
-                </div>
+
+                {userId === comment.commenterId || isAdmin === true ? (
+                  <div className={styles.btnDelete}>
+                    <button
+                      className="btn-edit"
+                      onClick={(e) => handleDelete(comment._id)}
+                    >
+                      <i className="fa-sharp fa-solid fa-trash"></i>
+                    </button>
+                  </div>
+                ) : null}
               </div>
             </div>
           </div>
@@ -94,7 +98,7 @@ const MessageComments = ({ message, onComment, onCommentDelete }) => {
       {userId && (
         <form className={styles.commentForm} onSubmit={handleComment}>
           <textarea
-            class={styles.textForm}
+            className={styles.textForm}
             type="text"
             name="text"
             onChange={(e) => setText(e.target.value)}

@@ -23,7 +23,6 @@ const App = () => {
   };
 
   /** Getting cookie */
-  // const tokenCookie = JSON.parse(tools.getCookie("groupomania-token"));
   const tokenCookie = tools.getCookie("groupomania-token");
   const route = window.location.href.split("/")[3];
 
@@ -32,20 +31,20 @@ const App = () => {
     console.log("Setting cookie", tokenCookie);
     config.setToken(tokenCookie);
 
-    /** ON VA CHERCHER L UTILISATEUR CONNECTE EN BACK  */
+    /** Get user in Backend  */
     console.log("auth/ GET", config.axios);
     axios
       .get(config.BACK_URL + "/auth/", config.axios)
       .then((res) => {
         console.log("auth/ RES", config.axios);
-        /** QUAND ON A LA REPONSE ON MET L UTILISATEUR DANS LE CONTEXT  */
+        /** set user in context  */
         displayUser(res.data);
       })
       .catch((err) => {
         console.log("auth/ ERROR", err);
       });
   } else {
-    /** ON REDIRIGE VERS LOGIN SI CE N EST PAS UNE PAGE PUBLIQUE */
+    /** Redirect to /login if path is not public */
     if (!config.public_path.includes(route))
       window.location.href = config.FRONT_URL + "/login";
   }

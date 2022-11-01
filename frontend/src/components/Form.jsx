@@ -26,11 +26,11 @@ const Form = ({ onSent, darkmode }) => {
     data.append("userId", userId);
 
     await axios.post(config.BACK_URL + "/messages/", data, config.axios);
-
     setContent("");
     setFiles("");
     onSent();
   };
+
   return (
     <div className={darkmode ? styles.backgroundFormDark : ""}>
       <form
