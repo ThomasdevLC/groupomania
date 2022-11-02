@@ -57,14 +57,14 @@ exports.getById = (req, res, next) => {
 };
 
 exports.currentUser = (req, res, next) => {
-  User.findOne({ _id: req.auth.userId })
+  User.findOne({ _id: req.auth._id })
     .then((user) => res.status(200).json(user))
     .catch((error) => res.status(404).json({ message: error }));
 };
 
 exports.test = (req, res, next) => {
   res.status(200).json({
-    userId: req.auth.userId,
+    userId: req.auth._id,
     params: req.body,
   });
 };

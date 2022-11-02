@@ -37,11 +37,16 @@ exports.get = (req, res, next) => {
 exports.delete = (req, res, next) => {
   Message.findOne({ _id: req.params.id }).then((message) => {
     console.log("message", message);
-    Message.deleteOne({ _id: req.params.id })
-      .then(() => {
-        res.status(200).json({ message: "message deleted !" });
-      })
-      .catch((error) => res.status(401).json({ error }));
+
+    if (message.userId == req.auth._id || req.auth.isAdmin) {
+      Message.deleteOne({ _id: req.params.id })
+        .then(() => {
+          res.status(200).json({ message: "message deleted !" });
+        })
+        .catch((error) => res.status(401).json({ error }));
+    } else {
+      res.status(401).json({ message: "unauthorized" });
+    }
   });
 };
 
@@ -63,7 +68,7 @@ exports.modify = (req, res, next) => {
 };
 
 exports.likes = (req, res, next) => {
-  const userId = req.auth.userId;
+  const userId = req.auth._id;
   const messageId = req.body.messageId;
 
   Message.findOne({ _id: messageId }).then((message) => {
