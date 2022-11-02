@@ -29,7 +29,7 @@ const App = () => {
   /** Setting cookie in Config module */
   if (tokenCookie) {
     console.log("Setting cookie", tokenCookie);
-    config.setToken(tokenCookie);
+    config.axios.headers.Authorization = tokenCookie;
 
     /** Get user in Backend  */
     console.log("auth/ GET", config.axios);

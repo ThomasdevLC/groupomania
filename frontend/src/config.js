@@ -4,13 +4,10 @@ const config = {
   FRONT_URL: "http://localhost:3002",
   public_path: ["login", "signup"],
   axios: {
-    headers: null,
-  },
-  setToken(token) {
-    this.axios.headers = {
-      Authorization: "Bearer " + token,
+    headers: {
+      Authorization: null,
       "Content-Type": "application/json",
-    };
+    },
   },
 };
 
