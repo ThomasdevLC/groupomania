@@ -43,8 +43,8 @@ const FileUpload = ({ files, setFiles, removeFile, onFileSelected }) => {
       ) : (
         <label htmlFor="file">
           <i
-            onKeyDown={handleClick}
             className="fa-solid fa-cloud-arrow-up"
+            onKeyDown={handleClick}
             tabIndex={6}
           ></i>
         </label>

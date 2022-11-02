@@ -3,8 +3,6 @@ const fs = require("fs");
 
 exports.add = (req, res, next) => {
   console.log("messageObject", req.body.title);
-  // const messageObject = JSON.parse(req.body.message);
-  // delete messageObject._id;
   const messageObject = req.body;
 
   const message = new Message({
@@ -35,12 +33,6 @@ exports.get = (req, res, next) => {
     .then((messages) => res.status(200).json(messages))
     .catch((error) => res.status(400).json({ message: error }));
 };
-
-// exports.getById = (req, res, next) => {
-//   Message.findOne({ _id: req.params.id })
-//     .then((message) => res.status(200).json(message))
-//     .catch((error) => res.status(404).json({ message: error }));
-// };
 
 exports.delete = (req, res, next) => {
   Message.findOne({ _id: req.params.id }).then((message) => {
