@@ -33,8 +33,8 @@ const Signup = () => {
       .string()
       .required("Le mot de passe est obligatoire")
       .min(6, "Mot de passe trop court")
-      .matches(/[a-z]/, "Le mot de passe  doit contenir au moins 1 majuscule")
-      .matches(/[A-Z]/, "Le mot de passe doit contenir au moins 1 minuscule")
+      .matches(/[a-z]/, "Le mot de passe  doit contenir au moins 1 minuscule")
+      .matches(/[A-Z]/, "Le mot de passe doit contenir au moins 1 majuscule")
       .matches(
         /[a-zA-Z]+[^a-zA-Z\s]+/,
         "Utilisez au moins 1 chiffre ou caractère spéciale."
@@ -122,6 +122,7 @@ const Signup = () => {
               type="text"
               placeholder="Prénom"
               autoComplete="off"
+              aria-label="renseigner votre prénom"
             />
             <div className={styles.errorBox}>
               {errors?.firstname && (
@@ -140,6 +141,7 @@ const Signup = () => {
               type="text"
               placeholder="Nom"
               autoComplete="off"
+              aria-label="renseigner votre nom"
             />
             <div className={styles.errorBox}>
               {errors?.lastname && <p>{errors.lastname.message}</p>}
@@ -154,6 +156,7 @@ const Signup = () => {
               type="email"
               placeholder="email"
               autoComplete="off"
+              aria-label="renseigner votre email"
             />
             <div className={styles.errorBox}>
               {errors?.email && <p>{errors.email.message}</p>}
@@ -168,6 +171,7 @@ const Signup = () => {
               type="password"
               placeholder="Mot de passe"
               autoComplete="off"
+              aria-label="renseigner votre mot de passe"
             />
             <div className={styles.errorBox}>
               {errors?.password && <p>{errors.password.message}</p>}
@@ -182,6 +186,7 @@ const Signup = () => {
               type="password"
               placeholder="Confirmation mot de passe"
               autoComplete="off"
+              aria-label="confirmer votre mot de passe"
             />
             <div className={styles.errorBox}>
               {errors?.confirmPassword && (
@@ -197,7 +202,12 @@ const Signup = () => {
             Créer compte
           </button>
           <NavLink to="/login">
-            <p className={styles.link}>Connexion à votre compte</p>
+            <p
+              className={styles.link}
+              aria-label="acceder à la page de connexion"
+            >
+              Connexion à votre compte
+            </p>
           </NavLink>
         </form>
       </div>

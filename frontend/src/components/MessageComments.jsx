@@ -73,7 +73,6 @@ const MessageComments = ({ message, onComment }) => {
                     {comment.commenterPseudo}
                   </p>
                   <p className={styles.commenterText}>{comment.text}</p>
-
                   <p>{comment.timestamp}</p>
                 </div>
 
@@ -82,8 +81,12 @@ const MessageComments = ({ message, onComment }) => {
                     <button
                       className="btn-edit"
                       onClick={(e) => handleDelete(comment._id)}
+                      aria-label="supprimer votre commentaire"
                     >
-                      <i className="fa-sharp fa-solid fa-trash"></i>
+                      <i
+                        className="fa-sharp fa-solid fa-trash"
+                        tabIndex={10}
+                      ></i>
                     </button>
                   </div>
                 ) : null}
@@ -102,11 +105,15 @@ const MessageComments = ({ message, onComment }) => {
             onChange={(e) => setText(e.target.value)}
             value={text}
             placeholder={`commenter le post de ${message.userFirstname} ...`}
+            aria-label="écrire votre commentaire"
+            tabIndex={8}
           />
           <button
             className={` btn btn-reverse-primary ${styles.submitBtn}`}
             type="submit"
             value="Publier"
+            aria-label="poster votre commentaire"
+            tabIndex={9}
           >
             <i className="fa-solid fa-comment mr-5"></i>
             <span>Poster</span>

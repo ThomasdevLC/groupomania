@@ -109,19 +109,25 @@ const Message = ({ message, onDelete, onLike, onComment }) => {
         <div className={`${styles.commentsLikesBox} p-30`}>
           <div>
             <i
+              tabIndex={7}
               onClick={() => likeClick()}
+              onKeyDown={() => likeClick()}
               className={`fa-regular fa-heart mr-5 ${
                 message.usersLiked.includes(userId) ? "text-primary" : ""
               }`}
+              aria-label="aimer le message"
             ></i>
             <span>
               {message.usersLiked.length ? message.usersLiked.length : ""}
             </span>
           </div>
-          <div className="">
+          <div>
             <i
               onClick={() => setShowComments(!showComments)}
+              onKeyDown={() => setShowComments(!showComments)}
               className="mr-5 fa-regular fa-comment"
+              aria-label="commenter le message"
+              tabIndex={8}
             ></i>
             <span>
               {message.comments.length ? message.comments.length : ""}

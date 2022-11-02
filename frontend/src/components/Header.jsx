@@ -17,33 +17,44 @@ const Header = ({ showSearch, setShowSearch, darkmode, setDarkmode }) => {
   return (
     <header className={`${styles.header} d-flex flex-row align-items-center `}>
       <img className="logo" src={logo} alt="logo groupomania" />
-      <div className="flex-fill"></div>
+      <div t className="flex-fill"></div>
       <i
         onClick={() => setDarkmode(!darkmode)}
+        onKeyDown={() => setDarkmode(!darkmode)}
         className={`${
           darkmode
             ? "fa-solid fa-lightbulb btn-round-dark mr-15 mr-15"
             : "fa-regular fa-lightbulb btn-round-dark mr-15 mr-15"
         } ${styles.darkBtn}  `}
+        aria-label="activer le darkmode"
+        tabIndex={1}
       ></i>
       <i
         onClick={() => setShowSearch(!showSearch)}
+        onKeyDown={() => setShowSearch(!showSearch)}
         className={`fa-solid fa-magnifying-glass btn-round mr-15  ${styles.searchGlass}`}
+        aria-label="activer la barre de recherche"
+        tabIndex={2}
       ></i>
       <ul className={styles.headerList}>
         <NavLink to="/profile">
-          <button className="btn btn-reverse-primary mr-15">
+          <button className="btn btn-reverse-primary mr-15" tabIndex={3}>
             <i className="fa-regular fa-user mr-5 "></i>
             Profil
           </button>
         </NavLink>
         <NavLink to="/login">
-          <button onClick={handleLogout} className="btn btn-primary">
+          <button
+            onClick={handleLogout}
+            className="btn btn-primary"
+            tabIndex={4}
+          >
             <i className="fa-solid fa-arrow-right-from-bracket"></i> Déconnexion
           </button>
         </NavLink>
       </ul>
       <i
+        aria-label="accéder au menu"
         onClick={() => setShowMenu(true)}
         className={`fa-solid fa-bars mr-15 text-primary ${styles.headerXs}`}
       ></i>

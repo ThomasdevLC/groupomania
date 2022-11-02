@@ -8,7 +8,7 @@ const messagesController = require("../controllers/messagesController");
 
 router.post("/", auth, multer, messagesController.add);
 router.get("/", auth, messagesController.get);
-router.get("/:id", messagesController.getById);
+// router.get("/:id", messagesController.getById);
 router.put("/:id", auth, multer, messagesController.modify);
 router.delete("/:id", auth, messagesController.delete);
 router.post("/like", auth, messagesController.likes);

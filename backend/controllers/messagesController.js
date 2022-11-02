@@ -36,11 +36,11 @@ exports.get = (req, res, next) => {
     .catch((error) => res.status(400).json({ message: error }));
 };
 
-exports.getById = (req, res, next) => {
-  Message.findOne({ _id: req.params.id })
-    .then((message) => res.status(200).json(message))
-    .catch((error) => res.status(404).json({ message: error }));
-};
+// exports.getById = (req, res, next) => {
+//   Message.findOne({ _id: req.params.id })
+//     .then((message) => res.status(200).json(message))
+//     .catch((error) => res.status(404).json({ message: error }));
+// };
 
 exports.delete = (req, res, next) => {
   Message.findOne({ _id: req.params.id }).then((message) => {

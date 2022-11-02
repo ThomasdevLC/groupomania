@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./Profile.module.scss";
 import backgroundImg from "../assets/images/background.jpg";
@@ -17,6 +17,12 @@ const Profile = () => {
   const removeFile = (filename) => {
     setFiles(files.filter((file) => file.name !== filename));
     console.log("upload file");
+  };
+
+  const inputRef = useRef(null);
+
+  const handleClick = () => {
+    inputRef.current.click();
   };
 
   const handleSubmit = (e) => {
@@ -67,6 +73,7 @@ const Profile = () => {
           className={`btn btn-reverse-primary ${styles.submitBtn}`}
           type="submit"
           value="Publier"
+          aria-label="editer votre profile"
         >
           <span>EDITER</span>
         </button>
@@ -74,7 +81,13 @@ const Profile = () => {
         <Error error={error} />
 
         <NavLink to="/">
-          <i className={`fa-solid fa-house ${styles.homeIcon}`}></i>
+          <i
+            className={`fa-solid fa-house ${styles.homeIcon}`}
+            aria-label="rejoindre la page principale"
+            ref={inputRef}
+            onKeyDown={handleClick}
+            tabIndex={0}
+          ></i>
         </NavLink>
       </form>
     </div>

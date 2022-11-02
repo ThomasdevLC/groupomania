@@ -76,6 +76,7 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             required
+            aria-label="rensiegner votre email"
           />
         </div>
 
@@ -88,17 +89,26 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             required
+            aria-label="renseigner votre mot de passe"
           />
         </div>
 
         <Error error={error} />
 
-        <button className={`btn btn-primary ${styles.btnConnection}`}>
+        <button
+          className={`btn btn-primary ${styles.btnConnection}`}
+          aria-label="se connecter"
+        >
           Connexion{" "}
         </button>
 
         <NavLink to="/signup">
-          <p className={styles.link}>Créer votre compte</p>
+          <p
+            className={styles.link}
+            aria-label="acceder à la page d'inscription"
+          >
+            Créer votre compte
+          </p>
         </NavLink>
       </form>
     </div>

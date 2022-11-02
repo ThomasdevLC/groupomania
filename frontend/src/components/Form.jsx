@@ -42,11 +42,13 @@ const Form = ({ onSent, darkmode }) => {
             <img className={` ${styles.userimg}  `} src={image} alt="avatar" />
           </div>
           <textarea
+            tabIndex={5}
             className={darkmode ? styles.textFormDark : styles.textForm}
             autoFocus
             placeholder={`Echangez avec vos collègues ${firstname}...`}
             onChange={(e) => setContent(e.target.value)}
             value={content}
+            aria-label="écrire votre message"
           ></textarea>
         </div>
         <FileUpload
@@ -59,6 +61,7 @@ const Form = ({ onSent, darkmode }) => {
           className={`mr-15 btn btn-reverse-primary ${styles.submitBtn}`}
           type="submit"
           value="Publier"
+          aria-label="poster votre message"
         >
           <i className="fa-regular fa-paper-plane mr-15"></i>
           <span>Poster</span>
