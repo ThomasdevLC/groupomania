@@ -1,4 +1,5 @@
 const config = {
+  APP_NAME: "groupomania",
   PORT: 3001,
   BACK_URL: "http://localhost:3001/api",
   FRONT_URL: "http://localhost:3002",
