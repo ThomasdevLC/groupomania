@@ -9,6 +9,7 @@ import paperPlane from "../assets/images/paper-plane.png";
 import backgroundImg from "../assets/images/background.jpg";
 import Error from "../components/Error";
 // import axios from "axios";
+// import config from "../config";
 
 const Signup = () => {
   const yupSchema = yup.object({
@@ -82,6 +83,13 @@ const Signup = () => {
       },
       body: JSON.stringify(values),
     });
+    // const response = await axios.post(config.BACK_URL + "/auth/signup", {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(values),
+    // });
+
     if (response.ok) {
       const newUser = await response.json();
       reset(defaultValues);

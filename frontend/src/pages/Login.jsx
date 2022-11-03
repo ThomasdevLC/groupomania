@@ -26,7 +26,7 @@ const Login = () => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:3001/api/auth/login",
+        config.BACK_URL + "/auth/login",
         JSON.stringify({ email, password }),
         {
           headers: { "Content-Type": "application/json" },
@@ -42,7 +42,7 @@ const Login = () => {
         /** Save token in cookie for session persistence */
         tools.setCookie("groupomania-token", data.token, 86400000);
 
-        /** Call "displayuser" to pass values to Use Context variables */
+        /** Call "displayuser" to pass values to Use Context  */
         displayUser(data.user);
         setPassword("");
         setSuccess(true);

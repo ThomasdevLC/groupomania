@@ -5,6 +5,7 @@ import backgroundImg from "../assets/images/background.jpg";
 import { AppContext } from "../context/AppContext";
 import FileUpload from "../components/FileUpload";
 import Error from "../components/Error";
+import config from "../config";
 import axios from "axios";
 
 const Profile = () => {
@@ -34,7 +35,7 @@ const Profile = () => {
     data.append("image", files);
 
     axios
-      .put(`http://localhost:3001/api/auth/${userId}`, data)
+      .put(config.BACK_URL + "/auth/" + userId, data, config.axios)
       .then((user) => {
         displayUser(user);
         setFiles("");
