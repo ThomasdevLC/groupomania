@@ -2,7 +2,6 @@ const Message = require("../models/Message");
 const fs = require("fs");
 
 exports.add = (req, res, next) => {
-  console.log("messageObject", req.body.title);
   const messageObject = req.body;
 
   const message = new Message({
@@ -16,7 +15,6 @@ exports.add = (req, res, next) => {
       ? `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
       : "",
   });
-  console.log("message", message);
 
   message
     .save()
@@ -36,8 +34,6 @@ exports.get = (req, res, next) => {
 
 exports.delete = (req, res, next) => {
   Message.findOne({ _id: req.params.id }).then((message) => {
-    console.log("message", message);
-
     if (message.userId == req.auth._id || req.auth.isAdmin) {
       Message.deleteOne({ _id: req.params.id })
         .then(() => {
@@ -54,13 +50,16 @@ exports.modify = (req, res, next) => {
   const messageObject = req.body;
   Message.findOne({ _id: req.params.id })
     .then((message) => {
-      console.log("message", message);
-      Message.updateOne(
-        { _id: req.params.id },
-        { ...messageObject, _id: req.params.id }
-      )
-        .then(() => res.status(200).json({ message: "message updated !" }))
-        .catch((error) => res.status(401).json({ message: error }));
+      if (message.userId == req.auth._id || req.auth.isAdmin) {
+        Message.updateOne(
+          { _id: req.params.id },
+          { ...messageObject, _id: req.params.id }
+        )
+          .then(() => res.status(200).json({ message: "message updated !" }))
+          .catch((error) => res.status(401).json({ message: error }));
+      } else {
+        res.status(401).json({ message: "unauthorized" });
+      }
     })
     .catch((error) => {
       res.status(400).json({ error });
@@ -72,13 +71,9 @@ exports.likes = (req, res, next) => {
   const messageId = req.body.messageId;
 
   Message.findOne({ _id: messageId }).then((message) => {
-    console.log("usersLiked", message.usersLiked);
-    console.log("userId", userId);
-
     // ADD LIKE
     // user is not in usersLiked array + user clicked on like
     if (!message.usersLiked.includes(userId)) {
-      console.log("ADD LIKE");
       Message.updateOne(
         { _id: messageId },
         {
@@ -92,7 +87,6 @@ exports.likes = (req, res, next) => {
     } else {
       // CANCEL LIKE
       // user is in usersLiked array + user clicked on like
-      console.log("UNLIKE");
       Message.updateOne(
         { _id: messageId },
         {
@@ -109,7 +103,6 @@ exports.likes = (req, res, next) => {
 
 exports.commentPost = (req, res) => {
   Message.findOne({ _id: req.params.id }).then((message) => {
-    console.log("message", message);
     Message.updateOne(
       { _id: req.params.id },
       {
@@ -131,18 +124,21 @@ exports.commentPost = (req, res) => {
 
 exports.deleteCommentPost = (req, res) => {
   Message.findOne({ _id: req.params.id }).then((message) => {
-    console.log("message", message);
-    Message.updateOne(
-      { _id: req.params.id },
-      {
-        $pull: {
-          comments: {
-            _id: req.body.commentId,
+    if (message.userId == req.auth._id || req.auth.isAdmin) {
+      Message.updateOne(
+        { _id: req.params.id },
+        {
+          $pull: {
+            comments: {
+              _id: req.body.commentId,
+            },
           },
-        },
-      }
-    )
-      .then(() => res.status(200).json({ message: "comment deleted !" }))
-      .catch((error) => res.status(401).json({ message: error }));
+        }
+      )
+        .then(() => res.status(200).json({ message: "comment deleted !" }))
+        .catch((error) => res.status(401).json({ message: error }));
+    } else {
+      res.status(401).json({ message: "unauthorized" });
+    }
   });
 };

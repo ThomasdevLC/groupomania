@@ -6,7 +6,7 @@
   color: var(text-color);
   height: 80px;
   position: relative;
-  @include mixin.xs {
+  @include mixin.sm-lt {
     padding: 0;
     height: 60px;
   }
@@ -30,18 +30,22 @@
   }
 
   .searchGlass {
+    margin-right: 15px;
+
     font-size: 14px;
-    @include mixin.xs {
+    @include mixin.sm-lt {
       font-size: 12px;
-      margin-right: 20px;
+      margin-right: 10px;
     }
   }
 
   .darkBtn {
+    margin-right: 15px;
+
     font-size: 16px;
-    @include mixin.xs {
+    @include mixin.sm-lt {
       font-size: 12px;
-      margin-right: 20px;
+      margin-right: 10px;
     }
   }
 
@@ -58,5 +62,8 @@
 
   button {
     width: 130px;
+    @include mixin.sm-lt {
+      margin-right: 10px;
+    }
   }
 }

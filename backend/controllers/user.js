@@ -27,7 +27,6 @@ exports.signup = (req, res, next) => {
 exports.login = (req, res, next) => {
   User.findOne({ email: req.body.email })
     .then((user) => {
-      console.log(user);
       if (!user) {
         return res.status(403).json({ error: "Utilisateur inconnu" });
       }
@@ -72,8 +71,6 @@ exports.test = (req, res, next) => {
 // Edit user profile
 
 exports.modify = (req, res, next) => {
-  console.log(req.file);
-
   if (!req.file) return res.status(406).json("Veuillez choisir une image");
 
   if (!["image/jpeg", "image/png", "image/gif"].includes(req.file.mimetype))

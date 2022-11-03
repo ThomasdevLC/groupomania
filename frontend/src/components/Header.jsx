@@ -15,7 +15,9 @@ const Header = ({ showSearch, setShowSearch, darkmode, setDarkmode }) => {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <header className={`${styles.header} d-flex flex-row align-items-center `}>
+    <header
+      className={`${styles.header} d-flex flex-row align-items-center br `}
+    >
       <img className="logo" src={logo} alt="logo groupomania" />
       <div t className="flex-fill"></div>
       <i
@@ -23,8 +25,8 @@ const Header = ({ showSearch, setShowSearch, darkmode, setDarkmode }) => {
         onKeyDown={() => setDarkmode(!darkmode)}
         className={`${
           darkmode
-            ? "fa-solid fa-lightbulb btn-round-dark mr-15 mr-15"
-            : "fa-regular fa-lightbulb btn-round-dark mr-15 mr-15"
+            ? "fa-solid fa-lightbulb btn-round-dark "
+            : "fa-regular fa-lightbulb btn-round-dark "
         } ${styles.darkBtn}  `}
         aria-label="activer le darkmode"
         tabIndex={1}
@@ -32,7 +34,7 @@ const Header = ({ showSearch, setShowSearch, darkmode, setDarkmode }) => {
       <i
         onClick={() => setShowSearch(!showSearch)}
         onKeyDown={() => setShowSearch(!showSearch)}
-        className={`fa-solid fa-magnifying-glass btn-round mr-15  ${styles.searchGlass}`}
+        className={`fa-solid fa-magnifying-glass btn-round  ${styles.searchGlass}`}
         aria-label="activer la barre de recherche"
         tabIndex={2}
       ></i>
