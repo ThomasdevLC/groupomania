@@ -15,9 +15,7 @@ const Header = ({ showSearch, setShowSearch, darkmode, setDarkmode }) => {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <header
-      className={`${styles.header} d-flex flex-row align-items-center br `}
-    >
+    <header className={`${styles.header} d-flex flex-row align-items-center  `}>
       <img className="logo" src={logo} alt="logo groupomania" />
       <div t className="flex-fill"></div>
       <i

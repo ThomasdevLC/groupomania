@@ -1,4 +1,4 @@
-Groupomania
+## Groupomania
 
 ## **Installation** :
 
@@ -8,7 +8,7 @@ Groupomania
 - Go to back_end folder with `cd back_end`
 - Install dependencies with `npm install`
 - Start the API with `nodemon server`
-- Follow .env.example
+- For Port, Mongo and JWToken config, Follow .env.example
 
 **Front-end**
 

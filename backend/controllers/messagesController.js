@@ -124,7 +124,7 @@ exports.commentPost = (req, res) => {
 
 exports.deleteCommentPost = (req, res) => {
   Message.findOne({ _id: req.params.id }).then((message) => {
-    if (message.userId == req.auth._id || req.auth.isAdmin) {
+    if (message.comments.commenterId == req.auth._id || req.auth.isAdmin) {
       Message.updateOne(
         { _id: req.params.id },
         {
