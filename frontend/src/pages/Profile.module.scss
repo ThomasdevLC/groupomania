@@ -35,7 +35,7 @@
   .loginForm {
     width: 100%;
     max-width: 420px;
-    height: 280px;
+    height: 340px;
     display: flex;
     flex-direction: column;
     padding: 5px;
@@ -61,6 +61,17 @@
       font-weight: bold;
       font-size: 15px;
       margin: 20px 20px;
+    }
+
+    .deleteLink {
+      color: white;
+      font-weight: 900;
+      font-size: 17px;
+      margin: 0;
+      cursor: pointer;
+      &:hover {
+        text-decoration: underline;
+      }
     }
 
     .homeIcon {

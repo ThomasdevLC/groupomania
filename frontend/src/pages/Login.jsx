@@ -53,7 +53,9 @@ const Login = () => {
   const navigate = useNavigate();
 
   return success ? (
-    navigate("/")
+    setTimeout(() => {
+      navigate("/");
+    }, 200)
   ) : (
     <div className={styles.background}>
       <img className={styles.backgroundImg} src={backgroundImg} alt="lines" />

@@ -124,21 +124,17 @@ exports.commentPost = (req, res) => {
 
 exports.deleteCommentPost = (req, res) => {
   Message.findOne({ _id: req.params.id }).then((message) => {
-    if (message.comments.commenterId == req.auth._id || req.auth.isAdmin) {
-      Message.updateOne(
-        { _id: req.params.id },
-        {
-          $pull: {
-            comments: {
-              _id: req.body.commentId,
-            },
+    Message.updateOne(
+      { _id: req.params.id },
+      {
+        $pull: {
+          comments: {
+            _id: req.body.commentId,
           },
-        }
-      )
-        .then(() => res.status(200).json({ message: "comment deleted !" }))
-        .catch((error) => res.status(401).json({ message: error }));
-    } else {
-      res.status(401).json({ message: "unauthorized" });
-    }
+        },
+      }
+    )
+      .then(() => res.status(200).json({ message: "comment deleted !" }))
+      .catch((error) => res.status(401).json({ message: error }));
   });
 };

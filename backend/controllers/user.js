@@ -91,3 +91,14 @@ exports.modify = (req, res, next) => {
     .then((user) => res.status(200).json(user))
     .catch((err) => res.status(500).json(err.messageId));
 };
+
+exports.deleteUser = (req, res, next) => {
+  User.findOne({ _id: req.params.id }).then((user) => {
+    user
+      .deleteOne({ _id: req.params.id })
+      .then(() => {
+        res.status(200).json({ message: "user deleted !" });
+      })
+      .catch((error) => res.status(401).json({ error }));
+  });
+};

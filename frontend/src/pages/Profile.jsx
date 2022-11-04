@@ -1,5 +1,5 @@
 import React, { useContext, useState, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Profile.module.scss";
 import backgroundImg from "../assets/images/background.jpg";
 import { AppContext } from "../context/AppContext";
@@ -14,6 +14,7 @@ const Profile = () => {
 
   const [files, setFiles] = useState({});
   const [error, setError] = useState();
+  const [success, setSuccess] = useState(false);
 
   const removeFile = (filename) => {
     setFiles(files.filter((file) => file.name !== filename));
@@ -28,9 +29,7 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     setError(null);
-
     let data = new FormData();
     data.append("image", files);
 
@@ -41,13 +40,27 @@ const Profile = () => {
         setFiles("");
       })
       .catch((error) => {
-        console.log(error);
         setError(error.response.data);
         setFiles("");
       });
   };
 
-  return (
+  const navigate = useNavigate();
+
+  const handleDelete = (e) => {
+    setTimeout(() => {
+      if (window.confirm("Etes vous sûr de vouloir supprimer votre compte ?")) {
+        axios.delete(config.BACK_URL + "/auth/" + userId, config.axios);
+        setSuccess(true);
+      } else {
+        navigate("/profile");
+      }
+    }, 800);
+  };
+
+  return success ? (
+    navigate("/login")
+  ) : (
     <div className={styles.background}>
       <img className={styles.backgroundImg} src={backgroundImg} alt="lines" />
       <form onSubmit={(e) => handleSubmit(e)} className={styles.loginForm}>
@@ -78,8 +91,10 @@ const Profile = () => {
         >
           <span>EDITER</span>
         </button>
-
         <Error error={error} />
+        <div className={styles.deleteLink}>
+          <p onClick={handleDelete}>Supprimer compte</p>
+        </div>
 
         <NavLink to="/">
           <i
