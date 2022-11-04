@@ -16,7 +16,6 @@ const Form = ({ onSent, darkmode }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     let data = new FormData();
     data.append("image", files);
     data.append("content", content);

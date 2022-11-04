@@ -1,5 +1,9 @@
 ## Groupomania
 
+## Technologies Used
+
+- React / Sass / Express / MongoDB / NodeJS
+
 ## **Installation** :
 
 **Back-end**
