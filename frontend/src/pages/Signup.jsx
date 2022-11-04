@@ -83,11 +83,8 @@ const Signup = () => {
     });
 
     if (response.ok) {
-      const newUser = await response.json();
       reset(defaultValues);
       setSuccess(true);
-
-      console.log(newUser);
     } else {
       const body = await response.json();
       setError(body.error);

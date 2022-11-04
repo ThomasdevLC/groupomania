@@ -10,10 +10,6 @@ const Form = ({ onSent, darkmode }) => {
   const [content, setContent] = useState("");
   const [files, setFiles] = useState({});
 
-  const removeFile = (filename) => {
-    setFiles(files.filter((file) => file.name !== filename));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     let data = new FormData();
@@ -50,11 +46,7 @@ const Form = ({ onSent, darkmode }) => {
             aria-label="écrire votre message"
           ></textarea>
         </div>
-        <FileUpload
-          files={files}
-          removeFile={removeFile}
-          onFileSelected={(file) => setFiles(file)}
-        />
+        <FileUpload files={files} onFileSelected={(file) => setFiles(file)} />
 
         <button
           className={`mr-15 btn btn-reverse-primary ${styles.submitBtn}`}

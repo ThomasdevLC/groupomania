@@ -28,20 +28,17 @@ const App = () => {
 
   /** Setting cookie in Config module */
   if (tokenCookie) {
-    console.log("Setting cookie", tokenCookie);
     config.axios.headers.Authorization = tokenCookie;
 
     /** Get user in Backend  */
-    console.log("auth/ GET", config.axios);
     axios
       .get(config.BACK_URL + "/auth/", config.axios)
       .then((res) => {
-        console.log("auth/ RES", config.axios);
         /** set user in context  */
         displayUser(res.data);
       })
       .catch((err) => {
-        console.log("auth/ ERROR", err);
+        console.error("auth/ ERROR", err);
       });
   } else {
     /** Redirect to /login if path is not public */

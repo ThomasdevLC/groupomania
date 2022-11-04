@@ -3,7 +3,7 @@ import styles from "./FileUpload.module.scss";
 import config from "../config";
 import { useRef } from "react";
 
-const FileUpload = ({ files, setFiles, removeFile, onFileSelected }) => {
+const FileUpload = ({ files, setFiles, onFileSelected }) => {
   const uploadHandler = (e) => {
     const file = e.target.files[0];
     onFileSelected(file);

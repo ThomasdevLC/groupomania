@@ -16,11 +16,6 @@ const Profile = () => {
   const [error, setError] = useState();
   const [success, setSuccess] = useState(false);
 
-  const removeFile = (filename) => {
-    setFiles(files.filter((file) => file.name !== filename));
-    console.log("upload file");
-  };
-
   const inputRef = useRef(null);
 
   const handleClick = () => {
@@ -77,11 +72,7 @@ const Profile = () => {
             )}
           </div>
         </div>
-        <FileUpload
-          files={files}
-          removeFile={removeFile}
-          onFileSelected={(file) => setFiles(file)}
-        />
+        <FileUpload files={files} onFileSelected={(file) => setFiles(file)} />
 
         <button
           className={`btn btn-reverse-primary ${styles.submitBtn}`}

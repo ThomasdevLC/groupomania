@@ -35,11 +35,18 @@ exports.get = (req, res, next) => {
 exports.delete = (req, res, next) => {
   Message.findOne({ _id: req.params.id }).then((message) => {
     if (message.userId == req.auth._id || req.auth.isAdmin) {
-      Message.deleteOne({ _id: req.params.id })
-        .then(() => {
-          res.status(200).json({ message: "message deleted !" });
-        })
-        .catch((error) => res.status(401).json({ error }));
+      if (message.imageUrl === undefined) {
+        Message.deleteOne({ _id: req.params.id }).then(() =>
+          res.status(200).json({ message: "message deleted" })
+        );
+      } else {
+        const filename = message.imageUrl.split("/images")[1];
+        fs.unlink(`images/${filename}`, () => {
+          Message.deleteOne({ _id: req.params.id })
+            .then(() => res.status(200).json({ message: "message deleted" }))
+            .catch((error) => res.status(400).json({ error }));
+        });
+      }
     } else {
       res.status(401).json({ message: "unauthorized" });
     }
@@ -124,17 +131,24 @@ exports.commentPost = (req, res) => {
 
 exports.deleteCommentPost = (req, res) => {
   Message.findOne({ _id: req.params.id }).then((message) => {
-    Message.updateOne(
-      { _id: req.params.id },
-      {
-        $pull: {
-          comments: {
-            _id: req.body.commentId,
+    let comment = message.comments.find(
+      (comment) => comment.id === req.body.commentId
+    );
+    if (comment.commenterId == req.auth._id || req.auth.isAdmin) {
+      Message.updateOne(
+        { _id: req.params.id },
+        {
+          $pull: {
+            comments: {
+              _id: req.body.commentId,
+            },
           },
-        },
-      }
-    )
-      .then(() => res.status(200).json({ message: "comment deleted !" }))
-      .catch((error) => res.status(401).json({ message: error }));
+        }
+      )
+        .then(() => res.status(200).json({ message: "comment deleted !" }))
+        .catch((error) => res.status(401).json({ message: error }));
+    } else {
+      res.status(401).json({ message: "unauthorized" });
+    }
   });
 };

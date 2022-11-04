@@ -30,11 +30,10 @@ const Message = ({ message, onDelete, onLike, onComment }) => {
     axios
       .post(config.BACK_URL + "/messages/like", param, config.axios)
       .then((res) => {
-        console.log(" message ", res);
         onLike();
       })
       .catch((err) => {
-        console.log(" error ", err);
+        console.error(" error ", err);
       });
   };
 

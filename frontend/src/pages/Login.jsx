@@ -34,7 +34,6 @@ const Login = () => {
       )
       .then((res) => {
         let data = res.data;
-        console.log("TOKEN", data.token);
 
         /** Save token in config module */
         config.axios.headers.Authorization = data.token;
