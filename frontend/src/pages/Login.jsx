@@ -12,8 +12,8 @@ import config from "../config";
 
 const Login = () => {
   const emailRef = useRef();
-  const [email, setEmail] = useState("Hello315@test.com");
-  const [password, setPassword] = useState("Hello315");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState();
   const [success, setSuccess] = useState(false);
   const { displayUser } = useContext(AppContext);
