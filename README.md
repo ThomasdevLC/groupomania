@@ -20,4 +20,4 @@
 - Go to frontend folder with `cd frontend`
 - Install dependencies with `npm install`
 - Start the application with `npm start`
-- To open the application in your browser follow link or search for `http://localhost:3002`
+- To open the application in your browser follow link or search for `http://localhost:3000`
