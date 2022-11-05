@@ -8,10 +8,9 @@ const dotenv = require("dotenv");
 const path = require("path");
 
 dotenv.config();
-
 mongoose
   .connect(
-    `mongodb+srv://${process.env.USER_MONGO}:${process.env.PW_MONGO}@cluster0.2sihgh3.mongodb.net/groupomania?retryWrites=true&w=majority`,
+    `mongodb+srv://${process.env.USER_MONGO}:${process.env.PW_MONGO}@${process.env.CLUSTER_MONGO}.2sihgh3.mongodb.net/groupomania?retryWrites=true&w=majority`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
