@@ -11,8 +11,9 @@
 - Open a terminal in Groupomania folder
 - Go to backend folder with `cd backend`
 - Install dependencies with `npm install`
+- For Mongo and JWToken config, Follow .env.example
+- Set PORT=3001
 - Start API with `nodemon server`
-- For Port, Mongo and JWToken config, Follow .env.example
 
 **Front-end**
 
