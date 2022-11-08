@@ -6,7 +6,7 @@
 
 ## **Installation** :
 
-**Back-end**
+**Backend Installation**
 
 - Open a terminal in Groupomania folder
 - Go to backend folder with `cd backend`
@@ -15,7 +15,7 @@
 - Set PORT=3001
 - Start API with `nodemon server`
 
-**Front-end**
+**Frontend Installation**
 
 - Open a terminal in Groupomania folder
 - Go to frontend folder with `cd frontend`
