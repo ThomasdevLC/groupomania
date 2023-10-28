@@ -1,16 +1,16 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AppContext } from "./context/AppContext";
+import { useState } from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import tools from "./tools";
+import config from "./config";
+import axios from "axios";
 import Home from "./pages/Home";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import Test from "./pages/Test";
-import { AppContext } from "./context/AppContext";
-import { useState } from "react";
-import tools from "./tools";
-import config from "./config";
-import axios from "axios";
-import { QueryClient, QueryClientProvider } from "react-query";
 
 const App = () => {
   // Function for use context datas*/
@@ -42,8 +42,7 @@ const App = () => {
       });
   } else {
     /** Redirect to /login if path is not public */
-    if (!config.public_path.includes(route))
-      window.location.href = config.FRONT_URL + "/login";
+    if (!config.public_path.includes(route)) window.location.href = config.FRONT_URL + "/login";
   }
 
   const [firstname, setFirstname] = useState(null);

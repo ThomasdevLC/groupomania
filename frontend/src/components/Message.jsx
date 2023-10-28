@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
+import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import styles from "./Message.module.scss";
-import { AppContext } from "../context/AppContext";
 import EditingButtons from "./EditingButtons";
 import MessageComments from "./MessageComments";
 import config from "../config";
@@ -52,11 +52,7 @@ const Message = ({ message, onDelete, onLike, onComment }) => {
   return (
     <div className={styles.message}>
       <div className={` d-flex  align-items-center  ${styles.userBox}`}>
-        <img
-          className={`${styles.userImg}`}
-          src={message.userImage}
-          alt="avatar"
-        />
+        <img className={`${styles.userImg}`} src={message.userImage} alt="avatar" />
         <div className={styles.signature}>
           <div className={styles.signatureName}>
             <b>{message.userFirstname} </b>
@@ -69,18 +65,11 @@ const Message = ({ message, onDelete, onLike, onComment }) => {
         <div className={`mr-15 ${styles.editBtn}`}></div>
         {/* displaying edit and delete buttons if user is poster or admin */}
         {userId === message.userId || isAdmin === true ? (
-          <EditingButtons
-            isEditing={isEditing}
-            handleEdit={handleEdit}
-            setIsEditing={setIsEditing}
-            onDelete={onDelete}
-          />
+          <EditingButtons isEditing={isEditing} handleEdit={handleEdit} setIsEditing={setIsEditing} onDelete={onDelete} />
         ) : null}
       </div>
 
-      <div
-        className={`${styles.messageContent} d-flex flex-column justify-content-center align-items-center `}
-      >
+      <div className={`${styles.messageContent} d-flex flex-column justify-content-center align-items-center `}>
         {isEditing ? (
           <textarea
             className={styles.textMessage}
@@ -88,18 +77,12 @@ const Message = ({ message, onDelete, onLike, onComment }) => {
             onChange={(e) => setEditContent(e.target.value)}
           ></textarea>
         ) : (
-          <p className={styles.textMessage}>
-            {editContent ? editContent : message.content}
-          </p>
+          <p className={styles.textMessage}>{editContent ? editContent : message.content}</p>
         )}
 
         {message.imageUrl ? (
           <div className={styles.imageContainer}>
-            <img
-              className={styles.messageImg}
-              src={message.imageUrl}
-              alt="message"
-            />
+            <img className={styles.messageImg} src={message.imageUrl} alt="message" />
           </div>
         ) : (
           ""
@@ -111,14 +94,10 @@ const Message = ({ message, onDelete, onLike, onComment }) => {
               tabIndex={7}
               onClick={() => likeClick()}
               onKeyDown={() => likeClick()}
-              className={`fa-regular fa-heart mr-5 ${
-                message.usersLiked.includes(userId) ? "text-primary" : ""
-              }`}
+              className={`fa-regular fa-heart mr-5 ${message.usersLiked.includes(userId) ? "text-primary" : ""}`}
               aria-label="aimer le message"
             ></i>
-            <span>
-              {message.usersLiked.length ? message.usersLiked.length : ""}
-            </span>
+            <span>{message.usersLiked.length ? message.usersLiked.length : ""}</span>
           </div>
           <div>
             <i
@@ -128,14 +107,10 @@ const Message = ({ message, onDelete, onLike, onComment }) => {
               aria-label="commenter le message"
               tabIndex={8}
             ></i>
-            <span>
-              {message.comments.length ? message.comments.length : ""}
-            </span>
+            <span>{message.comments.length ? message.comments.length : ""}</span>
           </div>
         </div>
-        {showComments && (
-          <MessageComments message={message} onComment={onComment} />
-        )}
+        {showComments && <MessageComments message={message} onComment={onComment} />}
       </div>
     </div>
   );

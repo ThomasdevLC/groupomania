@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import styles from "./Signup.module.scss";
 import logo from "../assets/images/icon-left-font-monochrome-white.png";
 import paperPlane from "../assets/images/paper-plane.png";
@@ -11,22 +11,11 @@ import Error from "../components/Error";
 
 const Signup = () => {
   const yupSchema = yup.object({
-    firstname: yup
-      .string()
-      .required("Le champ est obligatoire")
-      .min(2, "Trop court")
-      .max(20, "Trop long"),
+    firstname: yup.string().required("Le champ est obligatoire").min(2, "Trop court").max(20, "Trop long"),
 
-    lastname: yup
-      .string()
-      .required("Le champ est obligatoire")
-      .min(2, "Trop court")
-      .max(20, "Trop long"),
+    lastname: yup.string().required("Le champ est obligatoire").min(2, "Trop court").max(20, "Trop long"),
 
-    email: yup
-      .string()
-      .email("L'email doit être un email valide")
-      .required("Le champ est obligatoire"),
+    email: yup.string().email("L'email doit être un email valide").required("Le champ est obligatoire"),
 
     password: yup
       .string()
@@ -34,18 +23,12 @@ const Signup = () => {
       .min(6, "Mot de passe trop court")
       .matches(/[a-z]/, "Le mot de passe  doit contenir au moins 1 minuscule")
       .matches(/[A-Z]/, "Le mot de passe doit contenir au moins 1 majuscule")
-      .matches(
-        /[a-zA-Z]+[^a-zA-Z\s]+/,
-        "Utilisez au moins 1 chiffre ou caractère spéciale."
-      ),
+      .matches(/[a-zA-Z]+[^a-zA-Z\s]+/, "Utilisez au moins 1 chiffre ou caractère spéciale."),
 
     confirmPassword: yup
       .string()
       .required("Vous devez confirmer votre mot de passe")
-      .oneOf(
-        [yup.ref("password"), ""],
-        "Les mots de passe ne corespondent pas"
-      ),
+      .oneOf([yup.ref("password"), ""], "Les mots de passe ne corespondent pas"),
   });
 
   const defaultValues = {
@@ -99,15 +82,9 @@ const Signup = () => {
     <div className={styles.background}>
       <img className={styles.backgroundImg} src={backgroundImg} alt="lines" />
 
-      <div
-        className={`d-flex flex-row justify-content-center align-items-center ${styles.container}`}
-      >
+      <div className={`d-flex flex-row justify-content-center align-items-center ${styles.container}`}>
         <form className={styles.signupForm} onSubmit={handleSubmit(submit)}>
-          <img
-            className={styles.paperPlane}
-            src={paperPlane}
-            alt="logo paperpPlane"
-          />
+          <img className={styles.paperPlane} src={paperPlane} alt="logo paperpPlane" />
           <img className={styles.logo} src={logo} alt="logo groupomania" />
           <h1 className={`mb-20 ${styles.title}`}>Inscription</h1>{" "}
           <div className="d-flex flex-column mb-20">
@@ -121,13 +98,7 @@ const Signup = () => {
               autoComplete="off"
               aria-label="renseigner votre prénom"
             />
-            <div className={styles.errorBox}>
-              {errors?.firstname && (
-                <p className={styles.errorBoxText}>
-                  {errors.firstname.message}
-                </p>
-              )}
-            </div>
+            <div className={styles.errorBox}>{errors?.firstname && <p className={styles.errorBoxText}>{errors.firstname.message}</p>}</div>
           </div>
           <div className="d-flex flex-column mb-20">
             <label className="mb-5" htmlFor="name"></label>
@@ -140,9 +111,7 @@ const Signup = () => {
               autoComplete="off"
               aria-label="renseigner votre nom"
             />
-            <div className={styles.errorBox}>
-              {errors?.lastname && <p>{errors.lastname.message}</p>}
-            </div>
+            <div className={styles.errorBox}>{errors?.lastname && <p>{errors.lastname.message}</p>}</div>
           </div>
           <div className="d-flex flex-column mb-20">
             <label className="mb-5" htmlFor="email"></label>
@@ -155,9 +124,7 @@ const Signup = () => {
               autoComplete="off"
               aria-label="renseigner votre email"
             />
-            <div className={styles.errorBox}>
-              {errors?.email && <p>{errors.email.message}</p>}
-            </div>
+            <div className={styles.errorBox}>{errors?.email && <p>{errors.email.message}</p>}</div>
           </div>
           <div className="d-flex flex-column mb-20">
             <label className="mb-5" htmlFor="password"></label>
@@ -170,9 +137,7 @@ const Signup = () => {
               autoComplete="off"
               aria-label="renseigner votre mot de passe"
             />
-            <div className={styles.errorBox}>
-              {errors?.password && <p>{errors.password.message}</p>}
-            </div>
+            <div className={styles.errorBox}>{errors?.password && <p>{errors.password.message}</p>}</div>
           </div>
           <div className="d-flex flex-column mb-20">
             <label className="mb-5" htmlFor="confirmPassword"></label>
@@ -185,24 +150,14 @@ const Signup = () => {
               autoComplete="off"
               aria-label="confirmer votre mot de passe"
             />
-            <div className={styles.errorBox}>
-              {errors?.confirmPassword && (
-                <p>{errors.confirmPassword.message}</p>
-              )}
-            </div>
+            <div className={styles.errorBox}>{errors?.confirmPassword && <p>{errors.confirmPassword.message}</p>}</div>
           </div>
           <Error error={error} />
-          <button
-            disabled={isSubmitting}
-            className={`btn btn-primary ${styles.btnSignin}`}
-          >
+          <button disabled={isSubmitting} className={`btn btn-primary ${styles.btnSignin}`}>
             Créer compte
           </button>
           <NavLink to="/login">
-            <p
-              className={styles.link}
-              aria-label="acceder à la page de connexion"
-            >
+            <p className={styles.link} aria-label="acceder à la page de connexion">
               Connexion à votre compte
             </p>
           </NavLink>

@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "./FileUpload.module.scss";
-import config from "../config";
 import { useRef } from "react";
+import config from "../config";
+import styles from "./FileUpload.module.scss";
 
 const FileUpload = ({ files, setFiles, onFileSelected }) => {
   const uploadHandler = (e) => {
@@ -18,9 +18,7 @@ const FileUpload = ({ files, setFiles, onFileSelected }) => {
   const currentPage = window.location.href;
 
   return (
-    <div
-      className={`${styles.card} d-flex flex-column align-items-center p-20 `}
-    >
+    <div className={`${styles.card} d-flex flex-column align-items-center p-20 `}>
       <input
         ref={inputRef}
         type="file"
@@ -34,19 +32,11 @@ const FileUpload = ({ files, setFiles, onFileSelected }) => {
 
       {currentPage.includes(config.FRONT_URL + "/profile") ? (
         <label htmlFor="file">
-          <i
-            class="fa-solid fa-address-card"
-            onKeyDown={handleClick}
-            tabIndex={0}
-          ></i>
+          <i class="fa-solid fa-address-card" onKeyDown={handleClick} tabIndex={0}></i>
         </label>
       ) : (
         <label htmlFor="file">
-          <i
-            className="fa-solid fa-cloud-arrow-up"
-            onKeyDown={handleClick}
-            tabIndex={6}
-          ></i>
+          <i className="fa-solid fa-cloud-arrow-up" onKeyDown={handleClick} tabIndex={6}></i>
         </label>
       )}
     </div>

@@ -1,12 +1,11 @@
 import React, { useContext, useState } from "react";
-import styles from "./MessageComments.module.scss";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import config from "../config";
+import styles from "./MessageComments.module.scss";
 
 const MessageComments = ({ message, onComment }) => {
-  const { userId, image, firstname, lastname, isAdmin } =
-    useContext(AppContext);
+  const { userId, image, firstname, lastname, isAdmin } = useContext(AppContext);
   const [text, setText] = useState("");
 
   const handleComment = (e) => {
@@ -20,11 +19,7 @@ const MessageComments = ({ message, onComment }) => {
     });
 
     axios
-      .patch(
-        config.BACK_URL + `/messages/comment-post/${message._id}`,
-        data,
-        config.axios
-      )
+      .patch(config.BACK_URL + `/messages/comment-post/${message._id}`, data, config.axios)
       .then(function () {
         setText("");
         onComment();
@@ -40,11 +35,7 @@ const MessageComments = ({ message, onComment }) => {
     });
 
     axios
-      .patch(
-        config.BACK_URL + `/messages/delete-comment-post/${message._id}`,
-        data,
-        config.axios
-      )
+      .patch(config.BACK_URL + `/messages/delete-comment-post/${message._id}`, data, config.axios)
       .then(function (response) {
         onComment();
       })
@@ -61,32 +52,19 @@ const MessageComments = ({ message, onComment }) => {
             <div className={styles.userBox}>
               <div className={styles.leftPart}>
                 <pre></pre>
-                <img
-                  className={styles.userImg}
-                  src={comment.commenterImage}
-                  alt="avatar"
-                />
+                <img className={styles.userImg} src={comment.commenterImage} alt="avatar" />
               </div>
               <div className={`d-flex ${styles.rightPart}`}>
                 <div className={styles.commentBox}>
-                  <p className={styles.commenterPseudo}>
-                    {comment.commenterPseudo}
-                  </p>
+                  <p className={styles.commenterPseudo}>{comment.commenterPseudo}</p>
                   <p className={styles.commenterText}>{comment.text}</p>
                   <p>{comment.timestamp}</p>
                 </div>
 
                 {userId === comment.commenterId || isAdmin === true ? (
                   <div className={styles.btnDelete}>
-                    <button
-                      className="btn-edit"
-                      onClick={(e) => handleDelete(comment._id)}
-                      aria-label="supprimer votre commentaire"
-                    >
-                      <i
-                        className="fa-sharp fa-solid fa-trash"
-                        tabIndex={10}
-                      ></i>
+                    <button className="btn-edit" onClick={(e) => handleDelete(comment._id)} aria-label="supprimer votre commentaire">
+                      <i className="fa-sharp fa-solid fa-trash" tabIndex={10}></i>
                     </button>
                   </div>
                 ) : null}
@@ -108,13 +86,7 @@ const MessageComments = ({ message, onComment }) => {
             aria-label="écrire votre commentaire"
             tabIndex={8}
           />
-          <button
-            className={` btn btn-reverse-primary ${styles.submitBtn}`}
-            type="submit"
-            value="Publier"
-            aria-label="poster votre commentaire"
-            tabIndex={9}
-          >
+          <button className={` btn btn-reverse-primary ${styles.submitBtn}`} type="submit" value="Publier" aria-label="poster votre commentaire" tabIndex={9}>
             <i className="fa-solid fa-comment mr-5"></i>
             <span>Poster</span>
           </button>

@@ -1,16 +1,15 @@
 import React, { useContext, useState, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import styles from "./Profile.module.scss";
-import backgroundImg from "../assets/images/background.jpg";
 import { AppContext } from "../context/AppContext";
-import FileUpload from "../components/FileUpload";
-import Error from "../components/Error";
 import config from "../config";
 import axios from "axios";
+import styles from "./Profile.module.scss";
+import backgroundImg from "../assets/images/background.jpg";
+import FileUpload from "../components/FileUpload";
+import Error from "../components/Error";
 
 const Profile = () => {
-  const { firstname, lastname, image, userId, isAdmin, displayUser } =
-    useContext(AppContext);
+  const { firstname, lastname, image, userId, isAdmin, displayUser } = useContext(AppContext);
 
   const [files, setFiles] = useState({});
   const [error, setError] = useState();
@@ -64,22 +63,11 @@ const Profile = () => {
           <span>{firstname} </span>
           <span>{lastname}</span>
 
-          <div className={styles.userStatus}>
-            {isAdmin === true ? (
-              <div>statut : Administrateur</div>
-            ) : (
-              <div>statut : Utilisateur</div>
-            )}
-          </div>
+          <div className={styles.userStatus}>{isAdmin === true ? <div>statut : Administrateur</div> : <div>statut : Utilisateur</div>}</div>
         </div>
         <FileUpload files={files} onFileSelected={(file) => setFiles(file)} />
 
-        <button
-          className={`btn btn-reverse-primary ${styles.submitBtn}`}
-          type="submit"
-          value="Publier"
-          aria-label="editer votre profile"
-        >
+        <button className={`btn btn-reverse-primary ${styles.submitBtn}`} type="submit" value="Publier" aria-label="editer votre profile">
           <span>EDITER</span>
         </button>
         <Error error={error} />

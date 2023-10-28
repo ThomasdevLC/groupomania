@@ -1,14 +1,14 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
-import axios from "axios";
-import styles from "./Login.module.scss";
-import tools from "../tools";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
+import axios from "axios";
+import config from "../config";
+import styles from "./Login.module.scss";
+import tools from "../tools";
 import logo from "../assets/images/icon-left-font-monochrome-white.png";
 import paperPlane from "../assets/images/paper-plane.png";
 import backgroundImg from "../assets/images/background.jpg";
 import Error from "../components/Error";
-import config from "../config";
 
 const Login = () => {
   const emailRef = useRef();
@@ -25,13 +25,9 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     axios
-      .post(
-        config.BACK_URL + "/auth/login",
-        JSON.stringify({ email, password }),
-        {
-          headers: { "Content-Type": "application/json" },
-        }
-      )
+      .post(config.BACK_URL + "/auth/login", JSON.stringify({ email, password }), {
+        headers: { "Content-Type": "application/json" },
+      })
       .then((res) => {
         let data = res.data;
 
@@ -59,11 +55,7 @@ const Login = () => {
     <div className={styles.background}>
       <img className={styles.backgroundImg} src={backgroundImg} alt="lines" />
       <form onSubmit={handleSubmit} className={styles.loginForm}>
-        <img
-          className={styles.paperPlane}
-          src={paperPlane}
-          alt="logo paperpPlane"
-        />
+        <img className={styles.paperPlane} src={paperPlane} alt="logo paperpPlane" />
         <img className={styles.logo} src={logo} alt="logo groupomania" />
         <h1 className={`mb-20 ${styles.title}`}>Login</h1>
         <div className="d-flex flex-column mb-20">
@@ -96,18 +88,12 @@ const Login = () => {
 
         <Error error={error} />
 
-        <button
-          className={`btn btn-primary ${styles.btnConnection}`}
-          aria-label="se connecter"
-        >
+        <button className={`btn btn-primary ${styles.btnConnection}`} aria-label="se connecter">
           Connexion{" "}
         </button>
 
         <NavLink to="/signup">
-          <p
-            className={styles.link}
-            aria-label="acceder à la page d'inscription"
-          >
+          <p className={styles.link} aria-label="acceder à la page d'inscription">
             Créer votre compte
           </p>
         </NavLink>

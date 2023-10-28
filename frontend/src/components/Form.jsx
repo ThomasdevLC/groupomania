@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
-import styles from "./Form.module.scss";
-import axios from "axios";
-import FileUpload from "./FileUpload";
 import { AppContext } from "../context/AppContext";
+import axios from "axios";
+import styles from "./Form.module.scss";
+import FileUpload from "./FileUpload";
 import config from "../config";
 
 const Form = ({ onSent, darkmode }) => {
@@ -28,10 +28,7 @@ const Form = ({ onSent, darkmode }) => {
 
   return (
     <div className={darkmode ? styles.backgroundFormDark : ""}>
-      <form
-        className={`p-20  ${styles.form}`}
-        onSubmit={(e) => handleSubmit(e)}
-      >
+      <form className={`p-20  ${styles.form}`} onSubmit={(e) => handleSubmit(e)}>
         <div className={` ${styles.formContainer} d-flex `}>
           <div className={` ${styles.userBox}  `}>
             <img className={` ${styles.userimg}  `} src={image} alt="avatar" />
@@ -48,12 +45,7 @@ const Form = ({ onSent, darkmode }) => {
         </div>
         <FileUpload files={files} onFileSelected={(file) => setFiles(file)} />
 
-        <button
-          className={`mr-15 btn btn-reverse-primary ${styles.submitBtn}`}
-          type="submit"
-          value="Publier"
-          aria-label="poster votre message"
-        >
+        <button className={`mr-15 btn btn-reverse-primary ${styles.submitBtn}`} type="submit" value="Publier" aria-label="poster votre message">
           <i className="fa-regular fa-paper-plane mr-15"></i>
           <span>Poster</span>
         </button>
